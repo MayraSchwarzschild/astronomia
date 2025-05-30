@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card {
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 188, 250, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(11, 13, 23, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            padding: 1rem;
+            overflow-y: auto; /* Allow scrolling for the overlay if modal is too tall */
+        }
+
+        .modal-content {
+            background-color: var(--cosmic-purple);
+            animation: fadeInModal 0.3s ease-out;
+            max-height: 90vh; /* Max height for the modal content */
+            overflow-y: auto; /* Enable scrolling for modal content itself */
+            width: 100%;
+            max-width: 48rem; /* Equivalent to Tailwind's max-w-3xl */
+            border-radius: 0.5rem; /* Tailwind's rounded-lg */
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); /* Tailwind's shadow-2xl */
+            position: relative; /* For absolute positioning of close button */
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-tab {
+            color: #a0aec0; /* Tailwind gray-500 */
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .modal-tab:hover {
+            color: var(--starlight-yellow);
+        }
+        .modal-tab.active-tab {
+            border-bottom: 2px solid var(--starlight-yellow);
+            color: var(--starlight-yellow);
+            font-weight: 600;
+        }
+        .module-card {
+            background: rgba(11, 13, 23, 0.3); /* Darker than main card for contrast */
+            border: 1px solid rgba(109, 40, 217, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .exam-button {
+            background-color: var(--starlight-yellow);
+            color: var(--space-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; /* pill shape */
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .exam-button:hover {
+            background-color: var(--nebula-pink);
+            border-color: var(--starlight-yellow);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <h1 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title">Nuestros Cursos de Astronomía</h1>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card">
+                <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Telescopios" alt="Curso de Telescopios" class="rounded-t-lg h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Telescopios: Partes y Usos</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Aprende a seleccionar, montar y operar diferentes tipos de telescopios. Ideal para principiantes y aficionados.</p>
+                    <div class="mt-auto">
+                        <p class="text-yellow-400 font-bold text-xl mb-3">ARS 150.000</p>
+                        <button onclick="showCourseDetails('telescopios')" class="w-full btn-primary px-4 py-2 rounded-full text-sm font-semibold">
+                            Ver Detalles del Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/0B0D17/D53F8C?text=Radioastronomía" alt="Curso de Radioastronomía" class="rounded-t-lg h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Introducción a la Radioastronomía</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Explora el universo invisible a través de las ondas de radio. Conoce los radiotelescopios y sus descubrimientos.</p>
+                     <div class="mt-auto">
+                        <p class="text-yellow-400 font-bold text-xl mb-3">ARS 190.000</p>
+                        <button onclick="showCourseDetails('radioastronomia')" class="w-full btn-primary px-4 py-2 rounded-full text-sm font-semibold">
+                            Ver Detalles del Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/F6AD55/1A202C?text=Astrofotografía" alt="Curso de Astrofotografía" class="rounded-t-lg h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Astrofotografía: Captura el Cosmos</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Domina las técnicas para fotografiar estrellas, planetas, la Vía Láctea y objetos de cielo profundo.</p>
+                     <div class="mt-auto">
+                        <p class="text-yellow-400 font-bold text-xl mb-3">ARS 170.000</p>
+                        <button onclick="showCourseDetails('astrofotografia')" class="w-full btn-primary px-4 py-2 rounded-full text-sm font-semibold">
+                            Ver Detalles del Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/D53F8C/E2E8F0?text=Astronomía+Cultural" alt="Curso de Astronomía Cultural" class="rounded-t-lg h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Astronomía Cultural Comparada</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Un viaje por las cosmovisiones de antiguas civilizaciones y su relación con el cielo nocturno.</p>
+                     <div class="mt-auto">
+                        <p class="text-yellow-400 font-bold text-xl mb-3">ARS 140.000</p>
+                        <button onclick="showCourseDetails('cultural')" class="w-full btn-primary px-4 py-2 rounded-full text-sm font-semibold">
+                            Ver Detalles del Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Astrofísica+Niños" alt="Curso de Astrofísica para Chicos" class="rounded-t-lg h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Astrofísica para Pequeños Curiosos</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Conceptos fundamentales de astrofísica explicados de forma divertida y accesible para niños y adolescentes.</p>
+                     <div class="mt-auto">
+                        <p class="text-yellow-400 font-bold text-xl mb-3">ARS 120.000</p>
+                        <button onclick="showCourseDetails('astrofisica_chicos')" class="w-full btn-primary px-4 py-2 rounded-full text-sm font-semibold">
+                            Ver Detalles del Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/0B0D17/F6AD55?text=Física+Solar" alt="Curso de Física Solar" class="rounded-t-lg h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Física Solar: Nuestra Estrella al Detalle</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Profundiza en el estudio del Sol, su estructura, actividad magnética, ciclo solar y su impacto en el sistema solar.</p>
+                     <div class="mt-auto">
+                        <p class="text-yellow-400 font-bold text-xl mb-3">ARS 210.000</p>
+                        <button onclick="showCourseDetails('fisica_solar')" class="w-full btn-primary px-4 py-2 rounded-full text-sm font-semibold">
+                            Ver Detalles del Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="course-modal-telescopios" class="modal-overlay hidden">
+        <div class="modal-content p-6 sm:p-8">
+            <button onclick="closeModal('telescopios')" class="absolute top-4 right-4 text-gray-400 hover:text-yellow-400 text-2xl z-20"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl sm:text-3xl font-bold text-yellow-400 mb-3">Telescopios: Partes y Usos</h2>
+            <p class="text-gray-300 mb-1 text-sm sm:text-base">Instructor: <span class="font-semibold">Dr. Nicolás Kepler</span></p>
+            <p class="text-yellow-400 font-bold text-lg mb-4">ARS 150.000</p>
+            <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold mb-5 inline-block">6 Módulos</span>
+
+            <div class="mb-5 border-b border-gray-700">
+                <nav class="flex flex-wrap space-x-2 sm:space-x-4 -mb-px" aria-label="Tabs">
+                    <button data-tab="desc-telescopios" class="modal-tab active-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Descripción</button>
+                    <button data-tab="mod-telescopios" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Módulos</button>
+                    <button data-tab="inst-telescopios" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Instructor</button>
+                    <button data-tab="faq-telescopios" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">FAQ</button>
+                </nav>
+            </div>
+
+            <div data-tab-content="desc-telescopios" class="modal-tab-content">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-2">Descripción del Curso</h4>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    Este curso integral está diseñado para entusiastas de la astronomía de todos los niveles que deseen comprender a fondo los telescopios. Desde los principios básicos de la óptica hasta el manejo avanzado de equipos, el Dr. Nicolás Kepler te guiará a través de seis módulos llenos de información práctica y teórica. Aprenderás a identificar los diferentes tipos de telescopios (refractores, reflectores, catadióptricos), sus componentes clave (objetivos, oculares, monturas), y cómo elegir el equipo adecuado para tus necesidades y presupuesto. Además, se cubrirán técnicas de mantenimiento, colimación y los accesorios más útiles para mejorar tu experiencia de observación.
+                </p>
+            </div>
+
+            <div data-tab-content="mod-telescopios" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Contenido del Curso (6 Módulos)</h4>
+                <div class="space-y-3 text-gray-300 text-sm sm:text-base">
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 1: Introducción a la Óptica Astronómica</h5>
+                        <p class="mb-2">Principios de la luz. Tipos de telescopios: refractores, reflectores, catadióptricos. Ventajas y desventajas de cada uno.</p>
+                        <button class="exam-button text-xs">Examen Módulo 1 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 2: Componentes Clave del Telescopio</h5>
+                        <p class="mb-2">Objetivos y espejos primarios. Oculares: tipos, aumentos, campo visual. Buscadores y su alineación.</p>
+                        <button class="exam-button text-xs">Examen Módulo 2 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 3: Monturas Telescópicas</h5>
+                        <p class="mb-2">Tipos de monturas: altazimutales y ecuatoriales. Ventajas, uso y puesta en estación de monturas ecuatoriales. Sistemas GoTo.</p>
+                        <button class="exam-button text-xs">Examen Módulo 3 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 4: Selección y Accesorios</h5>
+                        <p class="mb-2">Cómo elegir tu primer telescopio. Accesorios esenciales (filtros, adaptadores) y opcionales. Software de planetario.</p>
+                        <button class="exam-button text-xs">Examen Módulo 4 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 5: Operación Práctica y Observación</h5>
+                        <p class="mb-2">Enfoque correcto. Búsqueda de objetos celestes (star hopping). Observación segura del Sol. Adaptación a la oscuridad.</p>
+                        <button class="exam-button text-xs">Examen Módulo 5 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 6: Mantenimiento y Colimación</h5>
+                        <p class="mb-2">Cuidado y limpieza de ópticas. Colimación de telescopios reflectores (Newtonianos y SCTs). Resolución de problemas comunes.</p>
+                        <button class="exam-button text-xs">Examen Módulo 6 (Próximamente)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-tab-content="inst-telescopios" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Sobre el Instructor: Dr. Nicolás Kepler</h4>
+                <img src="https://placehold.co/100x100/0B0D17/F6AD55?text=NK" alt="Dr. Nicolás Kepler" class="rounded-full float-left mr-4 mb-2 w-20 h-20 sm:w-24 sm:h-24 object-cover">
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    El Dr. Nicolás Kepler es un astrónomo aficionado con más de 25 años de experiencia en la observación y divulgación. Ha construido sus propios telescopios y es un apasionado de compartir el conocimiento práctico sobre instrumentación astronómica. Su estilo didáctico y cercano lo convierte en un guía ideal para quienes se inician en el mundo de los telescopios.
+                </p>
+            </div>
+
+            <div data-tab-content="faq-telescopios" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Preguntas Frecuentes</h4>
+                <div class="space-y-3 text-sm sm:text-base">
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Necesito tener un telescopio para tomar el curso?</p>
+                        <p class="text-gray-300">No es estrictamente necesario al inicio, pero será muy útil para aplicar los conocimientos prácticos. El curso cubre cómo seleccionar uno.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Este curso es para principiantes absolutos?</p>
+                        <p class="text-gray-300">Sí, está diseñado para ser accesible para principiantes, pero también ofrece información valiosa para aquellos con algo de experiencia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 sm:mt-8 text-right">
+                <button class="btn-primary px-4 py-2 sm:px-6 rounded-full font-semibold text-sm sm:text-base">Inscribirme (ARS 150.000)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="course-modal-radioastronomia" class="modal-overlay hidden">
+        <div class="modal-content p-6 sm:p-8">
+            <button onclick="closeModal('radioastronomia')" class="absolute top-4 right-4 text-gray-400 hover:text-yellow-400 text-2xl z-20"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl sm:text-3xl font-bold text-yellow-400 mb-3">Introducción a la Radioastronomía</h2>
+            <p class="text-gray-300 mb-1 text-sm sm:text-base">Instructora: <span class="font-semibold">Dra. Jocelyn Bellatrix</span></p>
+            <p class="text-yellow-400 font-bold text-lg mb-4">ARS 190.000</p>
+            <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold mb-5 inline-block">6 Módulos</span>
+
+            <div class="mb-5 border-b border-gray-700">
+                <nav class="flex flex-wrap space-x-2 sm:space-x-4 -mb-px" aria-label="Tabs">
+                    <button data-tab="desc-radio" class="modal-tab active-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Descripción</button>
+                    <button data-tab="mod-radio" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Módulos</button>
+                    <button data-tab="inst-radio" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Instructora</button>
+                    <button data-tab="faq-radio" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">FAQ</button>
+                </nav>
+            </div>
+
+            <div data-tab-content="desc-radio" class="modal-tab-content">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-2">Descripción del Curso</h4>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    La radioastronomía nos permite estudiar fenómenos cósmicos que son invisibles para los telescopios ópticos. Este curso te introducirá a los fundamentos de la emisión de radio de objetos celestes, los tipos de radiotelescopios, técnicas de observación e interferometría. Descubrirás cómo se estudian los púlsares, cuásares, el hidrógeno neutro en galaxias y la radiación cósmica de fondo.
+                </p>
+            </div>
+
+            <div data-tab-content="mod-radio" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Contenido del Curso (6 Módulos)</h4>
+                <div class="space-y-3 text-gray-300 text-sm sm:text-base">
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 1: El Espectro Electromagnético y la Ventana de Radio</h5>
+                        <p class="mb-2">Introducción a las ondas de radio. Mecanismos de emisión de radio en el universo (térmica y no térmica).</p>
+                        <button class="exam-button text-xs">Examen Módulo 1 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 2: Radiotelescopios</h5>
+                        <p class="mb-2">Principios de funcionamiento. Antenas, receptores y detectores. Tipos de radiotelescopios (parabólicos, de dipolos).</p>
+                        <button class="exam-button text-xs">Examen Módulo 2 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 3: Técnicas de Observación y Calibración</h5>
+                        <p class="mb-2">Mapas de radio, espectroscopía de radio. Calibración de datos y eliminación de interferencias.</p>
+                        <button class="exam-button text-xs">Examen Módulo 3 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 4: Interferometría de Radio</h5>
+                        <p class="mb-2">Aumentando la resolución angular. Principios de la interferometría. Grandes arreglos como ALMA y VLA.</p>
+                        <button class="exam-button text-xs">Examen Módulo 4 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 5: Ciencia con Radioastronomía I</h5>
+                        <p class="mb-2">Estudio de púlsares, magnetares, el Sol en radio, Júpiter y la emisión sincrotrón.</p>
+                        <button class="exam-button text-xs">Examen Módulo 5 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 6: Ciencia con Radioastronomía II</h5>
+                        <p class="mb-2">Hidrógeno neutro (HI) en galaxias, formación estelar, núcleos activos de galaxias (AGN), radiación cósmica de fondo (CMB).</p>
+                        <button class="exam-button text-xs">Examen Módulo 6 (Próximamente)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-tab-content="inst-radio" class="modal-tab-content hidden">
+                 <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Sobre la Instructora: Dra. Jocelyn Bellatrix</h4>
+                <img src="https://placehold.co/100x100/0B0D17/D53F8C?text=JB" alt="Dra. Jocelyn Bellatrix" class="rounded-full float-left mr-4 mb-2 w-20 h-20 sm:w-24 sm:h-24 object-cover">
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    La Dra. Jocelyn Bellatrix es una radioastrónoma con experiencia en el análisis de datos de grandes interferómetros. Su investigación se centra en la formación de estrellas y la evolución de galaxias. Es una comunicadora entusiasta, dedicada a hacer accesible la radioastronomía al público general.
+                </p>
+            </div>
+
+            <div data-tab-content="faq-radio" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Preguntas Frecuentes</h4>
+                <div class="space-y-3 text-sm sm:text-base">
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Necesito conocimientos avanzados de física?</p>
+                        <p class="text-gray-300">Se explicarán los conceptos físicos necesarios desde una base introductoria, aunque una comprensión básica de ondas será útil.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Veremos datos reales de radiotelescopios?</p>
+                        <p class="text-gray-300">Sí, se mostrarán ejemplos de datos reales y cómo se interpretan, aunque el curso no se enfoca en el procesamiento intensivo de datos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 sm:mt-8 text-right">
+                <button class="btn-primary px-4 py-2 sm:px-6 rounded-full font-semibold text-sm sm:text-base">Inscribirme (ARS 190.000)</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="course-modal-astrofotografia" class="modal-overlay hidden">
+        <div class="modal-content p-6 sm:p-8">
+            <button onclick="closeModal('astrofotografia')" class="absolute top-4 right-4 text-gray-400 hover:text-yellow-400 text-2xl z-20"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl sm:text-3xl font-bold text-yellow-400 mb-3">Astrofotografía: Captura el Cosmos</h2>
+            <p class="text-gray-300 mb-1 text-sm sm:text-base">Instructora: <span class="font-semibold">Prof. Aurora Lens</span></p>
+            <p class="text-yellow-400 font-bold text-lg mb-4">ARS 170.000</p>
+            <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold mb-5 inline-block">6 Módulos</span>
+
+            <div class="mb-5 border-b border-gray-700">
+                <nav class="flex flex-wrap space-x-2 sm:space-x-4 -mb-px" aria-label="Tabs">
+                    <button data-tab="desc-astrofoto" class="modal-tab active-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Descripción</button>
+                    <button data-tab="mod-astrofoto" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Módulos</button>
+                    <button data-tab="inst-astrofoto" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Instructora</button>
+                    <button data-tab="faq-astrofoto" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">FAQ</button>
+                </nav>
+            </div>
+
+            <div data-tab-content="desc-astrofoto" class="modal-tab-content">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-2">Descripción del Curso</h4>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    Aprende a capturar la belleza del universo con tu cámara. Este curso cubre desde los fundamentos de la fotografía nocturna hasta técnicas avanzadas para obtener imágenes impresionantes de la Vía Láctea, planetas, nebulosas y galaxias. Se discutirán equipos, configuraciones, planificación de sesiones y el flujo de trabajo de apilado y procesado de imágenes.
+                </p>
+            </div>
+
+            <div data-tab-content="mod-astrofoto" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Contenido del Curso (6 Módulos)</h4>
+                <div class="space-y-3 text-gray-300 text-sm sm:text-base">
+                     <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 1: Fundamentos y Equipo</h5>
+                        <p class="mb-2">Tipos de cámaras (DSLR, mirrorless, dedicadas). Objetivos, trípodes, monturas. Conceptos: ISO, apertura, tiempo de exposición, regla 500.</p>
+                        <button class="exam-button text-xs">Examen Módulo 1 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 2: Fotografía de Paisaje Nocturno (Nightscapes)</h5>
+                        <p class="mb-2">Composición con Vía Láctea. Star trails. Planificación con apps (Stellarium, PhotoPills).</p>
+                        <button class="exam-button text-xs">Examen Módulo 2 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 3: Fotografía Planetaria y Lunar</h5>
+                        <p class="mb-2">Técnicas de video ("lucky imaging"). Apilado con Registax/Autostakkert. Procesado básico.</p>
+                        <button class="exam-button text-xs">Examen Módulo 3 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 4: Introducción a Cielo Profundo sin Seguimiento</h5>
+                        <p class="mb-2">Fotografiando objetos brillantes ( nebulosa de Orión, Andrómeda) con exposiciones cortas. Apilado manual y con DeepSkyStacker.</p>
+                        <button class="exam-button text-xs">Examen Módulo 4 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 5: Astrofotografía de Cielo Profundo con Seguimiento</h5>
+                        <p class="mb-2">Uso de monturas ecuatoriales. Autoguiado. Tomas de calibración (darks, flats, bias).</p>
+                        <button class="exam-button text-xs">Examen Módulo 5 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 6: Procesado Avanzado de Imágenes de Cielo Profundo</h5>
+                        <p class="mb-2">Introducción a PixInsight/Siril/GIMP. Estirado de histograma, reducción de ruido, mejora de detalles y color.</p>
+                        <button class="exam-button text-xs">Examen Módulo 6 (Próximamente)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-tab-content="inst-astrofoto" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Sobre la Instructora: Prof. Aurora Lens</h4>
+                <img src="https://placehold.co/100x100/F6AD55/1A202C?text=AL" alt="Prof. Aurora Lens" class="rounded-full float-left mr-4 mb-2 w-20 h-20 sm:w-24 sm:h-24 object-cover">
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    La Profesora Aurora Lens es una reconocida astrofotógrafa con imágenes publicadas en diversas revistas y exposiciones. Su pasión es enseñar a otros cómo capturar la belleza del cielo nocturno, combinando el arte con la técnica. Tiene una vasta experiencia en el uso de diferentes equipos y software de procesado.
+                </p>
+            </div>
+
+            <div data-tab-content="faq-astrofoto" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Preguntas Frecuentes</h4>
+                <div class="space-y-3 text-sm sm:text-base">
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Qué equipo mínimo necesito para empezar?</p>
+                        <p class="text-gray-300">Una cámara DSLR o mirrorless con controles manuales y un trípode estable son un buen punto de partida. El curso te guiará sobre otros equipos.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Es necesario software de pago para el procesado?</p>
+                        <p class="text-gray-300">Se enseñarán técnicas con software gratuito (DeepSkyStacker, GIMP, Siril) y se mencionarán alternativas de pago (Photoshop, PixInsight).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 sm:mt-8 text-right">
+                <button class="btn-primary px-4 py-2 sm:px-6 rounded-full font-semibold text-sm sm:text-base">Inscribirme (ARS 170.000)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="course-modal-cultural" class="modal-overlay hidden">
+        <div class="modal-content p-6 sm:p-8">
+            <button onclick="closeModal('cultural')" class="absolute top-4 right-4 text-gray-400 hover:text-yellow-400 text-2xl z-20"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl sm:text-3xl font-bold text-yellow-400 mb-3">Astronomía Cultural Comparada</h2>
+            <p class="text-gray-300 mb-1 text-sm sm:text-base">Instructor: <span class="font-semibold">Lic. Etnia Cosmos</span></p>
+            <p class="text-yellow-400 font-bold text-lg mb-4">ARS 140.000</p>
+            <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold mb-5 inline-block">6 Módulos</span>
+
+            <div class="mb-5 border-b border-gray-700">
+                <nav class="flex flex-wrap space-x-2 sm:space-x-4 -mb-px" aria-label="Tabs">
+                    <button data-tab="desc-cultural" class="modal-tab active-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Descripción</button>
+                    <button data-tab="mod-cultural" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Módulos</button>
+                    <button data-tab="inst-cultural" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Instructor</button>
+                    <button data-tab="faq-cultural" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">FAQ</button>
+                </nav>
+            </div>
+
+            <div data-tab-content="desc-cultural" class="modal-tab-content">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-2">Descripción del Curso</h4>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    Este curso explora la fascinante relación entre diversas culturas del mundo y el cielo nocturno. Analizaremos cómo diferentes civilizaciones, desde la antigüedad hasta nuestros días, han interpretado los fenómenos celestes, desarrollado calendarios, construido observatorios y tejido mitologías en torno a las estrellas, planetas y la Luna. Un viaje interdisciplinario que combina astronomía, antropología, arqueología e historia.
+                </p>
+            </div>
+
+            <div data-tab-content="mod-cultural" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Contenido del Curso (6 Módulos)</h4>
+                <div class="space-y-3 text-gray-300 text-sm sm:text-base">
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 1: Introducción a la Arqueoastronomía y Etnoastronomía</h5>
+                        <p class="mb-2">Definiciones, métodos de estudio. La importancia del cielo en las sociedades antiguas.</p>
+                        <button class="exam-button text-xs">Examen Módulo 1 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 2: Cosmologías del Antiguo Egipto y Mesopotamia</h5>
+                        <p class="mb-2">El Nilo y las estrellas. Dioses celestes. Zigurats y observaciones babilónicas. Calendarios.</p>
+                        <button class="exam-button text-xs">Examen Módulo 2 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 3: El Cielo de las Culturas Precolombinas de América</h5>
+                        <p class="mb-2">Astronomía Maya, Azteca e Inca. Observatorios, códices y alineaciones arquitectónicas.</p>
+                        <button class="exam-button text-xs">Examen Módulo 3 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 4: Astronomía en la Antigua Grecia y Roma</h5>
+                        <p class="mb-2">Modelos geocéntricos. Filósofos y astrónomos. Constelaciones y mitología clásica.</p>
+                        <button class="exam-button text-xs">Examen Módulo 4 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 5: Cosmologías de Asia y Oceanía</h5>
+                        <p class="mb-2">Astronomía China antigua, calendarios hindúes, navegación polinesia basada en estrellas.</p>
+                        <button class="exam-button text-xs">Examen Módulo 5 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 6: El Cielo en las Culturas Indígenas Contemporáneas y el Patrimonio Celeste</h5>
+                        <p class="mb-2">Preservación del conocimiento ancestral. La importancia de los cielos oscuros. Nuevas perspectivas.</p>
+                        <button class="exam-button text-xs">Examen Módulo 6 (Próximamente)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-tab-content="inst-cultural" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Sobre el Instructor: Lic. Etnia Cosmos</h4>
+                <img src="https://placehold.co/100x100/D53F8C/E2E8F0?text=EC" alt="Lic. Etnia Cosmos" class="rounded-full float-left mr-4 mb-2 w-20 h-20 sm:w-24 sm:h-24 object-cover">
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    El Lic. Etnia Cosmos es un antropólogo especializado en etnoastronomía, con una profunda pasión por cómo las diferentes culturas han interactuado con el cosmos. Ha realizado investigaciones de campo y colaborado con comunidades indígenas para documentar y preservar su invaluable conocimiento astronómico.
+                </p>
+            </div>
+
+            <div data-tab-content="faq-cultural" class="modal-tab-content hidden">
+                 <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Preguntas Frecuentes</h4>
+                <div class="space-y-3 text-sm sm:text-base">
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Se requiere conocimiento previo de historia o antropología?</p>
+                        <p class="text-gray-300">No, el curso es introductorio y está diseñado para ser accesible a todos los interesados en la relación entre cultura y astronomía.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿El curso se enfoca solo en culturas antiguas?</p>
+                        <p class="text-gray-300">Si bien se exploran muchas culturas antiguas, también se aborda la astronomía en culturas indígenas contemporáneas y la relevancia actual de este campo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 sm:mt-8 text-right">
+                <button class="btn-primary px-4 py-2 sm:px-6 rounded-full font-semibold text-sm sm:text-base">Inscribirme (ARS 140.000)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="course-modal-astrofisica_chicos" class="modal-overlay hidden">
+        <div class="modal-content p-6 sm:p-8">
+            <button onclick="closeModal('astrofisica_chicos')" class="absolute top-4 right-4 text-gray-400 hover:text-yellow-400 text-2xl z-20"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl sm:text-3xl font-bold text-yellow-400 mb-3">Astrofísica para Pequeños Curiosos</h2>
+            <p class="text-gray-300 mb-1 text-sm sm:text-base">Instructora: <span class="font-semibold">Profe Stella Nova</span></p>
+            <p class="text-yellow-400 font-bold text-lg mb-4">ARS 120.000</p>
+            <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold mb-5 inline-block">6 Módulos</span>
+
+            <div class="mb-5 border-b border-gray-700">
+                <nav class="flex flex-wrap space-x-2 sm:space-x-4 -mb-px" aria-label="Tabs">
+                    <button data-tab="desc-achicos" class="modal-tab active-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Descripción</button>
+                    <button data-tab="mod-achicos" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Módulos</button>
+                    <button data-tab="inst-achicos" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Instructora</button>
+                    <button data-tab="faq-achicos" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">FAQ</button>
+                </nav>
+            </div>
+
+            <div data-tab-content="desc-achicos" class="modal-tab-content">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-2">Descripción del Curso</h4>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    ¡El universo es un lugar asombroso! Este curso está diseñado para niños y adolescentes (8-14 años) que sienten curiosidad por las estrellas, los planetas, las galaxias y los misterios del cosmos. A través de explicaciones sencillas, actividades interactivas y experimentos divertidos, exploraremos los conceptos básicos de la astrofísica de una manera que despierte su imaginación y amor por la ciencia.
+                </p>
+            </div>
+
+            <div data-tab-content="mod-achicos" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Contenido del Curso (6 Módulos)</h4>
+                <div class="space-y-3 text-gray-300 text-sm sm:text-base">
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 1: Nuestro Vecindario Cósmico: El Sistema Solar</h5>
+                        <p class="mb-2">Un viaje por los planetas, lunas, asteroides y cometas. ¿Qué hace especial a la Tierra?</p>
+                        <button class="exam-button text-xs">Examen Módulo 1 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 2: Las Estrellas: Soles Lejanos</h5>
+                        <p class="mb-2">¿Qué son las estrellas? ¿Cómo nacen, viven y mueren? Constelaciones y cómo encontrarlas.</p>
+                        <button class="exam-button text-xs">Examen Módulo 2 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 3: Galaxias: Ciudades de Estrellas</h5>
+                        <p class="mb-2">Nuestra galaxia, la Vía Láctea. Otros tipos de galaxias. ¿Qué tan grande es el universo?</p>
+                        <button class="exam-button text-xs">Examen Módulo 3 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 4: Agujeros Negros y Otros Misterios</h5>
+                        <p class="mb-2">¿Qué son los agujeros negros? ¿Existen los extraterrestres? Explorando lo desconocido.</p>
+                        <button class="exam-button text-xs">Examen Módulo 4 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 5: Ser un Astrónomo: Herramientas y Descubrimientos</h5>
+                        <p class="mb-2">Telescopios, cohetes y satélites. Grandes astrónomos de la historia y sus hazañas.</p>
+                        <button class="exam-button text-xs">Examen Módulo 5 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 6: ¡A Explorar! Proyecto Final Creativo</h5>
+                        <p class="mb-2">Crea tu propio modelo del sistema solar, dibuja una constelación o escribe una historia sobre el espacio.</p>
+                        <button class="exam-button text-xs">Examen Módulo 6 (Próximamente)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-tab-content="inst-achicos" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Sobre la Instructora: Profe Stella Nova</h4>
+                <img src="https://placehold.co/100x100/1E1A3E/F6AD55?text=SN" alt="Profe Stella Nova" class="rounded-full float-left mr-4 mb-2 w-20 h-20 sm:w-24 sm:h-24 object-cover">
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    La Profe Stella Nova es una educadora científica con una gran habilidad para comunicar conceptos complejos de forma sencilla y entretenida para los más jóvenes. Con experiencia en talleres de ciencia para niños, su objetivo es inspirar la próxima generación de astrónomos y científicos.
+                </p>
+            </div>
+
+            <div data-tab-content="faq-achicos" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Preguntas Frecuentes</h4>
+                 <div class="space-y-3 text-sm sm:text-base">
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Cuál es la edad recomendada para este curso?</p>
+                        <p class="text-gray-300">El curso está diseñado principalmente para niños y adolescentes entre 8 y 14 años, pero ¡la curiosidad no tiene edad!</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Se necesitan materiales especiales?</p>
+                        <p class="text-gray-300">La mayoría de las actividades se pueden realizar con materiales caseros comunes. Se proporcionará una lista simple si algo específico es útil.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 sm:mt-8 text-right">
+                <button class="btn-primary px-4 py-2 sm:px-6 rounded-full font-semibold text-sm sm:text-base">Inscribirme (ARS 120.000)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="course-modal-fisica_solar" class="modal-overlay hidden">
+        <div class="modal-content p-6 sm:p-8">
+            <button onclick="closeModal('fisica_solar')" class="absolute top-4 right-4 text-gray-400 hover:text-yellow-400 text-2xl z-20"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl sm:text-3xl font-bold text-yellow-400 mb-3">Física Solar: Nuestra Estrella al Detalle</h2>
+            <p class="text-gray-300 mb-1 text-sm sm:text-base">Instructor: <span class="font-semibold">Dr. Helios Corona</span></p>
+            <p class="text-yellow-400 font-bold text-lg mb-4">ARS 210.000</p>
+            <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold mb-5 inline-block">6 Módulos</span>
+
+            <div class="mb-5 border-b border-gray-700">
+                <nav class="flex flex-wrap space-x-2 sm:space-x-4 -mb-px" aria-label="Tabs">
+                    <button data-tab="desc-solar" class="modal-tab active-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Descripción</button>
+                    <button data-tab="mod-solar" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Módulos</button>
+                    <button data-tab="inst-solar" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">Instructor</button>
+                    <button data-tab="faq-solar" class="modal-tab px-2 py-2 sm:px-3 font-medium text-xs sm:text-sm rounded-t-lg">FAQ</button>
+                </nav>
+            </div>
+
+            <div data-tab-content="desc-solar" class="modal-tab-content">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-2">Descripción del Curso</h4>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    El Sol es la estrella más cercana y la fuente de energía fundamental para la vida en la Tierra. Este curso avanzado profundiza en la física solar, explorando su estructura interna, la atmósfera solar (fotosfera, cromosfera, corona), los fenómenos de actividad magnética como las manchas solares y las erupciones, el ciclo solar de 11 años, el viento solar y su interacción con el entorno espacial (meteorología espacial).
+                </p>
+            </div>
+
+            <div data-tab-content="mod-solar" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Contenido del Curso (6 Módulos)</h4>
+                <div class="space-y-3 text-gray-300 text-sm sm:text-base">
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 1: Estructura Interna y Atmósfera Solar</h5>
+                        <p class="mb-2">Núcleo, zona radiativa y convectiva. Fotosfera, cromosfera, región de transición y corona. Granulación y supergranulación.</p>
+                        <button class="exam-button text-xs">Examen Módulo 1 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 2: Magnetismo Solar y Ciclo de Actividad</h5>
+                        <p class="mb-2">Generación del campo magnético solar (dinamo solar). Manchas solares, fáculas, plages. El ciclo de 11 años.</p>
+                        <button class="exam-button text-xs">Examen Módulo 2 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 3: Fenómenos Eruptivos Solares</h5>
+                        <p class="mb-2">Erupciones solares (flares), eyecciones de masa coronal (CMEs), prominencias. Clasificación y mecanismos físicos.</p>
+                        <button class="exam-button text-xs">Examen Módulo 3 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 4: El Viento Solar y la Heliosfera</h5>
+                        <p class="mb-2">Origen y propiedades del viento solar. La heliosfera y su interacción con el medio interestelar.</p>
+                        <button class="exam-button text-xs">Examen Módulo 4 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 5: Meteorología Espacial (Space Weather)</h5>
+                        <p class="mb-2">Impacto de la actividad solar en la Tierra: auroras, tormentas geomagnéticas, efectos en satélites y tecnología.</p>
+                        <button class="exam-button text-xs">Examen Módulo 5 (Próximamente)</button>
+                    </div>
+                    <div class="module-card">
+                        <h5 class="font-semibold text-yellow-300 mb-1">Módulo 6: Observación del Sol e Instrumentación Solar</h5>
+                        <p class="mb-2">Telescopios solares terrestres y espaciales (SOHO, SDO, Parker Solar Probe). Técnicas de observación segura.</p>
+                        <button class="exam-button text-xs">Examen Módulo 6 (Próximamente)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-tab-content="inst-solar" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Sobre el Instructor: Dr. Helios Corona</h4>
+                <img src="https://placehold.co/100x100/0B0D17/F6AD55?text=HC" alt="Dr. Helios Corona" class="rounded-full float-left mr-4 mb-2 w-20 h-20 sm:w-24 sm:h-24 object-cover">
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    El Dr. Helios Corona es un físico solar con una destacada trayectoria en la investigación de la actividad magnética del Sol y sus efectos en el sistema solar. Ha participado en misiones espaciales dedicadas al estudio solar y es un referente en el campo de la meteorología espacial.
+                </p>
+            </div>
+
+            <div data-tab-content="faq-solar" class="modal-tab-content hidden">
+                <h4 class="text-lg sm:text-xl font-semibold text-white mb-3">Preguntas Frecuentes</h4>
+                 <div class="space-y-3 text-sm sm:text-base">
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Este curso requiere conocimientos previos de física?</p>
+                        <p class="text-gray-300">Se recomienda tener una base de física general (nivel secundario avanzado o universitario inicial) para un mejor aprovechamiento, aunque se revisarán los conceptos clave.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-yellow-300">¿Es un curso teórico o práctico?</p>
+                        <p class="text-gray-300">Es principalmente teórico, enfocado en la comprensión de los fenómenos físicos, pero incluye discusiones sobre técnicas de observación e instrumentación.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 sm:mt-8 text-right">
+                <button class="btn-primary px-4 py-2 sm:px-6 rounded-full font-semibold text-sm sm:text-base">Inscribirme (ARS 210.000)</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <div class="mb-6 flex justify-center space-x-6">
+                <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+            <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Dynamic satellite icon link
+        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
+        if (satelliteIconLink) {
+            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+            satelliteIconLink.target = "_blank"; 
+        }
+
+        // Modal Functionality
+        function showCourseDetails(courseId) {
+            // Hide all modals first
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
+            
+            const modal = document.getElementById(`course-modal-${courseId}`);
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+                // Activate the first tab by default
+                const firstTabButton = modal.querySelector('.modal-tab');
+                const firstTabContent = modal.querySelector('.modal-tab-content');
+                if(firstTabButton && firstTabContent){
+                    modal.querySelectorAll('.modal-tab').forEach(btn => btn.classList.remove('active-tab'));
+                    modal.querySelectorAll('.modal-tab-content').forEach(content => content.classList.add('hidden'));
+                    firstTabButton.classList.add('active-tab');
+                    firstTabContent.classList.remove('hidden');
+                }
+            }
+        }
+
+        function closeModal(courseId) {
+            const modal = document.getElementById(`course-modal-${courseId}`);
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; 
+            }
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.querySelectorAll('.modal-tab').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tabId = button.dataset.tab;
+                    
+                    modal.querySelectorAll('.modal-tab-content').forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    modal.querySelectorAll('.modal-tab').forEach(btn => {
+                        btn.classList.remove('active-tab');
+                    });
+
+                    const activeContent = modal.querySelector(`[data-tab-content="${tabId}"]`);
+                    if (activeContent) {
+                        activeContent.classList.remove('hidden');
+                    }
+                    button.classList.add('active-tab');
+                });
+            });
+
+            // Close modal on overlay click
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) { 
+                    const modalIdSuffix = modal.id.replace('course-modal-', '');
+                    closeModal(modalIdSuffix);
+                }
+            });
+        });
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                document.querySelectorAll('.modal-overlay:not(.hidden)').forEach(modal => {
+                    const modalIdSuffix = modal.id.replace('course-modal-', '');
+                    closeModal(modalIdSuffix);
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>
