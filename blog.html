@@ -114,7 +114,7 @@
         .dynamic-satellite:hover {
             transform: rotate(360deg) scale(1.2);
         }
-        .nav-link-active { /* Para la página activa en el nav */
+        .nav-link-active { 
             color: var(--starlight-yellow);
             font-weight: 600;
         }
@@ -150,13 +150,14 @@
                 <span class="sm:hidden">MOSM</span>
             </a>
             <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
-                <a href="index.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Inicio</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
                 <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
-                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
                 <a href="blog.html" class="nav-link-active transition duration-300">Blog</a>
                 <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
-                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
                     <i class="fas fa-star mr-1"></i>Premium
                 </a>
@@ -168,13 +169,14 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="index.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Inicio</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
             <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
-            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
             <a href="blog.html" class="block nav-link-active transition duration-300">Blog</a>
             <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
-            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
                 <i class="fas fa-star mr-1"></i>Premium
             </a>
@@ -349,13 +351,14 @@
                 </a>
             </div>
             <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
-                <a href="index.html" class="hover:text-yellow-400">Inicio</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Quiénes Somos</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
                 <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
-                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
-                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
                 <a href="blog.html" class="hover:text-yellow-400">Blog</a>
                 <a href="foro.html" class="hover:text-yellow-400">Foro</a>
-                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Up/Download</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
                 <a href="premium.html" class="hover:text-yellow-400">Premium</a>
             </div>
             <div class="mb-6 flex justify-center space-x-6">
@@ -372,7 +375,7 @@
         // Mobile Menu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        const navLinksMobileBlog = mobileMenu.querySelectorAll('a'); // Renombrar para evitar conflictos
+        const navLinksMobileBlog = mobileMenu.querySelectorAll('a');
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
@@ -380,7 +383,11 @@
         
         navLinksMobileBlog.forEach(link => {
             link.addEventListener('click', () => {
-                if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                const href = link.getAttribute('href');
+                // Cerrar menú si es un enlace de anclaje en index.html o si es un enlace a otra página que no sea blog.html
+                if (href.includes('index.html#') || (href !== 'blog.html' && !href.includes('blog.html#'))) {
+                    mobileMenu.classList.add('hidden');
+                } else if (href.startsWith('#')) { // Anclas en la misma página del blog (si las hubiera)
                     mobileMenu.classList.add('hidden');
                 }
             });
