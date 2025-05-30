@@ -6,16 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Museo Observatorio San Miguel - Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
             --space-blue: #0b0d17;
             --cosmic-purple: #1e1a3e;
             --starlight-yellow: #f6ad55;
             --nebula-pink: #d53f8c;
-            --galaxy-blue: #4c6ef5;
         }
         
         body {
@@ -27,14 +25,12 @@
                 radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
                 radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
         
         .navbar-glass {
-            background-color: rgba(11, 13, 23, 0.95);
+            background-color: rgba(11, 13, 23, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(246, 173, 85, 0.2);
-            z-index: 1000;
         }
         
         .card {
@@ -43,13 +39,11 @@
             border-radius: 12px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            overflow: hidden;
         }
         
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(214, 188, 250, 0.1);
-            border-color: rgba(246, 173, 85, 0.5);
         }
         
         .btn-primary {
@@ -88,9 +82,6 @@
             position: relative;
             display: inline-block;
             padding-bottom: 10px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.5px;
         }
         
         .section-title::after {
@@ -110,7 +101,7 @@
             background-color: white;
             border-radius: 50%;
             animation: twinkle 5s infinite;
-            z-index: 0;
+            z-index: 0; /* Ensure stars are behind content */
         }
         
         @keyframes twinkle {
@@ -129,74 +120,22 @@
         .nav-link-active {
             color: var(--starlight-yellow);
             font-weight: 600;
-            position: relative;
-        }
-
-        .nav-link-active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--starlight-yellow);
         }
 
         #apod-header {
             background-size: cover;
             background-position: center;
             position: relative;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
         }
-        
         #map {
             height: 400px;
             width: 100%;
             border-radius: 12px;
             border: 1px solid rgba(109, 40, 217, 0.3);
-            z-index: 10;
-        }
-
-        .team-member {
-            transition: transform 0.3s ease;
-        }
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-
-        .mobile-nav-link {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .mobile-nav-link:hover {
-            background: rgba(246, 173, 85, 0.1);
-        }
-
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
         }
     </style>
 </head>
 <body>
-    <!-- Estrellas decorativas -->
     <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
     <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
     <div class="star-decoration" style="top: 10%; left: 30%; width: 1px; height: 1px; animation-delay: 1.5s;"></div>
@@ -213,23 +152,22 @@
     <div class="star-decoration" style="top: 5%; left: 70%; width: 2px; height: 2px; animation-delay: 1.8s;"></div>
     <div class="star-decoration" style="top: 65%; left: 95%; width: 2px; height: 2px; animation-delay: 3.2s;"></div>
 
-    <!-- Barra de navegación -->
     <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center nav-link-active">
                 <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
                 <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
                 <span class="sm:hidden">MOSM</span>
             </a>
             <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
-                <a href="#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Ubicación</a>
-                <a href="#quienes-somos" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Quiénes Somos</a>
-                <a href="#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Eventos</a>
-                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Cursos</a>
-                <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Blog</a>
-                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Foro</a>
-                <a href="up_download.html" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Up/Download</a>
-                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300 nav-link">Calendario</a>
+                <a href="#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="#quienes-somos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+                <a href="#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+                <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+                <a href="up_download.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
                     <i class="fas fa-star mr-1"></i>Premium
                 </a>
@@ -240,92 +178,56 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2 bg-space-blue">
-            <a href="#ubicacion" class="block mobile-nav-link">
-                <i class="fas fa-map-marker-alt mr-3 text-starlight-yellow"></i> Ubicación
-            </a>
-            <a href="#quienes-somos" class="block mobile-nav-link">
-                <i class="fas fa-users mr-3 text-starlight-yellow"></i> Quiénes Somos
-            </a>
-            <a href="#eventos" class="block mobile-nav-link">
-                <i class="fas fa-calendar-alt mr-3 text-starlight-yellow"></i> Eventos
-            </a>
-            <a href="cursos.html" class="block mobile-nav-link">
-                <i class="fas fa-book mr-3 text-starlight-yellow"></i> Cursos
-            </a>
-            <a href="blog.html" class="block mobile-nav-link">
-                <i class="fas fa-blog mr-3 text-starlight-yellow"></i> Blog
-            </a>
-            <a href="foro.html" class="block mobile-nav-link">
-                <i class="fas fa-comments mr-3 text-starlight-yellow"></i> Foro
-            </a>
-            <a href="up_download.html" class="block mobile-nav-link">
-                <i class="fas fa-cloud-upload-alt mr-3 text-starlight-yellow"></i> Up/Download
-            </a>
-            <a href="calendario.html" class="block mobile-nav-link">
-                <i class="fas fa-calendar-day mr-3 text-starlight-yellow"></i> Calendario
-            </a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="#quienes-somos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+            <a href="#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+            <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+            <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+            <a href="up_download.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
                 <i class="fas fa-star mr-1"></i>Premium
             </a>
         </div>
     </nav>
 
-    <!-- Encabezado con efecto parallax -->
-    <header id="apod-header" class="parallax py-20 md:py-32 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-space-blue via-transparent to-space-blue opacity-90"></div>
-        <div class="container mx-auto px-4 relative z-10">
+    <header id="apod-header" class="py-20 md:py-32 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-space-blue opacity-70"></div>
+        <div class="container mx-auto px-6 relative z-10">
             <h1 id="apod-title-header" class="text-4xl md:text-6xl font-bold text-white mb-4">Bienvenido al Cosmos</h1>
             <p id="apod-explanation-header" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-                Explora las maravillas del universo con el Museo Observatorio San Miguel
+                Explora las maravillas del universo con el Museo Observatorio San Miguel.
             </p>
-            <div class="mt-10">
-                <a href="#quienes-somos" class="btn-primary px-8 py-3 rounded-full font-semibold text-lg inline-block mx-2">
-                    <i class="fas fa-rocket mr-2"></i>Conócenos
-                </a>
-                <a href="calendario.html" class="bg-transparent border-2 border-starlight-yellow text-starlight-yellow hover:bg-starlight-yellow hover:text-space-blue px-8 py-3 rounded-full font-semibold text-lg inline-block mx-2 transition">
-                    <i class="fas fa-calendar-alt mr-2"></i>Eventos
-                </a>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 flex justify-center pb-6">
-            <a href="#nasa-apod" class="text-white animate-bounce">
-                <i class="fas fa-chevron-down text-3xl"></i>
-            </a>
         </div>
     </header>
 
     <main class="py-12">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-6">
 
-            <!-- Sección NASA APOD -->
             <section id="nasa-apod" class="my-16">
                 <h2 class="text-3xl font-bold text-center mb-10 section-title">Imagen Astronómica del Día (NASA)</h2>
                 <div class="card p-6 md:p-8 max-w-4xl mx-auto">
-                    <div class="relative rounded-lg overflow-hidden mb-6" style="height: 500px;">
-                        <img id="apod-image" src="https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="NASA Astronomy Picture of the Day" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-space-blue to-transparent"></div>
-                    </div>
-                    <h3 id="apod-title" class="text-2xl font-semibold text-white mb-3">La Nebulosa del Águila</h3>
-                    <p id="apod-date" class="text-sm text-gray-400 mb-3">Fecha: 31 de mayo, 2025</p>
-                    <p id="apod-explanation" class="text-gray-300 mb-6 leading-relaxed">
-                        Los Pilares de la Creación en la Nebulosa del Águila, capturados por el Telescopio Espacial Hubble. Esta impresionante imagen muestra columnas de gas interestelar y polvo en la constelación de Serpens, a unos 6,500-7,000 años luz de la Tierra. Estas estructuras cósmicas son semilleros estelares donde nuevas estrellas se están formando.
-                    </p>
-                    <a id="apod-download-button" href="#" target="_blank" class="btn-primary px-6 py-3 rounded-full inline-block">
+                    <img id="apod-image" src="https://placehold.co/1200x800/0B0D17/E2E8F0?text=Cargando+APOD..." alt="NASA Astronomy Picture of the Day" class="rounded-lg mb-6 w-full h-auto object-cover" style="max-height: 600px;">
+                    <h3 id="apod-title" class="text-2xl font-semibold text-white mb-3">Cargando título...</h3>
+                    <p id="apod-date" class="text-sm text-gray-400 mb-3">Cargando fecha...</p>
+                    <p id="apod-explanation" class="text-gray-300 mb-6 leading-relaxed text-center">Cargando explicación...</p>
+                    <a id="apod-download-button" href="#" target="_blank" class="btn-primary px-6 py-3 rounded-full inline-block" style="display: none;">
                         <i class="fas fa-download mr-2"></i>Descargar Imagen
                     </a>
+                    <p id="apod-video-link-container" class="mt-4" style="display: none;">
+                        <i class="fas fa-video mr-2 text-nebula-pink"></i>Este contenido es un video: 
+                        <a id="apod-video-link" href="#" target="_blank" class="text-sky-400 hover:text-sky-300">Ver en YouTube/Vimeo</a>
+                    </p>
                 </div>
             </section>
 
-            <!-- Eventos -->
             <section id="eventos" class="my-16">
                 <h2 class="text-3xl font-bold text-center mb-10 section-title">Próximos Eventos</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="card p-6">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Evento 1" class="rounded-lg mb-4 w-full h-48 object-cover">
-                            <span class="absolute top-3 right-3 bg-starlight-yellow text-space-blue px-3 py-1 rounded-full text-xs font-bold">Próximo</span>
-                        </div>
+                        <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Evento+1" alt="Evento 1" class="rounded-lg mb-4 w-full h-48 object-cover">
                         <h3 class="text-xl font-semibold text-white mb-2">Noche de Estrellas Fugaces</h3>
                         <p class="text-sm text-gray-400 mb-1"><i class="fas fa-calendar-alt mr-2"></i>15 de Junio, 2025</p>
                         <p class="text-sm text-gray-400 mb-3"><i class="fas fa-clock mr-2"></i>21:00 - 23:00</p>
@@ -333,10 +235,7 @@
                         <a href="calendario.html#agosto-2025" class="text-starlight-yellow hover:text-yellow-300 font-semibold">Más Detalles <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                     <div class="card p-6">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Evento 2" class="rounded-lg mb-4 w-full h-48 object-cover">
-                            <span class="absolute top-3 right-3 bg-nebula-pink text-white px-3 py-1 rounded-full text-xs font-bold">Nuevo</span>
-                        </div>
+                        <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Evento+2" alt="Evento 2" class="rounded-lg mb-4 w-full h-48 object-cover">
                         <h3 class="text-xl font-semibold text-white mb-2">Charla: Misterios de Marte</h3>
                         <p class="text-sm text-gray-400 mb-1"><i class="fas fa-calendar-alt mr-2"></i>5 de Julio, 2025</p>
                         <p class="text-sm text-gray-400 mb-3"><i class="fas fa-clock mr-2"></i>19:00 - 20:30</p>
@@ -344,10 +243,7 @@
                         <a href="#" class="text-starlight-yellow hover:text-yellow-300 font-semibold">Inscribirse <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                     <div class="card p-6">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Evento 3" class="rounded-lg mb-4 w-full h-48 object-cover">
-                            <span class="absolute top-3 right-3 bg-galaxy-blue text-white px-3 py-1 rounded-full text-xs font-bold">Popular</span>
-                        </div>
+                        <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Evento+3" alt="Evento 3" class="rounded-lg mb-4 w-full h-48 object-cover">
                         <h3 class="text-xl font-semibold text-white mb-2">Taller de Astrofotografía</h3>
                         <p class="text-sm text-gray-400 mb-1"><i class="fas fa-calendar-alt mr-2"></i>20 de Julio, 2025</p>
                         <p class="text-sm text-gray-400 mb-3"><i class="fas fa-clock mr-2"></i>10:00 - 16:00</p>
@@ -362,67 +258,25 @@
                 </div>
             </section>
             
-            <!-- Quiénes Somos -->
             <section id="quienes-somos" class="my-16">
                 <h2 class="text-3xl font-bold text-center mb-10 section-title">Quiénes Somos</h2>
                 <div class="card p-6 md:p-8 max-w-4xl mx-auto">
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div class="order-2 md:order-1">
-                            <h3 class="text-2xl font-semibold text-white mb-4">Nuestra Misión</h3>
-                            <p class="text-gray-300 mb-6 leading-relaxed">
-                                El Museo Observatorio San Miguel se dedica a la divulgación de la astronomía y las ciencias del espacio, fomentando la curiosidad y el conocimiento del universo en personas de todas las edades. Buscamos ser un puente entre la comunidad y el cosmos.
-                            </p>
-                            <h3 class="text-2xl font-semibold text-white mb-4">Nuestra Historia</h3>
-                            <p class="text-gray-300 mb-6 leading-relaxed">
-                                Fundado en 1973, el observatorio ha sido un faro de conocimiento astronómico en la región. Originalmente una iniciativa de astrónomos aficionados y la comunidad local, ha crecido hasta convertirse en un centro de referencia para la observación y la educación. 
-                            </p>
-                            <p class="text-gray-300 mb-6 leading-relaxed">
-                                El Observatorio de Física Cósmica de San Miguel, dependiente de la Comisión Nacional de Actividades Espaciales (CONAE), es un centro de investigación y desarrollo con una rica historia en el estudio del Sol, la atmósfera terrestre y el espacio exterior.
-                            </p>
-                        </div>
-                        <div class="order-1 md:order-2">
-                            <div class="relative rounded-xl overflow-hidden h-80">
-                                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Observatorio San Miguel" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-space-blue to-transparent"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="text-2xl font-semibold text-white mb-4 mt-8">El Equipo</h3>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Nuestra Misión</h3>
                     <p class="text-gray-300 mb-6 leading-relaxed">
+                        El Museo Observatorio San Miguel se dedica a la divulgación de la astronomía y las ciencias del espacio, fomentando la curiosidad y el conocimiento del universo en personas de todas las edades. Buscamos ser un puente entre la comunidad y el cosmos.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Nuestra Historia</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Fundado en 1973, el observatorio ha sido un faro de conocimiento astronómico en la región. Originalmente una iniciativa de astrónomos aficionados y la comunidad local, ha crecido hasta convertirse en un centro de referencia para la observación y la educación. A lo largo de las décadas, hemos modernizado nuestras instalaciones y expandido nuestros programas para alcanzar a una audiencia más amplia, siempre con la pasión por compartir los secretos del cielo.
+                        El Observatorio de Física Cósmica de San Miguel, dependiente de la Comisión Nacional de Actividades Espaciales (CONAE), es un centro de investigación y desarrollo con una rica historia en el estudio del Sol, la atmósfera terrestre y el espacio exterior.
+                    </p>
+                     <h3 class="text-2xl font-semibold text-white mb-4">El Equipo</h3>
+                    <p class="text-gray-300 mb-2 leading-relaxed">
                         Contamos con un equipo apasionado de astrónomos, físicos, ingenieros, educadores y voluntarios dedicados a hacer de tu visita una experiencia inolvidable y a impulsar la investigación científica.
                     </p>
-                    
-                    <div class="grid md:grid-cols-3 gap-6 mt-8">
-                        <div class="team-member text-center">
-                            <div class="rounded-full overflow-hidden w-32 h-32 mx-auto mb-4 border-2 border-starlight-yellow">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dr. Alejandro Torres" class="w-full h-full object-cover">
-                            </div>
-                            <h4 class="text-lg font-bold text-white">Dr. Alejandro Torres</h4>
-                            <p class="text-sm text-starlight-yellow">Director Científico</p>
-                            <p class="text-xs text-gray-400 mt-2">PhD en Astrofísica, Universidad de Buenos Aires</p>
-                        </div>
-                        <div class="team-member text-center">
-                            <div class="rounded-full overflow-hidden w-32 h-32 mx-auto mb-4 border-2 border-starlight-yellow">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dra. Lucía Fernández" class="w-full h-full object-cover">
-                            </div>
-                            <h4 class="text-lg font-bold text-white">Dra. Lucía Fernández</h4>
-                            <p class="text-sm text-starlight-yellow">Jefa de Educación</p>
-                            <p class="text-xs text-gray-400 mt-2">MSc en Ciencias Planetarias, Universidad Nacional de La Plata</p>
-                        </div>
-                        <div class="team-member text-center">
-                            <div class="rounded-full overflow-hidden w-32 h-32 mx-auto mb-4 border-2 border-starlight-yellow">
-                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ing. Carlos Mendoza" class="w-full h-full object-cover">
-                            </div>
-                            <h4 class="text-lg font-bold text-white">Ing. Carlos Mendoza</h4>
-                            <p class="text-sm text-starlight-yellow">Técnico en Instrumentación</p>
-                            <p class="text-xs text-gray-400 mt-2">Especialista en telescopios ópticos, CONAE</p>
-                        </div>
                     </div>
-                </div>
             </section>
 
-            <!-- Ubicación -->
             <section id="ubicacion" class="my-16">
                 <h2 class="text-3xl font-bold text-center mb-10 section-title">Nuestra Ubicación</h2>
                 <div class="card p-6 md:p-8">
@@ -432,40 +286,18 @@
                             <p class="text-gray-300 mb-2"><i class="fas fa-map-marker-alt mr-2 text-starlight-yellow"></i>Av. Pres. Arturo U. Illia 3773, B1663 San Miguel, Provincia de Buenos Aires, Argentina</p>
                             <p class="text-gray-300 mb-2"><i class="fas fa-phone mr-2 text-starlight-yellow"></i>+54 11 4455-3206</p>
                             <p class="text-gray-300 mb-4"><i class="fas fa-envelope mr-2 text-starlight-yellow"></i>info@observatoriosanmiguel.ar</p>
-                            <p class="text-gray-300 leading-relaxed mb-6">
+                            <p class="text-gray-300 leading-relaxed">
                                 Estamos ubicados en San Miguel, Provincia de Buenos Aires, con fácil acceso. ¡Te esperamos para explorar el universo juntos!
                             </p>
-                            <div class="mt-6">
-                                <h4 class="text-xl font-semibold text-white mb-3">Horarios de Visita</h4>
-                                <ul class="text-gray-300 space-y-2">
-                                    <li><i class="fas fa-clock mr-2 text-starlight-yellow"></i>Martes a Viernes: 14:00 - 20:00</li>
-                                    <li><i class="fas fa-clock mr-2 text-starlight-yellow"></i>Sábados y Domingos: 10:00 - 22:00</li>
-                                    <li><i class="fas fa-clock mr-2 text-starlight-yellow"></i>Lunes: Cerrado</li>
-                                </ul>
-                            </div>
                         </div>
                         <div>
-                            <div id="map" class="h-96">
-                                <!-- Mapa será inicializado por Leaflet -->
+                            <div id="map">
+                                <div class="flex items-center justify-center h-full bg-cosmic-purple rounded-lg">
+                                    <p class="text-starlight-yellow">Cargando mapa...</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Suscripción -->
-            <section class="my-16">
-                <div class="card p-8 text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl font-bold mb-4 section-title">Mantente Informado</h2>
-                    <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
-                        Suscríbete a nuestro newsletter para recibir noticias sobre eventos, cursos y las últimas novedades astronómicas.
-                    </p>
-                    <form class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-                        <input type="email" placeholder="Tu correo electrónico" class="flex-grow px-4 py-3 rounded-full bg-space-blue border border-starlight-yellow text-white focus:outline-none focus:ring-2 focus:ring-starlight-yellow">
-                        <button type="submit" class="btn-primary px-6 py-3 rounded-full font-semibold">
-                            Suscribirse
-                        </button>
-                    </form>
                 </div>
             </section>
 
@@ -473,13 +305,13 @@
     </main>
 
     <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-4 text-center text-gray-400">
+        <div class="container mx-auto px-6 text-center text-gray-400">
             <div class="mb-6">
                 <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
-                    <i class="fas fa-satellite mr-2 text-yellow-400 floating"></i>Museo Observatorio San Miguel
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo Observatorio San Miguel
                 </a>
             </div>
-            <div class="mb-6 flex flex-wrap justify-center gap-3 sm:gap-6 text-sm">
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
                 <a href="#ubicacion" class="hover:text-yellow-400">Ubicación</a>
                 <a href="#quienes-somos" class="hover:text-yellow-400">Quiénes Somos</a>
                 <a href="#eventos" class="hover:text-yellow-400">Eventos</a>
@@ -494,7 +326,6 @@
                 <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-facebook-f fa-lg"></i></a>
                 <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
-                <a href="#" aria-label="YouTube" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-youtube fa-lg"></i></a>
             </div>
             <p class="text-sm">© <span id="currentYear"></span> Museo Observatorio San Miguel. Todos los derechos reservados.</p>
             <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
@@ -509,67 +340,205 @@
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            mobileMenuButton.querySelector('i').classList.toggle('fa-bars');
-            mobileMenuButton.querySelector('i').classList.toggle('fa-times');
         });
 
         navLinksMobile.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenuButton.querySelector('i').classList.remove('fa-times');
-                mobileMenuButton.querySelector('i').classList.add('fa-bars');
+            link.addEventListener('click', (event) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#') || !href.includes('index.html')) {
+                     mobileMenu.classList.add('hidden');
+                }
             });
         });
         
-        // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Initialize Leaflet map
-        function initMap() {
-            const observatorioLocation = [-34.548912, -58.709403];
-            const map = L.map('map').setView(observatorioLocation, 16);
-            
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            
-            const customIcon = L.divIcon({
-                className: 'custom-icon',
-                html: `<div style="background: #f6ad55; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">
-                        <i class="fas fa-map-marker-alt" style="color: #1a202c;"></i>
-                    </div>`,
-                iconSize: [24, 24],
-                iconAnchor: [12, 24]
-            });
-            
-            const marker = L.marker(observatorioLocation, {icon: customIcon}).addTo(map);
-            
-            marker.bindPopup(`
-                <div class="text-gray-900">
-                    <h4 class="font-bold text-md mb-1">Observatorio de Física Cósmica de San Miguel</h4>
-                    <p class="text-sm">Av. Pres. Arturo U. Illia 3773, San Miguel</p>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=-34.548912,-58.709403" target="_blank" class="text-blue-600 hover:underline text-xs mt-1 block">Cómo llegar</a>
-                </div>
-            `).openPopup();
+        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
+        if (satelliteIconLink) {
+            // satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+            // satelliteIconLink.target = "_blank"; 
         }
 
-        // Initialize the map when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            initMap();
+        async function fetchNasaApod() {
+            // Usando la clave API de NASA proporcionada por el usuario.
+            // Si ocurren errores 429 (Too Many Requests), puede ser que esta clave también haya alcanzado su límite
+            // o no esté correctamente activada para APOD.
+            const apiKey = 'de2Y5Y5yZBoWZ77rdybz2fHtKwyi7cisSAUC7XkE'; 
+            const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
             
-            // Set header background
             const apodHeader = document.getElementById('apod-header');
-            apodHeader.style.backgroundImage = "url('https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')";
-        });
+            const apodImageElem = document.getElementById('apod-image');
+            const apodTitleElem = document.getElementById('apod-title');
+            const apodDateElem = document.getElementById('apod-date');
+            const apodExplanationElem = document.getElementById('apod-explanation');
+            const apodDownloadButton = document.getElementById('apod-download-button'); 
+            const apodVideoLinkContainer = document.getElementById('apod-video-link-container');
+            const apodVideoLink = document.getElementById('apod-video-link');
 
-        // Nav link active state
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('nav-link-active'));
-                this.classList.add('nav-link-active');
+            const apodTitleHeaderElem = document.getElementById('apod-title-header');
+            const apodExplanationHeaderElem = document.getElementById('apod-explanation-header');
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status; 
+                    throw error;
+                }
+                const data = await response.json();
+
+                if (data.media_type === 'image') {
+                    apodHeader.style.backgroundImage = `url('${data.url}')`;
+                    apodImageElem.src = data.url;
+                    apodImageElem.alt = data.title;
+                    apodImageElem.style.display = 'block';
+                    apodVideoLinkContainer.style.display = 'none';
+                    apodDownloadButton.href = data.hdurl || data.url; 
+                    apodDownloadButton.style.display = 'inline-block';
+                } else if (data.media_type === 'video') {
+                    apodHeader.style.backgroundImage = `url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; 
+                    if (data.thumbnail_url) {
+                         apodImageElem.src = data.thumbnail_url; 
+                         apodImageElem.alt = `Thumbnail for video: ${data.title}`;
+                    } else {
+                        apodImageElem.src = 'https://placehold.co/1200x800/0B0D17/E2E8F0?text=Video+APOD';
+                        apodImageElem.alt = data.title;
+                    }
+                    apodImageElem.style.display = 'block';
+                    apodVideoLink.href = data.url;
+                    apodVideoLinkContainer.style.display = 'block';
+                    apodDownloadButton.style.display = 'none'; 
+                }
+                
+                apodTitleElem.textContent = data.title;
+                apodDateElem.textContent = `Fecha: ${new Date(data.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+                apodExplanationElem.textContent = data.explanation; 
+
+                apodTitleHeaderElem.textContent = data.title;
+                const shortExplanation = data.explanation.length > 200 ? data.explanation.substring(0, 200) + "..." : data.explanation;
+                apodExplanationHeaderElem.textContent = shortExplanation;
+
+            } catch (error) {
+                console.error("Error fetching NASA APOD:", error.message); 
+                apodHeader.style.backgroundImage = `url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; 
+                
+                if (error.status === 429) {
+                    apodTitleElem.textContent = "Límite de Solicitudes APOD Alcanzado";
+                    apodExplanationElem.innerHTML = `<p class="mb-3">Se ha alcanzado el límite de solicitudes para la clave API de NASA (<code>${apiKey}</code>) que has proporcionado.</p>
+                                                 <p class="mb-1">Esto puede suceder si la clave es nueva y aún no está completamente activa, si ha alcanzado su límite diario/horario, o si no está habilitada para el servicio APOD.</p>
+                                                 <p class="mb-3"><strong>Por favor, verifica el estado de tu clave API de NASA:</strong></p>
+                                                 <ol class="list-decimal list-inside mt-2 mb-4 text-left max-w-lg mx-auto text-gray-300 bg-cosmic-purple p-4 rounded-md">
+                                                    <li class="mb-2">Ve a <a href="https://api.nasa.gov/" target="_blank" class="text-sky-400 hover:text-sky-300 underline font-semibold">https://api.nasa.gov/</a> para revisar tus claves y sus permisos.</li>
+                                                    <li>Asegúrate de que la clave esté activa y que el servicio "APOD" esté habilitado para ella.</li>
+                                                    <li class="mt-2">Si el problema persiste, considera que las claves personales también tienen límites. Puedes intentar de nuevo más tarde.</li>
+                                                 </ol>
+                                                 <p>Mientras tanto, te mostramos una imagen espacial de respaldo.</p>`;
+                    apodTitleHeaderElem.textContent = "Límite de APOD Alcanzado";
+                    apodExplanationHeaderElem.textContent = "Verifica tu clave API de NASA para ver la imagen del día.";
+                } else {
+                    apodTitleElem.textContent = "Error al Cargar la Imagen del Día";
+                    apodExplanationElem.textContent = `No se pudo obtener la imagen astronómica del día (Error: ${error.message || error.status || 'desconocido'}). Por favor, intenta de nuevo más tarde.`;
+                    apodTitleHeaderElem.textContent = "Imagen No Disponible";
+                    apodExplanationHeaderElem.textContent = "No se pudo cargar la imagen astronómica del día en este momento.";
+                }
+                apodImageElem.src = 'https://placehold.co/1200x800/0B0D17/E2E8F0?text=Error+APOD';
+                apodImageElem.alt = 'Error al cargar APOD';
+                apodDownloadButton.style.display = 'none';
+            }
+        }
+
+        function initMap() {
+            const observatorioLocation = { lat: -34.548912, lng: -58.709403 }; 
+            const observatorioAddress = "Av. Pres. Arturo U. Illia 3773, B1663 San Miguel, Provincia de Buenos Aires, Argentina";
+            
+            const mapElement = document.getElementById('map');
+            if (!mapElement) {
+                console.error("Map element not found");
+                return;
+            }
+
+            // Comprobar si la API de Google Maps se cargó correctamente
+            // El error BillingNotEnabledMapError es un error específico que Google Maps
+            // usualmente muestra en la consola si la facturación no está habilitada.
+            // Este bloque de código es un fallback general si la API no se carga por cualquier motivo.
+            if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+                console.error("Google Maps API not loaded. This can be due to an invalid API key, network issues, or billing not enabled on the associated Google Cloud Project.");
+                mapElement.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full bg-cosmic-purple rounded-lg p-4 text-center">
+                        <p class="text-starlight-yellow mb-2 text-lg">Error al Cargar el Mapa</p>
+                        <p class="text-gray-300 text-sm mb-1">No se pudo inicializar Google Maps.</p>
+                        <p class="text-gray-300 text-sm mb-3">Por favor, verifica que la API Key de Google Maps sea válida, que la facturación esté habilitada en tu proyecto de Google Cloud y que no haya restricciones de red.</p>
+                        <p class="text-gray-300 text-sm mt-2">
+                            <strong>Ubicación del Observatorio:</strong><br>${observatorioAddress}
+                        </p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(observatorioAddress)}" target="_blank" class="mt-4 inline-block bg-starlight-yellow text-space-blue px-4 py-2 rounded-md hover:bg-yellow-300 transition text-sm font-semibold">
+                            <i class="fas fa-external-link-alt mr-2"></i>Ver en Google Maps
+                        </a>
+                    </div>`;
+                return;
+            }
+            
+            const map = new google.maps.Map(mapElement, {
+                zoom: 16, 
+                center: observatorioLocation,
+                mapId: 'MOSM_CUSTOM_MAP_ID', 
+                styles: [ 
+                    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                    { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+                    { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+                    { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#263c3f" }] },
+                    { featureType: "poi.park", elementType: "labels.text.fill", stylers: [{ color: "#6b9a76" }] },
+                    { featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] },
+                    { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212a37" }] },
+                    { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#9ca5b3" }] },
+                    { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#746855" }] },
+                    { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#1f2835" }] },
+                    { featureType: "road.highway", elementType: "labels.text.fill", stylers: [{ color: "#f3d19c" }] },
+                    { featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f3948" }] },
+                    { featureType: "transit.station", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+                    { featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] },
+                    { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#515c6d" }] },
+                    { featureType: "water", elementType: "labels.text.stroke", stylers: [{ color: "#17263c" }] },
+                ],
             });
+
+            const marker = new google.maps.Marker({
+                position: observatorioLocation,
+                map: map,
+                title: "Museo Observatorio San Miguel (Observatorio de Física Cósmica)",
+                icon: { 
+                    url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F6AD55' width='40px' height='40px'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E",
+                    scaledSize: new google.maps.Size(40, 40)
+                }
+            });
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div class="text-gray-900 p-2" style="color: #1a202c;">
+                        <h4 class="font-bold text-md mb-1" style="font-weight: 600; font-size: 1.05rem; margin-bottom: 0.3rem;">Observatorio de Física Cósmica de San Miguel</h4>
+                        <p class="text-sm" style="font-size: 0.85rem;">${observatorioAddress}</p>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(observatorioAddress)}" target="_blank" class="text-blue-600 hover:underline text-xs" style="color: #2563eb; font-size: 0.75rem; margin-top: 0.5rem; display: inline-block;">Cómo llegar</a>
+                    </div>
+                `
+            });
+
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchNasaApod();
         });
     </script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- 
+        API Key de Google Maps integrada. 
+        Si ves errores como 'BillingNotEnabledMapError', asegúrate de que la facturación
+        esté habilitada para el proyecto de Google Cloud asociado con esta clave API:
+        AIzaSyDQi6TQ0v0pco2HDnBe6RSaQ7MyQnGl6z0
+    -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQi6TQ0v0pco2HDnBe6RSaQ7MyQnGl6z0&callback=initMap&libraries=marker&v=beta"></script>
 </body>
 </html>
