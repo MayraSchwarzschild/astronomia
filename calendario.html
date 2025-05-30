@@ -152,7 +152,7 @@
                 <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
                 <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
                 <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
-                <a href="calendario.html" class="nav-link-active transition duration-300">Calendario</a> {/* Enlace activo */}
+                <a href="calendario.html" class="nav-link-active transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
                     <i class="fas fa-star mr-1"></i>Premium
                 </a>
@@ -164,14 +164,14 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+             <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
             <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
             <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
             <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
             <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
             <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
             <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
-            <a href="calendario.html" class="block nav-link-active transition duration-300">Calendario</a> {/* Enlace activo */}
+            <a href="calendario.html" class="block nav-link-active transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
                 <i class="fas fa-star mr-1"></i>Premium
             </a>
@@ -392,6 +392,7 @@
         navLinksMobile.forEach(link => {
             link.addEventListener('click', () => {
                 const href = link.getAttribute('href');
+                // Cerrar menú si es un enlace de anclaje en index.html o si es un enlace a otra página que no sea calendario.html
                 if (href.includes('index.html#') || (href !== 'calendario.html' && !href.includes('calendario.html#'))) {
                     mobileMenu.classList.add('hidden');
                 } else if (href.startsWith('#')) { 
@@ -411,4 +412,4 @@
         }
     </script>
 </body>
-</ht
+</html>
