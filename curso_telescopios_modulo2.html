@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Componentes Clave - Telescopios - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card { 
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-align: center; 
+            display: inline-block; 
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+
+        .btn-secondary {
+            background-color: var(--cosmic-purple);
+            color: var(--starlight-yellow);
+            border: 1px solid var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center; 
+            display: inline-block; 
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--starlight-yellow);
+            color: var(--cosmic-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .content-section h3 {
+            color: var(--starlight-yellow);
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            border-bottom: 1px solid rgba(246, 173, 85, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .content-section h4 {
+            color: var(--nebula-pink);
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.75rem; 
+        }
+        .content-section p, .content-section ul li {
+            line-height: 1.7;
+            margin-bottom: 0.75rem; 
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; 
+        }
+        .content-section strong {
+            color: var(--starlight-yellow);
+        }
+        .content-section code {
+            background-color: rgba(11, 13, 23, 0.5);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--nebula-pink);
+        }
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .content-section a {
+            color: var(--nebula-pink);
+            text-decoration: underline;
+        }
+        .content-section a:hover {
+            color: var(--starlight-yellow);
+        }
+        .form-message { 
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <nav aria-label="Breadcrumb" class="mb-8 text-sm text-gray-400">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-gray-200">Telescopios: Partes y Usos</span>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-yellow-400">Módulo 2</span>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Curso: Telescopios: Partes y Usos</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-nebula-pink mb-12">Módulo 2: Componentes Clave del Telescopio</h2>
+        
+        <section id="module-content" class="card p-6 md:p-8 mb-12 content-section">
+            <h3>Bienvenida al Módulo 2</h3>
+            <p>¡Continuamos nuestra exploración del fascinante mundo de los telescopios! En este segundo módulo, nos adentraremos en el corazón de estos instrumentos: sus componentes ópticos clave. Aprenderemos en detalle sobre las lentes objetivo y los espejos primarios, los diferentes tipos de oculares que nos permiten visualizar las imágenes, y los buscadores, esenciales para apuntar nuestro telescopio con precisión. Comprender estos elementos es fundamental para sacar el máximo provecho de cualquier telescopio y para tomar decisiones acertadas al elegir o mejorar tu equipo.</p>
+
+            <h3>2.1 Lentes Objetivo y Espejos Primarios</h3>
+            <p>El componente óptico principal de un telescopio, ya sea una lente o un espejo, es el encargado de recolectar la luz de los objetos distantes y formar una imagen en el punto focal.</p>
+            
+            <h4>Lentes Objetivo (Refractores)</h4>
+            <p>En los telescopios refractores, la lente objetivo es la primera superficie óptica que encuentra la luz. Su calidad es primordial.</p>
+            <img src="https://images.unsplash.com/photo-1581092917144-95b3a06108cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Detalle de una lente objetivo de un telescopio refractor]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Lente+Objetivo';">
+            <ul>
+                <li><strong>Materiales:</strong> Se utilizan vidrios ópticos de alta calidad. Los diseños apocromáticos (APO) emplean vidrios especiales como la <strong>fluorita</strong> o vidrios de <strong>Extra-baja Dispersión (ED)</strong> para minimizar la aberración cromática.</li>
+                <li><strong>Recubrimientos (Coatings):</strong> Las superficies de las lentes se recubren con delgadas capas antirreflectantes (ej. fluoruro de magnesio, recubrimientos multicapa) para aumentar la transmisión de luz y reducir los reflejos internos, mejorando el contraste y el brillo de la imagen.</li>
+                <li><strong>Diseño de Lentes:</strong>
+                    <ul>
+                        <li><strong>Acromático:</strong> Compuesto por dos lentes (generalmente una cóncava de vidrio flint y una convexa de vidrio crown) diseñadas para enfocar dos longitudes de onda (usualmente rojo y azul) en el mismo punto, reduciendo la aberración cromática.</li>
+                        <li><strong>Apocromático (APO):</strong> Compuesto por tres o más elementos de lentes (a veces con elementos de vidrios especiales o fluorita) que enfocan tres o más longitudes de onda en el mismo punto, ofreciendo una corrección superior de la aberración cromática y, por lo tanto, imágenes más nítidas y con colores más fieles.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Espejos Primarios (Reflectores y Catadióptricos)</h4>
+            <p>En los telescopios reflectores y catadióptricos, el espejo primario es el principal colector de luz.</p>
+            <img src="https://images.unsplash.com/photo-1618059202997-5fb06513787c?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Detalle de un espejo primario de un telescopio reflector]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/0B0D17/D53F8C?text=Espejo+Primario';">
+            <ul>
+                <li><strong>Materiales del Sustrato:</strong> El sustrato del espejo (la base sobre la que se aplica el recubrimiento reflectante) debe ser estable dimensionalmente frente a cambios de temperatura. Se usan materiales como:
+                    <ul>
+                        <li><strong>Pyrex (vidrio borosilicatado):</strong> Bajo coeficiente de expansión térmica, común en telescopios amateur.</li>
+                        <li><strong>Zerodur o Sitall:</strong> Vitrocerámicas con coeficiente de expansión térmica cercano a cero, usadas en telescopios de alta gama y profesionales.</li>
+                        <li>Cuarzo fundido: Otra opción de baja expansión.</li>
+                    </ul>
+                </li>
+                <li><strong>Forma del Espejo:</strong>
+                    <ul>
+                        <li><strong>Esférico:</strong> Más fácil y económico de fabricar, pero sufre de <a href="https://es.wikipedia.org/wiki/Aberraci%C3%B3n_esf%C3%A9rica" target="_blank" rel="noopener noreferrer">aberración esférica</a> (los rayos de luz que inciden en diferentes partes del espejo no convergen en un único punto focal), especialmente en relaciones focales rápidas. Se usa en algunos catadióptricos donde una lente correctora compensa esta aberración.</li>
+                        <li><strong>Parabólico:</strong> Diseñado para que todos los rayos de luz paralelos que inciden en el espejo converjan en un único punto focal, eliminando la aberración esférica. Es la forma ideal para los espejos primarios de telescopios Newtonianos.</li>
+                    </ul>
+                </li>
+                <li><strong>Recubrimientos Reflectantes:</strong> La superficie del espejo se recubre con una fina capa de material altamente reflectante.
+                    <ul>
+                        <li><strong>Aluminio (Al):</strong> El más común, refleja alrededor del 88-92% de la luz visible. Suele llevar una capa protectora de dióxido de silicio (SiO<sub>2</sub>) para evitar la oxidación.</li>
+                        <li><strong>Plata (Ag):</strong> Puede alcanzar reflectividades superiores al 95%, pero se oxida más rápidamente si no está bien protegida.</li>
+                        <li><strong>Recubrimientos Dieléctricos Mejorados:</strong> Múltiples capas que pueden aumentar la reflectividad hasta el 99% en un rango específico de longitudes de onda.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3>2.2 <a href="https://es.wikipedia.org/wiki/Ocular" target="_blank" rel="noopener noreferrer">Oculares</a>: La Ventana al Universo</h3>
+            <p>El ocular es una lente o sistema de lentes que magnifica la imagen formada por el objetivo o espejo primario del telescopio. Es una pieza intercambiable que permite variar el aumento y el campo visual.</p>
+            <img src="https://images.unsplash.com/photo-1517446543900-929cfcba83a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Colección de diferentes oculares de telescopio]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Oculares+de+Telescopio';">
+            <h4>Características Principales de los Oculares:</h4>
+            <ul>
+                <li><strong>Distancia Focal (F<sub>ocular</sub>):</strong> Generalmente impresa en el cuerpo del ocular, se mide en milímetros (mm). Determina el aumento: <code>Aumento = F_telescopio / F_ocular</code>. Oculares con menor distancia focal producen mayor aumento.</li>
+                <li><strong>Campo Visual Aparente (AFOV - Apparent Field of View):</strong> Es el ángulo de cielo que el ocular parece cubrir, medido en grados (°). Los oculares con mayor AFOV ofrecen una sensación de "inmersión" o "ventana al espacio". Valores típicos van desde 40° (diseños simples) hasta 82°, 100° o incluso más en oculares de campo amplio.</li>
+                <li><strong>Relieve Ocular (Eye Relief):</strong> Es la distancia óptima entre la lente más externa del ocular y el ojo del observador para ver todo el campo visual. Es especialmente importante para personas que usan gafas, quienes necesitarán un relieve ocular mayor (típicamente >15mm).</li>
+                <li><strong>Diámetro del Barril (Barrel Size):</strong> Es el diámetro del tubo del ocular que se inserta en el enfocador del telescopio. Los tamaños estándar son:
+                    <ul>
+                        <li><strong>1.25 pulgadas (31.75 mm):</strong> El más común en telescopios amateur.</li>
+                        <li><strong>2 pulgadas (50.8 mm):</strong> Permiten campos visuales reales más amplios, especialmente en oculares de baja potencia y gran AFOV.</li>
+                        <li>0.965 pulgadas: Antiguo estándar, menos común hoy en día.</li>
+                    </ul>
+                </li>
+                <li><strong>Pupila de Salida:</strong> Es el diámetro del haz de luz que sale del ocular y entra en el ojo del observador. Se calcula como: <code>Pupila de Salida (mm) = Apertura del Telescopio (mm) / Aumento</code> o <code>Pupila de Salida (mm) = F_ocular / Relación Focal del Telescopio</code>. Idealmente, la pupila de salida no debería ser mayor que la pupila del ojo adaptada a la oscuridad (unos 5-7mm) para no desperdiciar luz, ni mucho menor de 0.5-1mm, ya que la imagen puede volverse demasiado oscura o mostrar imperfecciones del ojo.</li>
+            </ul>
+
+            <h4>Tipos Comunes de Oculares (Diseños Ópticos):</h4>
+            <p>Existen muchos diseños de oculares, cada uno con sus propias características, número de elementos de lente, corrección de aberraciones y costo.</p>
+            <ul>
+                <li><strong>Huygens (H):</strong> Diseño simple de 2 lentes. Campo aparente pequeño (~30-40°), relieve ocular corto. Económico, a menudo incluido en telescopios básicos.</li>
+                <li><strong>Ramsden (R, SR):</strong> Otro diseño simple de 2 lentes. Algo mejor que el Huygens.</li>
+                <li><strong>Kellner (K):</strong> Diseño de 3 lentes (un doblete acromático y una lente simple). Mejor corrección de color y campo más amplio (~40-50°) que los anteriores. Buena relación calidad-precio.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Ocular_de_Pl%C3%B6ssl" target="_blank" rel="noopener noreferrer">Plössl (P)</a>:</strong> Diseño simétrico de 4 lentes (dos dobletes acromáticos). Buen rendimiento general, campo aparente de ~50-52°, buen contraste y nitidez. Muy populares. El relieve ocular puede ser corto en distancias focales pequeñas.</li>
+                <li><strong>Ortoscópico (Ortho):</strong> Diseño de 4 lentes. Conocidos por su alta nitidez, buen contraste y mínima distorsión, excelentes para observación planetaria. Campo aparente moderado (~40-45°).</li>
+                <li><strong>Erfle:</strong> Diseño de 5-6 lentes, originalmente para uso militar. Ofrecen campos aparentes amplios (~60-70°), buenos para objetos de cielo profundo. Pueden tener distorsión en los bordes.</li>
+                <li><strong>Campo Amplio (Wide Field, SWA, UWA, Hyperion, Nagler, Ethos, etc.):</strong> Diseños modernos con múltiples elementos (6 a 9 o más) que ofrecen campos aparentes muy amplios (68° a más de 100°), proporcionando vistas inmersivas. Suelen ser más caros y pesados.</li>
+            </ul>
+
+            <h3>2.3 Buscadores: Apuntando al Cosmos</h3>
+            <p>Encontrar objetos celestes, especialmente los más débiles o pequeños, puede ser un desafío debido al estrecho campo visual de un telescopio a altos aumentos. Los buscadores son pequeños telescopios auxiliares o dispositivos de puntería que se montan en paralelo al tubo principal y ofrecen un campo visual mucho más amplio, facilitando la localización inicial de los objetos.</p>
+            <img src="https://images.unsplash.com/photo-1629819180483-52b8705f02d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Telescopio con un buscador óptico y un buscador de punto rojo montados]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Buscadores+de+Telescopio';">
+            <h4>Tipos de Buscadores:</h4>
+            <ul>
+                <li><strong>Buscadores Ópticos (Finderscopes):</strong> Son pequeños telescopios refractores de baja potencia (ej. 6x30, 8x50, 9x50, donde el primer número es el aumento y el segundo la apertura en mm). Proporcionan una imagen magnificada y, a menudo, invertida o especular del cielo. Suelen tener una retícula (cruceta) para centrar el objeto.</li>
+                <li><strong>Buscadores de Punto Rojo (Red Dot Finders):</strong> Proyectan un punto rojo de luz LED sobre una pantalla transparente. El observador mira a través de la pantalla y alinea el punto rojo con el objeto deseado en el cielo. No magnifican la imagen, por lo que se ve el cielo tal cual es, facilitando la orientación con estrellas brillantes.</li>
+                <li><strong>Telrad / Rigel QuikFinder:</strong> Similares a los de punto rojo, pero proyectan un patrón de círculos concéntricos (ej. 0.5°, 2° y 4° de diámetro para el Telrad) sobre una pantalla. Esto ayuda a "saltar" de estrella en estrella (star hopping) usando cartas celestes.</li>
+            </ul>
+            <h4>Alineación del Buscador:</h4>
+            <p>Es crucial que el buscador esté perfectamente alineado con el telescopio principal. Esto se hace durante el día apuntando el telescopio principal a un objeto terrestre distante y fijo (ej. una antena, la cima de un poste lejano) y luego ajustando los tornillos del buscador hasta que el mismo objeto esté centrado en su retícula o punto rojo. Una vez alineado, lo que centres en el buscador también estará (o muy cerca) en el campo visual del ocular del telescopio principal.</p>
+            
+            <hr class="my-8 border-gray-700">
+            <p class="text-center text-lg text-yellow-400">Has completado la teoría del Módulo 2. ¡Excelente trabajo! Prepárate para el siguiente paso.</p>
+        </section>
+
+        <section id="inscripcion-modulo2" class="card p-6 md:p-8 mb-12">
+            <h3 class="text-2xl font-bold text-center text-yellow-400 mb-6">Continuar al Examen del Módulo 2</h3>
+            <p class="text-center text-gray-300 mb-8">Si ya estás inscrito en el curso "Telescopios: Partes y Usos", puedes proceder directamente al examen de este módulo.</p>
+            
+            <div class="text-center">
+                <a href="examen_modulo2.html" class="w-full md:w-auto btn-primary px-6 py-3 rounded-full font-semibold text-lg">
+                    Ir al Examen del Módulo 2
+                </a>
+            </div>
+            <p class="text-xs text-gray-500 text-center mt-4">(Al hacer clic, serás redirigido a la página del examen del Módulo 2.)</p>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Dynamic satellite icon link
+        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
+        if (satelliteIconLink) {
+            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+            satelliteIconLink.target = "_blank"; 
+        }
+    </script>
+</body>
+</html>
