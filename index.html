@@ -449,6 +449,7 @@
         function initMap() {
             // Coordinates for Observatorio de Fisica Cosmica de San Miguel
             const observatorioLocation = { lat: -34.548912, lng: -58.709403 }; 
+            const observatorioAddress = "Av. Pres. Arturo U. Illia 3773, B1663 San Miguel, Provincia de Buenos Aires, Argentina";
             
             const mapElement = document.getElementById('map');
             if (!mapElement) {
@@ -456,16 +457,20 @@
                 return;
             }
 
+            // This check handles cases where the Google Maps API script fails to load,
+            // often due to an invalid API key (which causes InvalidKeyMapError).
             if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+                console.error("Google Maps API not loaded. This is often due to an invalid API key or network issues.");
                 mapElement.innerHTML = `
                     <div class="flex flex-col items-center justify-center h-full bg-cosmic-purple rounded-lg p-4 text-center">
-                        <p class="text-starlight-yellow mb-2">No se pudo cargar el mapa de Google.</p>
-                        <p class="text-gray-300 text-sm">Por favor, asegúrate de que la API Key de Google Maps esté configurada correctamente.</p>
+                        <p class="text-starlight-yellow mb-2 text-lg">Error al Cargar el Mapa</p>
+                        <p class="text-gray-300 text-sm mb-1">No se pudo inicializar Google Maps.</p>
+                        <p class="text-gray-300 text-sm mb-3">Por favor, verifica que la API Key de Google Maps sea válida y esté correctamente configurada en el script.</p>
                         <p class="text-gray-300 text-sm mt-2">
-                            Ubicación: Observatorio San Miguel, Av. Pres. Arturo U. Illia 3773, B1663 San Miguel, Provincia de Buenos Aires.
+                            <strong>Ubicación del Observatorio:</strong><br>${observatorioAddress}
                         </p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=-34.548912,-58.709403" target="_blank" class="mt-3 text-sky-400 hover:text-sky-300 underline">
-                            Ver en Google Maps (externo)
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(observatorioAddress)}" target="_blank" class="mt-4 inline-block bg-starlight-yellow text-space-blue px-4 py-2 rounded-md hover:bg-yellow-300 transition text-sm font-semibold">
+                            <i class="fas fa-external-link-alt mr-2"></i>Ver en Google Maps
                         </a>
                     </div>`;
                 return;
@@ -474,8 +479,8 @@
             const map = new google.maps.Map(mapElement, {
                 zoom: 16, // Slightly more zoomed in
                 center: observatorioLocation,
-                mapId: 'MOSM_CUSTOM_MAP_ID', 
-                styles: [ 
+                mapId: 'MOSM_CUSTOM_MAP_ID', // Optional: For cloud-based map styling if configured
+                styles: [ // Basic dark mode style to somewhat match the site
                     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
                     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
                     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
@@ -571,8 +576,8 @@
                 content: `
                     <div class="text-gray-900 p-2" style="color: #1a202c;">
                         <h4 class="font-bold text-md mb-1" style="font-weight: 600; font-size: 1.05rem; margin-bottom: 0.3rem;">Observatorio de Física Cósmica de San Miguel</h4>
-                        <p class="text-sm" style="font-size: 0.85rem;">Av. Pres. Arturo U. Illia 3773, San Miguel</p>
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=-34.548912,-58.709403" target="_blank" class="text-blue-600 hover:underline text-xs" style="color: #2563eb; font-size: 0.75rem; margin-top: 0.5rem; display: inline-block;">Cómo llegar</a>
+                        <p class="text-sm" style="font-size: 0.85rem;">${observatorioAddress}</p>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(observatorioAddress)}" target="_blank" class="text-blue-600 hover:underline text-xs" style="color: #2563eb; font-size: 0.75rem; margin-top: 0.5rem; display: inline-block;">Cómo llegar</a>
                     </div>
                 `
             });
@@ -582,10 +587,16 @@
             });
         }
 
+        // Call functions on load
         document.addEventListener('DOMContentLoaded', () => {
             fetchNasaApod();
+            // Google Maps API will call initMap via the callback parameter in the script URL
         });
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=marker&v=beta"></script>
+    <!-- 
+        API Key de Google Maps integrada.
+        El parámetro callback=initMap ejecutará la función initMap una vez que la API se haya cargado.
+    -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=R2p4PbMAugOvet2WPeoRdHVCz0I=&callback=initMap&libraries=marker&v=beta"></script>
 </body>
 </html>
