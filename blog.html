@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Astronómico - Museo Observatorio San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+        
+        .card {
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 188, 250, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+        .nav-link-active { /* Para la página activa en el nav */
+            color: var(--starlight-yellow);
+            font-weight: 600;
+        }
+        .form-input {
+            background-color: rgba(11, 13, 23, 0.8);
+            border: 1px solid rgba(246, 173, 85, 0.3);
+            color: #e2e8f0;
+            border-radius: 8px;
+        }
+        .form-input:focus {
+            border-color: var(--starlight-yellow);
+            box-shadow: 0 0 0 2px rgba(246, 173, 85, 0.5);
+            outline: none;
+        }
+        .blog-post-card img {
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 10%; left: 30%; width: 1px; height: 1px; animation-delay: 1.5s;"></div>
+    <div class="star-decoration" style="top: 25%; left: 85%; width: 3px; height: 3px; animation-delay: 1s;"></div>
+    <div class="star-decoration" style="top: 30%; left: 60%; width: 2px; height: 2px; animation-delay: 2.5s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="index.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Inicio</a>
+                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="blog.html" class="nav-link-active transition duration-300">Blog</a>
+                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="index.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Inicio</a>
+            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="blog.html" class="block nav-link-active transition duration-300">Blog</a>
+            <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <header class="py-16 md:py-24 text-center relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-space-blue opacity-80"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Blog Astronómico del MOSM</h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                Artículos, noticias y curiosidades del universo, compartidas por nuestro equipo y colaboradores.
+            </p>
+        </div>
+    </header>
+
+    <main class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="w-full lg:w-2/3">
+                    <h2 class="text-3xl font-bold text-starlight-yellow mb-8">Últimas Entradas</h2>
+                    
+                    <article class="card blog-post-card mb-8 overflow-hidden">
+                        <img src="https://placehold.co/800x450/1E1A3E/F6AD55?text=Nebulosa+Carina" alt="Imagen de la Nebulosa Carina" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-white mb-3 hover:text-yellow-400 transition"><a href="#">Misterios de la Nebulosa Carina: Cuna de Estrellas Gigantes</a></h3>
+                            <p class="text-sm text-gray-400 mb-1">
+                                <i class="fas fa-user mr-1 text-nebula-pink"></i>Por Dra. Astrofila Cósmica 
+                                <span class="mx-2">|</span>
+                                <i class="fas fa-calendar-alt mr-1 text-nebula-pink"></i>25 de Mayo, 2025
+                            </p>
+                            <p class="text-gray-300 mb-4 leading-relaxed">
+                                La Nebulosa Carina es una de las regiones de formación estelar más grandes y brillantes de nuestra galaxia. Exploramos sus características más fascinantes y los descubrimientos recientes gracias al Telescopio Espacial James Webb...
+                            </p>
+                            <div class="mb-4">
+                                <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Astrofísica</span>
+                                <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Nebulosas</span>
+                            </div>
+                            <a href="#" class="btn-primary py-2 px-4 rounded-full text-sm font-semibold">
+                                Leer Más <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-post-card mb-8 overflow-hidden">
+                        <img src="https://placehold.co/800x450/0B0D17/D53F8C?text=Agujero+Negro" alt="Representación artística de un agujero negro" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-white mb-3 hover:text-yellow-400 transition"><a href="#">Agujeros Negros Supermasivos: ¿Cómo Crecen Tanto?</a></h3>
+                            <p class="text-sm text-gray-400 mb-1">
+                                <i class="fas fa-user mr-1 text-nebula-pink"></i>Por Dr. Investigador Estelar
+                                <span class="mx-2">|</span>
+                                <i class="fas fa-calendar-alt mr-1 text-nebula-pink"></i>18 de Mayo, 2025
+                            </p>
+                            <p class="text-gray-300 mb-4 leading-relaxed">
+                                Los agujeros negros supermasivos residen en el centro de la mayoría de las galaxias, incluida la nuestra. Pero, ¿cómo alcanzaron masas de millones o miles de millones de veces la de nuestro Sol? Analizamos las teorías actuales...
+                            </p>
+                             <div class="mb-4">
+                                <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Cosmología</span>
+                                <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Agujeros Negros</span>
+                            </div>
+                            <a href="#" class="btn-primary py-2 px-4 rounded-full text-sm font-semibold">
+                                Leer Más <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="card blog-post-card mb-8 overflow-hidden">
+                        <img src="https://placehold.co/800x450/F6AD55/0B0D17?text=Historia+Astronomía" alt="Ilustración de un antiguo observatorio" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-white mb-3 hover:text-yellow-400 transition"><a href="#">Un Viaje por la Historia: Los Primeros Observatorios del Mundo</a></h3>
+                            <p class="text-sm text-gray-400 mb-1">
+                                <i class="fas fa-user mr-1 text-nebula-pink"></i>Por Equipo del Museo
+                                <span class="mx-2">|</span>
+                                <i class="fas fa-calendar-alt mr-1 text-nebula-pink"></i>10 de Mayo, 2025
+                            </p>
+                            <p class="text-gray-300 mb-4 leading-relaxed">
+                                Desde Stonehenge hasta los observatorios de la antigua Grecia y el mundo islámico, la humanidad siempre ha mirado a las estrellas. Descubre cómo eran los primeros centros de estudio astronómico y qué instrumentos utilizaban...
+                            </p>
+                            <div class="mb-4">
+                                <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Historia</span>
+                                <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Divulgación</span>
+                            </div>
+                            <a href="#" class="btn-primary py-2 px-4 rounded-full text-sm font-semibold">
+                                Leer Más <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <div class="flex justify-center mt-12">
+                        <nav aria-label="Paginación">
+                            <ul class="inline-flex items-center -space-x-px">
+                                <li>
+                                    <a href="#" class="py-2 px-3 ml-0 leading-tight text-gray-400 bg-gray-800 rounded-l-lg hover:bg-gray-700 hover:text-white">Anterior</a>
+                                </li>
+                                <li>
+                                    <a href="#" aria-current="page" class="py-2 px-3 leading-tight text-space-blue bg-starlight-yellow border border-starlight-yellow hover:bg-yellow-300">1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="py-2 px-3 leading-tight text-gray-400 bg-gray-800 hover:bg-gray-700 hover:text-white">2</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="py-2 px-3 leading-tight text-gray-400 bg-gray-800 hover:bg-gray-700 hover:text-white">3</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="py-2 px-3 leading-tight text-gray-400 bg-gray-800 rounded-r-lg hover:bg-gray-700 hover:text-white">Siguiente</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+
+                <aside class="w-full lg:w-1/3 space-y-8">
+                    <div class="card p-6">
+                        <h3 class="text-xl font-semibold text-white mb-4">Buscar en el Blog</h3>
+                        <form class="flex">
+                            <input type="search" class="form-input flex-grow p-2 rounded-l-md" placeholder="Escribe aquí...">
+                            <button type="submit" class="bg-starlight-yellow text-space-blue p-2 rounded-r-md hover:bg-yellow-300">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="card p-6">
+                        <h3 class="text-xl font-semibold text-white mb-4">Categorías</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition flex justify-between"><span>Astrofísica</span> <span class="text-xs bg-nebula-pink text-white px-2 py-0.5 rounded-full">12</span></a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition flex justify-between"><span>Cosmología</span> <span class="text-xs bg-nebula-pink text-white px-2 py-0.5 rounded-full">8</span></a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition flex justify-between"><span>Planetas y Exoplanetas</span> <span class="text-xs bg-nebula-pink text-white px-2 py-0.5 rounded-full">15</span></a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition flex justify-between"><span>Historia de la Astronomía</span> <span class="text-xs bg-nebula-pink text-white px-2 py-0.5 rounded-full">5</span></a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition flex justify-between"><span>Noticias del MOSM</span> <span class="text-xs bg-nebula-pink text-white px-2 py-0.5 rounded-full">20</span></a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition flex justify-between"><span>Divulgación</span> <span class="text-xs bg-nebula-pink text-white px-2 py-0.5 rounded-full">10</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card p-6">
+                        <h3 class="text-xl font-semibold text-white mb-4">Entradas Recientes</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-yellow-400 transition font-medium">Misterios de la Nebulosa Carina</a>
+                                <p class="text-xs text-gray-500">25 de Mayo, 2025</p>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-yellow-400 transition font-medium">Agujeros Negros Supermasivos</a>
+                                <p class="text-xs text-gray-500">18 de Mayo, 2025</p>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-yellow-400 transition font-medium">Un Viaje por la Historia: Los Primeros Observatorios</a>
+                                <p class="text-xs text-gray-500">10 de Mayo, 2025</p>
+                            </li>
+                        </ul>
+                    </div>
+                     <div class="card p-6">
+                        <h3 class="text-xl font-semibold text-white mb-4">Archivo</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition">Mayo 2025</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition">Abril 2025</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition">Marzo 2025</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition">Febrero 2025</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="index.html" class="hover:text-yellow-400">Inicio</a>
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="blog.html" class="hover:text-yellow-400">Blog</a>
+                <a href="foro.html" class="hover:text-yellow-400">Foro</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <div class="mb-6 flex justify-center space-x-6">
+                <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+            <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinksMobileBlog = mobileMenu.querySelectorAll('a'); // Renombrar para evitar conflictos
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        navLinksMobileBlog.forEach(link => {
+            link.addEventListener('click', () => {
+                if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Current Year in Footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Dynamic satellite icon link
+        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
+        if (satelliteIconLink) {
+            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+            satelliteIconLink.target = "_blank"; 
+        }
+    </script>
+</body>
+</html>
