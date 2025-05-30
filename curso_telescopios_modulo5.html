@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Operación y Observación - Telescopios - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card { 
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-align: center; 
+            display: inline-block; 
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+
+        .btn-secondary {
+            background-color: var(--cosmic-purple);
+            color: var(--starlight-yellow);
+            border: 1px solid var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center; 
+            display: inline-block; 
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--starlight-yellow);
+            color: var(--cosmic-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .content-section h3 {
+            color: var(--starlight-yellow);
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            border-bottom: 1px solid rgba(246, 173, 85, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .content-section h4 {
+            color: var(--nebula-pink);
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.75rem; 
+        }
+        .content-section p, .content-section ul li {
+            line-height: 1.7;
+            margin-bottom: 0.75rem; 
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; 
+        }
+        .content-section strong {
+            color: var(--starlight-yellow);
+        }
+        .content-section code {
+            background-color: rgba(11, 13, 23, 0.5);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--nebula-pink);
+        }
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .content-section a {
+            color: var(--nebula-pink);
+            text-decoration: underline;
+        }
+        .content-section a:hover {
+            color: var(--starlight-yellow);
+        }
+        .form-message { 
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <nav aria-label="Breadcrumb" class="mb-8 text-sm text-gray-400">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-gray-200">Telescopios: Partes y Usos</span>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-yellow-400">Módulo 5</span>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Curso: Telescopios: Partes y Usos</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-nebula-pink mb-12">Módulo 5: Operación Práctica y Técnicas de Observación</h2>
+        
+        <section id="module-content" class="card p-6 md:p-8 mb-12 content-section">
+            <h3>Bienvenida al Módulo 5</h3>
+            <p>¡Es hora de poner manos a la obra y ojos al cielo! En el Módulo 5, nos sumergiremos en la <strong>operación práctica</strong> de tu telescopio y exploraremos diversas <strong>técnicas de observación</strong>. Aprenderás a prepararte adecuadamente para una noche estrellada, dominar el arte del enfoque, encontrar objetos celestes utilizando diferentes métodos y aplicar técnicas visuales para apreciar mejor los detalles sutiles del cosmos. También reforzaremos la importancia de la observación solar segura. Este módulo es donde la teoría se encuentra con la práctica, transformando tu conocimiento en experiencia real.</p>
+
+            <h3>5.1 Preparación para una Noche de Observación Exitosa</h3>
+            <p>Una buena planificación y preparación son clave para aprovechar al máximo tu tiempo bajo las estrellas.</p>
+            <img src="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Cielo nocturno estrellado sobre un paisaje tranquilo]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Preparación+Observación';">
+            <ul>
+                <li><strong>Elegir el Lugar y Momento Adecuado:</strong>
+                    <ul>
+                        <li>Busca un lugar con la menor <a href="https://www.nasa.gov/feature/goddard/2016/new-nasa-led-global-map-reveals-areas-most-affected-by-light-pollution" target="_blank" rel="noopener noreferrer">contaminación lumínica</a> posible.</li>
+                        <li>Consulta el pronóstico del tiempo para asegurar cielos despejados y bajo "seeing".</li>
+                        <li>Considera la fase lunar: la Luna llena puede opacar objetos débiles de cielo profundo. Las noches de Luna nueva son ideales para estos objetos.</li>
+                        <li>Planifica qué objetos quieres observar según su visibilidad en esa época del año y hora.</li>
+                    </ul>
+                </li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Adaptaci%C3%B3n_a_la_oscuridad" target="_blank" rel="noopener noreferrer">Adaptación a la Oscuridad</a>:</strong> Tus ojos necesitan tiempo (al menos 15-30 minutos) para adaptarse completamente a la oscuridad y alcanzar su máxima sensibilidad. Evita la luz blanca brillante durante este periodo y durante toda la sesión.</li>
+                <li><strong>Qué Llevar (Checklist Esencial):</strong>
+                    <ul>
+                        <li>Tu telescopio, montura y oculares.</li>
+                        <li>Linterna de luz roja (para no perder la adaptación a la oscuridad).</li>
+                        <li>Cartas celestes o software de planetario (en tu teléfono/tablet con modo nocturno).</li>
+                        <li>Ropa abrigada (incluso en verano, las noches pueden enfriar).</li>
+                        <li>Silla o taburete cómodo.</li>
+                        <li>Cuaderno y lápiz para tomar notas o hacer bocetos (opcional).</li>
+                        <li>Bebida caliente y algún snack (opcional).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>5.2 El Arte del Enfoque Preciso</h3>
+            <p>Un enfoque nítido es fundamental para ver los detalles más finos. El enfocador de tu telescopio permite ajustar la posición del ocular hasta que la imagen sea lo más clara posible.</p>
+            <img src="https://images.unsplash.com/photo-1506703100230-c53100a76db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Primer plano de un enfocador de telescopio con una mano ajustándolo]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/0B0D17/D53F8C?text=Enfoque+Telescopio';">
+            <ul>
+                <li><strong>Método Básico:</strong> Apunta a una estrella brillante. Gira la perilla del enfocador lentamente hacia un lado hasta que la estrella se vea lo más pequeña y puntual posible. Si pasas el punto de enfoque, la estrella volverá a agrandarse; simplemente retrocede.</li>
+                <li><strong>Máscara de Bahtinov:</strong> Es un accesorio que se coloca delante del telescopio y produce un patrón de difracción distintivo en las estrellas brillantes. Cuando los tres "picos" de difracción están perfectamente alineados y simétricos, el enfoque es preciso. Es muy útil para astrofotografía y enfoque crítico.</li>
+                <li><strong>Consideraciones:</strong>
+                    <ul>
+                        <li>El enfoque puede variar ligeramente con los cambios de temperatura o al cambiar de ocular.</li>
+                        <li>Tómate tu tiempo. Un buen enfoque marca una gran diferencia.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3>5.3 Búsqueda de Objetos Celestes</h3>
+            <p>Una vez que tu telescopio está montado y enfocado, ¡es hora de cazar objetos!</p>
+            <h4>Uso de Buscadores (Repaso):</h4>
+            <p>Recuerda alinear cuidadosamente tu buscador con el telescopio principal durante el día. Lo que centres en el buscador debería aparecer en el campo del ocular de baja potencia.</p>
+            
+            <h4><a href="https://es.wikipedia.org/wiki/Star_hopping" target="_blank" rel="noopener noreferrer">Star Hopping (Salto de Estrellas)</a>:</h4>
+            <p>Esta es la técnica clásica para encontrar objetos utilizando cartas celestes y tu buscador.</p>
+            <img src="https://images.unsplash.com/photo-1538947151057-dfeac3c6d023?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Carta estelar mostrando constelaciones y objetos de cielo profundo]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Star+Hopping';">
+            <ol>
+                <li>Identifica una estrella brillante y fácil de localizar cerca de tu objeto objetivo.</li>
+                <li>Céntrala en tu buscador y luego en el ocular de baja potencia de tu telescopio.</li>
+                <li>Usando tu carta celeste o software de planetario, identifica patrones de estrellas (asterismos) que te guíen desde la estrella de referencia hasta tu objeto.</li>
+                <li>Realiza pequeños "saltos" con el telescopio de una estrella o patrón al siguiente, verificando tu posición en el buscador y en la carta.</li>
+            </ol>
+            <p>El star hopping requiere paciencia y práctica, pero es una habilidad muy gratificante que te enseña a conocer el cielo.</p>
+
+            <h4>Uso de Coordenadas Celestes (con Círculos Graduados):</h4>
+            <p>Si tu montura ecuatorial tiene círculos graduados de Ascensión Recta (AR) y Declinación (Dec) y está bien puesta en estación, puedes usarlos para localizar objetos:</p>
+            <ol>
+                <li>Busca las coordenadas AR y Dec de tu objeto en un catálogo o software.</li>
+                <li>Apunta el telescopio a una estrella brillante cercana cuyas coordenadas conozcas.</li>
+                <li>Ajusta (o calibra) tus círculos graduados para que coincidan con las coordenadas de esa estrella de referencia.</li>
+                <li>Mueve el telescopio en AR y Dec hasta que los círculos graduados muestren las coordenadas de tu objeto objetivo.</li>
+            </ol>
+            <p>Este método puede ser menos preciso que el star hopping o el GoTo, especialmente con círculos graduados pequeños o si la puesta en estación no es perfecta.</p>
+
+            <h3>5.4 Técnicas de Observación Visual</h3>
+            <p>Una vez que encuentras un objeto, hay técnicas que pueden ayudarte a ver más detalles:</p>
+            <ul>
+                <li><strong>Visión Directa vs. <a href="https://es.wikipedia.org/wiki/Visi%C3%B3n_perif%C3%A9rica#Visi%C3%B3n_desviada" target="_blank" rel="noopener noreferrer">Visión Desviada (Averted Vision)</a>:</strong> Para objetos muy débiles (como galaxias o nebulosas tenues), mirar ligeramente a un lado del objeto en lugar de directamente a él puede hacerlo más visible. Esto se debe a que la periferia de tu retina tiene más bastones, que son más sensibles a la luz tenue que los conos del centro.</li>
+                <li><strong>Golpeteo Suave del Tubo:</strong> A veces, un ligero golpeteo en el tubo del telescopio puede hacer que objetos extremadamente débiles "parpadeen" y se hagan visibles momentáneamente debido al movimiento de la imagen en la retina.</li>
+                <li><strong>Estimación de Magnitudes y Tamaños:</strong> Con práctica, puedes aprender a estimar el brillo (magnitud) de las estrellas comparándolas con estrellas de magnitud conocida en el campo. También puedes estimar el tamaño angular de los objetos.</li>
+                <li><strong>Dibujo Astronómico (Sketching):</strong> Hacer bocetos de lo que ves en el ocular es una excelente manera de entrenar tu ojo para percibir detalles sutiles. No necesitas ser un artista; simples notas y dibujos pueden ser muy valiosos.</li>
+                <li><strong>Paciencia y Tiempo:</strong> Dedica tiempo a cada objeto. Cuanto más mires, más detalles comenzarán a emerger a medida que tu ojo se adapta y tu cerebro procesa la información visual.</li>
+            </ul>
+
+            <h3>5.5 Observación Segura del Sol (Recordatorio Crucial)</h3>
+            <p>Reiteramos: <strong>NUNCA mires el Sol directamente a través de un telescopio, buscador o cualquier instrumento óptico sin un filtro solar adecuado y certificado, diseñado específicamente para ese propósito y colocado correctamente sobre la apertura frontal del telescopio.</strong> Hacerlo puede causar daño ocular permanente e instantáneo, incluyendo ceguera.</p>
+            <img src="https://images.unsplash.com/photo-1620385131434-385515515858?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Telescopio con un filtro solar de apertura completa correctamente instalado]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/0B0D17/D53F8C?text=Observación+Solar+Segura';">
+            <ul>
+                <li>Utiliza siempre filtros solares de fabricantes reputados que bloqueen el 99.999% de la luz solar, incluyendo la radiación UV e IR.</li>
+                <li>Asegúrate de que el filtro esté bien sujeto al telescopio y no pueda caerse o ser soplado por el viento.</li>
+                <li>Cubre o retira el buscador del telescopio mientras observas el Sol para evitar que alguien lo use accidentalmente.</li>
+                <li>Una alternativa segura es la <strong>proyección solar</strong>, donde la imagen del Sol se proyecta desde el ocular sobre una superficie blanca. Sin embargo, este método puede generar mucho calor dentro del telescopio y no se recomienda para todos los diseños de telescopios u oculares.</li>
+            </ul>
+            
+            <hr class="my-8 border-gray-700">
+            <p class="text-center text-lg text-yellow-400">¡Felicidades por completar el Módulo 5! Ahora estás equipado con el conocimiento práctico para comenzar tus aventuras observacionales.</p>
+        </section>
+
+        <section id="continuar-modulo5" class="card p-6 md:p-8 mb-12">
+            <h3 class="text-2xl font-bold text-center text-yellow-400 mb-6">¡Es Hora de Evaluar tus Conocimientos del Módulo 5!</h3>
+            <p class="text-center text-gray-300 mb-8">Has aprendido sobre la operación práctica y las técnicas de observación. ¡Demuestra lo que has aprendido!</p>
+            
+            <div class="text-center">
+                <a href="examen_modulo5.html" class="w-full md:w-auto btn-primary px-6 py-3 rounded-full font-semibold text-lg">
+                    Ir al Examen del Módulo 5
+                </a>
+            </div>
+            <p class="text-xs text-gray-500 text-center mt-4">(Al hacer clic, serás redirigido a la página del examen del Módulo 5.)</p>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para evitar re-declaraciones y asegurar que los elementos del DOM existan
+        if (typeof window.cursoModulo5ScriptInitialized === 'undefined') {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            const navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : null;
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                if (navLinks) { 
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', () => {
+                            if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                                if(mobileMenu) { 
+                                    mobileMenu.classList.add('hidden');
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+            
+            const currentYearElem = document.getElementById('currentYear');
+            if (currentYearElem) {
+                currentYearElem.textContent = new Date().getFullYear();
+            }
+
+            const satelliteIconElement = document.querySelector('.navbar-glass .fa-satellite');
+            if (satelliteIconElement) {
+                const satelliteIconLink = satelliteIconElement.parentElement;
+                if (satelliteIconLink) {
+                    satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+                    satelliteIconLink.target = "_blank"; 
+                }
+            }
+            window.cursoModulo5ScriptInitialized = true; 
+        }
+    </script>
+</body>
+</html>
