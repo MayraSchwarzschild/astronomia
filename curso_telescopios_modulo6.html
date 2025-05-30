@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Mantenimiento y Colimación - Telescopios - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card { 
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-align: center; 
+            display: inline-block; 
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+
+        .btn-secondary {
+            background-color: var(--cosmic-purple);
+            color: var(--starlight-yellow);
+            border: 1px solid var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center; 
+            display: inline-block; 
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--starlight-yellow);
+            color: var(--cosmic-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .content-section h3 {
+            color: var(--starlight-yellow);
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            border-bottom: 1px solid rgba(246, 173, 85, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .content-section h4 {
+            color: var(--nebula-pink);
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.75rem; 
+        }
+        .content-section p, .content-section ul li {
+            line-height: 1.7;
+            margin-bottom: 0.75rem; 
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; 
+        }
+        .content-section strong {
+            color: var(--starlight-yellow);
+        }
+        .content-section code {
+            background-color: rgba(11, 13, 23, 0.5);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--nebula-pink);
+        }
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .content-section a {
+            color: var(--nebula-pink);
+            text-decoration: underline;
+        }
+        .content-section a:hover {
+            color: var(--starlight-yellow);
+        }
+        .form-message { 
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <nav aria-label="Breadcrumb" class="mb-8 text-sm text-gray-400">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-gray-200">Telescopios: Partes y Usos</span>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-yellow-400">Módulo 6</span>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Curso: Telescopios: Partes y Usos</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-nebula-pink mb-12">Módulo 6: Mantenimiento Básico, Colimación y Resolución de Problemas</h2>
+        
+        <section id="module-content" class="card p-6 md:p-8 mb-12 content-section">
+            <h3>Bienvenida al Módulo 6</h3>
+            <p>¡Has llegado al último módulo de nuestro curso "Telescopios: Partes y Usos"! Felicitaciones por tu perseverancia. En esta unidad final, nos enfocaremos en aspectos prácticos cruciales para mantener tu telescopio en óptimas condiciones y asegurar que siempre te brinde las mejores vistas posibles. Aprenderemos sobre el <strong>cuidado y limpieza de las ópticas</strong>, el arte y la ciencia de la <strong>colimación</strong> (especialmente importante para telescopios reflectores), y cómo abordar algunos <strong>problemas comunes</strong> que pueden surgir durante tus sesiones de observación. Un telescopio bien mantenido es una inversión que te brindará años de disfrute cósmico.</p>
+
+            <h3>6.1 Cuidado y Limpieza de Ópticas</h3>
+            <p>Las lentes y espejos de tu telescopio son sus componentes más delicados y su limpieza debe realizarse con sumo cuidado y solo cuando sea absolutamente necesario. El polvo en las ópticas generalmente tiene un impacto mínimo en la calidad de la imagen; de hecho, una limpieza incorrecta o demasiado frecuente puede causar más daño (arañazos) que el propio polvo.</p>
+            <img src="https://images.unsplash.com/photo-1563213063-a70393081984?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Kit de limpieza para ópticas de telescopio con pera de aire, cepillo y paño de microfibra]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Limpieza+de+Ópticas';">
+            
+            <h4>Cuándo Limpiar:</h4>
+            <ul>
+                <li>Cuando el polvo es muy evidente y abundante, y no se va con un soplador de aire.</li>
+                <li>Si hay huellas dactilares, grasa o residuos pegajosos (como polen o savia) que afectan la visión.</li>
+                <li>Si la imagen se ve notablemente degradada, con pérdida de contraste o con "fantasmas" (reflejos internos anómalos) causados por suciedad.</li>
+            </ul>
+
+            <h4>Procedimiento General de Limpieza (para lentes y espejos con recubrimiento):</h4>
+            <ol>
+                <li><strong>Eliminar Partículas Sueltas:</strong> Utiliza una <strong>pera de aire</strong> (soplador de calidad fotográfica) para eliminar el polvo y las partículas sueltas. Nunca soples directamente con la boca, ya que puedes proyectar saliva y partículas. Un <strong>cepillo de pelo de camello</strong> muy suave (específico para ópticas) también puede usarse con extrema delicadeza, sin aplicar presión, solo para "barrer" el polvo.</li>
+                <li><strong>Limpieza Húmeda (solo si es estrictamente necesario):</strong>
+                    <ul>
+                        <li>Prepara una <strong>solución de limpieza</strong>: Una mezcla de agua destilada pura (no de grifo ni mineral) con unas gotas de alcohol isopropílico puro (al 90% o más, sin aditivos) es una opción común. También existen soluciones comerciales específicas para limpieza de ópticas.</li>
+                        <li>Humedece ligeramente (¡nunca empapes!) un <strong>paño de microfibra de alta calidad</strong> (nuevo o recién lavado, sin suavizante) o <strong>algodón óptico puro</strong> (disponible en tiendas de fotografía).</li>
+                        <li>Limpia la superficie con <strong>movimientos suaves y sin presión</strong>. Para lentes, puedes hacer movimientos circulares desde el centro hacia afuera. Para espejos, a veces se recomiendan movimientos radiales. Utiliza una parte limpia del paño para cada pasada.</li>
+                        <li>Para manchas persistentes (como una huella dactilar), puedes dejar que el aliento (que contiene vapor de agua) se condense momentáneamente sobre la mancha y luego limpiar suavemente, o aplicar una gota minúscula de la solución de limpieza directamente sobre un hisopo de algodón óptico y tratar la mancha localmente.</li>
+                    </ul>
+                </li>
+                <li><strong>Secado:</strong> Deja que la superficie se seque al aire si usaste muy poca solución. Si es necesario, puedes usar una parte seca y limpia del paño de microfibra para secar con toques muy suaves, sin frotar.</li>
+            </ol>
+            <h4>Precauciones Específicas:</h4>
+            <ul>
+                <li><strong>Lentes de Oculares y Buscadores:</strong> Son más pequeñas y a menudo más expuestas. Sigue el mismo procedimiento con aún más cuidado. Los recubrimientos de los oculares pueden ser delicados.</li>
+                <li><strong>Espejos Primarios (Reflectores):</strong> Son especialmente delicados porque su recubrimiento reflectante está expuesto. Muchos astrónomos prefieren no limpiar el espejo primario a menos que esté extremadamente sucio y afecte notablemente la imagen. Si es necesario, a menudo se desmonta el espejo (con mucho cuidado) y se lava sumergiéndolo en agua destilada con unas gotas de detergente líquido neutro muy suave (como unas gotas de lavavajillas sin aditivos, colorantes ni perfumes), enjuagando abundantemente con agua destilada y dejando secar al aire en posición vertical, apoyado sobre un borde para que el agua escurra. Este es un proceso más avanzado y debe investigarse a fondo antes de intentarlo.</li>
+                <li><strong>Placas Correctoras (SCT, Mak):</strong> Se limpian como las lentes objetivo, con cuidado de no dejar marcas de la solución.</li>
+            </ul>
+            <p><strong>Regla de Oro:</strong> ¡Menos es más! Limpia solo cuando sea indispensable y siempre con la máxima delicadeza y las herramientas adecuadas. En caso de duda, consulta a un experto o al fabricante de tu telescopio.</p>
+
+            <h3>6.2 <a href="https://es.wikipedia.org/wiki/Colimaci%C3%B3n_%C3%B3ptica" target="_blank" rel="noopener noreferrer">Colimación</a>: Alineando las Ópticas</h3>
+            <p>La colimación es el proceso de alinear todos los componentes ópticos de un telescopio (espejos y, a veces, lentes) para que sus ejes ópticos coincidan perfectamente. Una buena colimación es esencial para obtener imágenes nítidas y de alto contraste. Es especialmente crítica para los telescopios reflectores Newtonianos y, en menor medida, para los Schmidt-Cassegrain.</p>
+            <img src="https://images.unsplash.com/photo-1619049991389-8a03c0070d73?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Herramienta de colimación láser insertada en el enfocador de un telescopio reflector]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/0B0D17/D53F8C?text=Colimación+de+Telescopio';">
+            <h4>¿Por qué Colimar?</h4>
+            <p>Un telescopio descolimado producirá imágenes borrosas, con estrellas que parecen cometas (con "colas" o formas asimétricas) o con formas irregulares, especialmente a altos aumentos. La colimación asegura que el camino óptico esté perfectamente alineado, maximizando la nitidez, el contraste y el rendimiento general del telescopio.</p>
+            
+            <h4>Colimación de un Telescopio Newtoniano:</h4>
+            <p>Implica alinear el espejo secundario (el pequeño espejo plano inclinado cerca del frente del tubo) y luego el espejo primario (el espejo grande en la parte inferior del tubo). Se utilizan herramientas como:</p>
+            <ul>
+                <li><strong>Tapa de Colimación (Collimation Cap o Sight Tube):</strong> Una tapa con un pequeño agujero en el centro que se coloca en el enfocador. Permite ver los reflejos de los espejos y ayuda a centrar el espejo secundario debajo del enfocador.</li>
+                <li><strong>Colimador Cheshire:</strong> Un ocular especial con una cruceta interna y una superficie lateral inclinada y reflectante. Proporciona una referencia más precisa para alinear el secundario y el primario.</li>
+                <li><strong>Colimador Láser:</strong> Proyecta un haz láser que rebota en los espejos. El objetivo es que el haz, después de reflejarse en el primario y luego en el secundario, regrese exactamente al centro del proyector láser (o a una diana en el colimador). Es rápido y relativamente fácil de usar, pero es crucial que el propio colimador láser esté bien colimado.</li>
+            </ul>
+            <p><strong>Pasos básicos (simplificado):</strong></p>
+            <ol>
+                <li><strong>Alinear el Espejo Secundario:</strong>
+                    <ul>
+                        <li>Ajustar la posición del espejo secundario (arriba/abajo del tubo y rotación) para que aparezca redondo y centrado cuando se mira a través del enfocador (sin ocular).</li>
+                        <li>Ajustar la inclinación del espejo secundario (usando sus tornillos de ajuste) hasta que el reflejo completo del espejo primario esté centrado dentro del espejo secundario (visto a través de la herramienta de colimación).</li>
+                    </ul>
+                </li>
+                <li><strong>Alinear el Espejo Primario:</strong> Ajustar los tornillos de colimación en la parte posterior del espejo primario hasta que el reflejo del espejo secundario (o la marca central del enfocador/Cheshire, o el punto del láser) esté centrado en la marca central del espejo primario (si la tiene) o en el centro de la herramienta de colimación.</li>
+                <li><strong>Prueba de Estrella (Star Test):</strong> La prueba final y más precisa se realiza observando una estrella brillante, moderadamente desenfocada, a alto aumento. Los anillos de difracción (círculos concéntricos de luz) deben ser perfectamente concéntricos y simétricos si la colimación es buena. Se realizan pequeños ajustes en los tornillos del primario hasta lograrlo.</li>
+            </ol>
+
+            <h4>Colimación de un Telescopio Schmidt-Cassegrain (SCT):</h4>
+            <p>Los SCT generalmente mantienen bien la colimación, pero pueden necesitar ajustes ocasionales, especialmente después de transportarlos. La colimación de un SCT se realiza ajustando los pequeños tornillos (generalmente tres) del espejo secundario, que se encuentra en el centro de la placa correctora frontal.</p>
+            <p><strong>Procedimiento (simplificado):</strong></p>
+            <ol>
+                <li>Elige una noche con buen seeing.</li>
+                <li>Apunta el telescopio a una estrella brillante, preferiblemente cerca del cenit.</li>
+                <li>Usa un ocular de alta potencia para obtener un gran aumento.</li>
+                <li>Desenfoca ligeramente la estrella hasta que veas un patrón de anillos de difracción con una sombra oscura en el centro (la sombra del espejo secundario).</li>
+                <li>Si el telescopio está descolimado, la sombra del secundario no estará centrada en los anillos de difracción.</li>
+                <li>Ajusta muy suavemente uno de los tornillos de colimación del secundario y observa cómo se mueve la sombra. El objetivo es mover la sombra hacia el lado donde los anillos de difracción están "apretados" o más juntos.</li>
+                <li>Realiza pequeños ajustes y vuelve a centrar la estrella en el campo visual después de cada ajuste, ya que la colimación también afecta el apuntado.</li>
+                <li>Continúa hasta que la sombra del secundario esté perfectamente centrada en los anillos de difracción concéntricos.</li>
+            </ol>
+            <p>La colimación de un SCT requiere paciencia y pequeños ajustes. Es útil tener a alguien que mire por el ocular mientras otra persona realiza los ajustes, o usar una cámara para ver los cambios en una pantalla.</p>
+
+            <h3>6.3 Resolución de Problemas Comunes</h3>
+            <p>A continuación, algunos problemas frecuentes y sus posibles soluciones:</p>
+            <ul>
+                <li><strong>Imágenes Borrosas o Poco Nítidas:</strong>
+                    <ul>
+                        <li><strong>Causa Posible:</strong> Mala colimación (especialmente en reflectores). <strong>Solución:</strong> Colimar el telescopio.</li>
+                        <li><strong>Causa Posible:</strong> Seeing atmosférico pobre. <strong>Solución:</strong> Esperar a noches con mejor seeing, observar objetos más altos en el cielo.</li>
+                        <li><strong>Causa Posible:</strong> Telescopio no aclimatado a la temperatura exterior (corrientes de tubo). <strong>Solución:</strong> Dejar el telescopio afuera al menos 30-60 minutos (o más para telescopios grandes) antes de observar.</li>
+                        <li><strong>Causa Posible:</strong> Enfocador defectuoso o con juego (holgura). <strong>Solución:</strong> Ajustar o reparar el enfocador.</li>
+                        <li><strong>Causa Posible:</strong> Oculares de mala calidad, sucios o empañados. <strong>Solución:</strong> Limpiar o probar con otros oculares.</li>
+                        <li><strong>Causa Posible:</strong> Vibraciones de la montura. <strong>Solución:</strong> Asegurar que la montura esté estable.</li>
+                    </ul>
+                </li>
+                <li><strong>Dificultad para Encontrar Objetos:</strong>
+                    <ul>
+                        <li><strong>Causa Posible:</strong> Buscador desalineado. <strong>Solución:</strong> Alinear el buscador con el telescopio principal.</li>
+                        <li><strong>Causa Posible:</strong> Puesta en estación incorrecta (monturas ecuatoriales). <strong>Solución:</strong> Realizar una puesta en estación más precisa.</li>
+                        <li><strong>Causa Posible:</strong> Desconocimiento del cielo o uso incorrecto de cartas/software. <strong>Solución:</strong> Estudiar cartas celestes, aprender a usar software de planetario, practicar star hopping.</li>
+                        <li><strong>Causa Posible:</strong> Sistema GoTo no alineado correctamente. <strong>Solución:</strong> Realizar el procedimiento de alineación del GoTo cuidadosamente.</li>
+                    </ul>
+                </li>
+                <li><strong>Vibraciones Excesivas al Tocar el Telescopio o con Viento:</strong>
+                    <ul>
+                        <li><strong>Causa Posible:</strong> Trípode o montura inestable, demasiado ligera para el telescopio, o sobrecargada. <strong>Solución:</strong> Usar un trípode/montura más robusto, no extender completamente las patas del trípode, añadir peso a la bandeja del trípode, usar almohadillas antivibración debajo de las patas.</li>
+                        <li><strong>Causa Posible:</strong> Viento. <strong>Solución:</strong> Buscar un lugar resguardado o usar una pantalla contra el viento.</li>
+                    </ul>
+                </li>
+                <li><strong>Condensación de Rocío (Dew) en las Ópticas:</strong>
+                    <ul>
+                        <li><strong>Causa Posible:</strong> Noches húmedas y frías, donde la temperatura de la óptica cae por debajo del punto de rocío. <strong>Solución:</strong> Usar parasoles (dew shields) para retrasar la formación de rocío y/o calentadores de rocío (dew heaters) que son bandas que se envuelven alrededor del tubo o lente y aplican un calor suave.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>La paciencia, la práctica y la familiarización con tu equipo son claves en la astronomía. Muchos problemas se resuelven con experiencia y un buen entendimiento de cómo funciona tu telescopio.</p>
+            
+            <hr class="my-8 border-gray-700">
+            <p class="text-center text-lg text-yellow-400">¡Has llegado al final del curso! Con los conocimientos de este módulo, estás preparado para cuidar tu telescopio y disfrutar de innumerables noches de observación. ¡Cielos despejados!</p>
+        </section>
+
+        <section id="continuar-modulo6" class="card p-6 md:p-8 mb-12">
+            <h3 class="text-2xl font-bold text-center text-yellow-400 mb-6">¡Es Momento de la Evaluación Final del Módulo 6!</h3>
+            <p class="text-center text-gray-300 mb-8">Has aprendido sobre el mantenimiento, la colimación y la resolución de problemas. ¡Demuestra tus conocimientos para completar el curso!</p>
+            
+            <div class="text-center">
+                <a href="examen_modulo6.html" class="w-full md:w-auto btn-primary px-6 py-3 rounded-full font-semibold text-lg">
+                    Ir al Examen del Módulo 6
+                </a>
+            </div>
+            <p class="text-xs text-gray-500 text-center mt-4">(Al hacer clic, serás redirigido a la página del examen final del Módulo 6.)</p>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para evitar re-declaraciones y asegurar que los elementos del DOM existan
+        if (typeof window.cursoModulo6ScriptInitialized === 'undefined') {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            const navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : null;
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                if (navLinks) { 
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', () => {
+                            if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                                if(mobileMenu) { 
+                                    mobileMenu.classList.add('hidden');
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+            
+            const currentYearElem = document.getElementById('currentYear');
+            if (currentYearElem) {
+                currentYearElem.textContent = new Date().getFullYear();
+            }
+
+            const satelliteIconElement = document.querySelector('.navbar-glass .fa-satellite');
+            if (satelliteIconElement) {
+                const satelliteIconLink = satelliteIconElement.parentElement;
+                if (satelliteIconLink) {
+                    satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+                    satelliteIconLink.target = "_blank"; 
+                }
+            }
+            window.cursoModulo6ScriptInitialized = true; 
+        }
+    </script>
+</body>
+</html>
