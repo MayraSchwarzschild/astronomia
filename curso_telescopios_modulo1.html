@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Telescopios - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card { /* Usado para secciones de contenido y examen */
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .content-section h3 {
+            color: var(--starlight-yellow);
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 1rem; /* mb-4 */
+            border-bottom: 1px solid rgba(246, 173, 85, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .content-section h4 {
+            color: var(--nebula-pink);
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            margin-top: 1.5rem; /* mt-6 */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .content-section p, .content-section ul li {
+            line-height: 1.7;
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; /* ml-6 */
+        }
+        .content-section strong {
+            color: var(--starlight-yellow);
+        }
+        .content-section code {
+            background-color: rgba(11, 13, 23, 0.5);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--nebula-pink);
+        }
+        .exam-question {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(109, 40, 217, 0.2);
+        }
+        .exam-question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .exam-question p {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .exam-option label {
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+        .exam-option input[type="radio"] {
+            accent-color: var(--starlight-yellow);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <nav aria-label="Breadcrumb" class="mb-8 text-sm text-gray-400">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-gray-200">Telescopios: Partes y Usos</span>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-yellow-400">Módulo 1</span>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Curso: Telescopios: Partes y Usos</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-nebula-pink mb-12">Módulo 1: Introducción a la Óptica Astronómica y Tipos de Telescopios</h2>
+        
+        <section id="module-content" class="card p-6 md:p-8 mb-12 content-section">
+            <h3>Bienvenida al Módulo 1</h3>
+            <p>¡Te damos la bienvenida al primer módulo del curso "Telescopios: Partes y Usos"! En esta unidad fundamental, sentaremos las bases para que comprendas cómo funcionan estos maravillosos instrumentos que nos permiten explorar el cosmos. Comenzaremos nuestro viaje desentrañando los secretos de la luz, el mensajero cósmico por excelencia, para luego sumergirnos en los distintos tipos de telescopios, sus principios de funcionamiento, ventajas y desventajas. Al finalizar este módulo, tendrás una comprensión clara de los conceptos ópticos esenciales y estarás familiarizado con la terminología básica utilizada en el mundo de la astronomía amateur y profesional.</p>
+            <p>Este conocimiento es crucial, ya que te permitirá no solo apreciar mejor las observaciones, sino también tomar decisiones informadas si en el futuro decides adquirir tu propio equipo. ¡Prepárate para una aventura óptica fascinante!</p>
+
+            <h3>1.1 Principios Fundamentales de la Luz</h3>
+            <p>La luz es la materia prima de la astronomía. Sin ella, no podríamos ver ni estudiar los objetos celestes. Comprender su naturaleza y comportamiento es el primer paso para entender cómo funcionan los telescopios.</p>
+            
+            <h4>Naturaleza Dual de la Luz</h4>
+            <p>La luz exhibe una fascinante <strong>dualidad onda-partícula</strong>. Esto significa que, dependiendo del experimento o fenómeno que observemos, la luz puede comportarse como una onda electromagnética o como un flujo de partículas llamadas <strong>fotones</strong>.</p>
+            <ul>
+                <li>Como <strong>onda</strong>, la luz se caracteriza por su longitud de onda ($\lambda$), frecuencia ($\nu$) y velocidad ($c$). Estos parámetros están relacionados por la ecuación fundamental $c = \lambda \nu$.</li>
+                <li>Como <strong>partícula (fotón)</strong>, cada fotón transporta una cantidad discreta de energía (un cuanto), que es proporcional a su frecuencia ($E = h\nu$, donde $h$ es la constante de Planck).</li>
+            </ul>
+
+            <h4>El Espectro Electromagnético</h4>
+            <p>La luz visible, aquella que nuestros ojos pueden percibir, es solo una pequeña fracción de un vasto espectro de radiación electromagnética. Este espectro abarca desde las ondas de radio (con longitudes de onda muy largas y baja energía) hasta los rayos gamma (con longitudes de onda muy cortas y alta energía).</p>
+            <p>El espectro electromagnético incluye (de menor a mayor energía/frecuencia):</p>
+            <ul>
+                <li>Ondas de Radio</li>
+                <li>Microondas</li>
+                <li>Infrarrojo (IR)</li>
+                <li><strong>Luz Visible</strong> (Rojo, Naranja, Amarillo, Verde, Azul, Índigo, Violeta - ROYGBIV)</li>
+                <li>Ultravioleta (UV)</li>
+                <li>Rayos X</li>
+                <li>Rayos Gamma</li>
+            </ul>
+            <p>Los telescopios se diseñan para captar diferentes regiones de este espectro, permitiéndonos estudiar una amplia gama de fenómenos cósmicos.</p>
+            <img src="https://placehold.co/700x300/1E1A3E/F6AD55?text=Espectro+Electromagnético" alt="Diagrama del Espectro Electromagnético" class="mx-auto my-4 rounded-lg shadow-md">
+
+
+            <h4>Interacción de la Luz con la Materia</h4>
+            <p>Cuando la luz interactúa con la materia, pueden ocurrir varios fenómenos cruciales para el diseño y funcionamiento de los telescopios:</p>
+            <ul>
+                <li><strong>Refracción:</strong> Es el cambio de dirección que experimenta una onda de luz al pasar de un medio a otro con diferente índice de refracción (por ejemplo, del aire al vidrio de una lente). Este es el principio fundamental de los telescopios refractores. La cantidad de refracción depende de la longitud de onda (lo que causa la aberración cromática).</li>
+                <li><strong>Reflexión:</strong> Es el cambio de dirección de la luz cuando incide sobre una superficie y rebota. Si la superficie es lisa y pulida (como un espejo), la reflexión es especular, y el ángulo de incidencia es igual al ángulo de reflexión. Este es el principio de los telescopios reflectores.</li>
+                <li><strong>Absorción:</strong> Ocurre cuando la energía de un fotón es absorbida por un átomo o molécula, excitándolo. Algunos materiales absorben ciertas longitudes de onda más que otras.</li>
+                <li><strong>Dispersión (Scattering):</strong> Es la redirección de la luz en múltiples direcciones al interactuar con partículas pequeñas o irregularidades en un medio. La dispersión de Rayleigh, por ejemplo, es la responsable del color azul del cielo.</li>
+                <li><strong>Difracción:</strong> Es la curvatura o desviación de las ondas de luz al rodear un obstáculo o pasar a través de una abertura. La difracción limita la resolución máxima que puede alcanzar un telescopio.</li>
+            </ul>
+
+            <h3>1.2 Tipos de Telescopios Ópticos</h3>
+            <p>Los telescopios ópticos son aquellos diseñados para recolectar y enfocar la luz visible. Se clasifican principalmente según el elemento óptico primario que utilizan para recoger la luz: lentes (refractores) o espejos (reflectores). También existen diseños híbridos (catadióptricos).</p>
+
+            <h4>Telescopios Refractores</h4>
+            <p>Los telescopios refractores utilizan una <strong>lente objetivo</strong> (o un sistema de lentes) en la parte frontal del tubo para recoger y enfocar la luz. La luz atraviesa la lente, se refracta (se dobla) y converge en un punto focal donde se forma la imagen.</p>
+            <img src="https://placehold.co/600x350/1E1A3E/F6AD55?text=Diagrama+Telescopio+Refractor" alt="Diagrama de un Telescopio Refractor" class="mx-auto my-4 rounded-lg shadow-md">
+            <ul>
+                <li><strong>Ventajas:</strong>
+                    <ul>
+                        <li>Imágenes nítidas y de alto contraste, ya que no tienen obstrucción central.</li>
+                        <li>Diseño robusto y tubo sellado, lo que reduce la entrada de polvo y la degradación de las ópticas, requiriendo bajo mantenimiento.</li>
+                        <li>Excelentes para observación planetaria, lunar y de estrellas dobles.</li>
+                    </ul>
+                </li>
+                <li><strong>Desventajas:</strong>
+                    <ul>
+                        <li><strong>Aberración Cromática:</strong> Las lentes refractan diferentes colores (longitudes de onda) de luz en ángulos ligeramente distintos, lo que puede resultar en halos de color alrededor de los objetos brillantes. Los diseños <strong>acromáticos</strong> (dos lentes) y <strong>apocromáticos</strong> (tres o más lentes, a menudo de vidrios especiales como fluorita o ED - Extra-low Dispersion) corrigen esta aberración en mayor o menor medida.</li>
+                        <li>Costosos por unidad de apertura, especialmente los apocromáticos de gran diámetro.</li>
+                        <li>Pueden ser largos y pesados para aperturas grandes, lo que requiere monturas más robustas.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Telescopios Reflectores</h4>
+            <p>Los telescopios reflectores utilizan un <strong>espejo primario cóncavo</strong> (generalmente parabólico) en la parte posterior del tubo para recoger y reflejar la luz hacia un punto focal. Como la luz se refleja en lugar de pasar a través del vidrio, los reflectores no sufren de aberración cromática.</p>
+            <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Diagrama+Telescopio+Newtoniano" alt="Diagrama de un Telescopio Reflector Newtoniano" class="mx-auto my-4 rounded-lg shadow-md">
+            <p>El diseño más común es el <strong>Newtoniano</strong>, inventado por Isaac Newton, que utiliza un pequeño espejo secundario plano inclinado a 45° para desviar la luz hacia un costado del tubo, donde se coloca el ocular.</p>
+            <ul>
+                <li><strong>Ventajas:</strong>
+                    <ul>
+                        <li>Libres de aberración cromática.</li>
+                        <li>Menor costo por unidad de apertura en comparación con los refractores, lo que permite construir telescopios de gran diámetro a precios más accesibles.</li>
+                        <li>Ideales para observar objetos de cielo profundo débiles (nebulosas, galaxias, cúmulos estelares) debido a su mayor capacidad de recolección de luz.</li>
+                        <li>Los diseños <strong>Dobsonianos</strong> (un reflector Newtoniano sobre una montura altazimutal simple de madera) ofrecen grandes aperturas a precios muy competitivos.</li>
+                    </ul>
+                </li>
+                <li><strong>Desventajas:</strong>
+                    <ul>
+                        <li><strong>Obstrucción Central:</strong> El espejo secundario y su soporte bloquean una pequeña porción de la luz entrante, lo que puede reducir ligeramente el contraste en comparación con un refractor de igual apertura.</li>
+                        <li><strong>Aberraciones Ópticas:</strong> Pueden presentar otras aberraciones como la <strong>coma</strong> (las estrellas cerca del borde del campo visual aparecen como pequeños cometas) y el <strong>astigmatismo</strong>. Los espejos parabólicos bien hechos minimizan la aberración esférica.</li>
+                        <li><strong>Mantenimiento:</strong> El tubo suele estar abierto, lo que permite la entrada de polvo. Los espejos pueden necesitar realuminizarse después de muchos años. Requieren <strong>colimación</strong> periódica (alineación precisa de los espejos).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Telescopios Catadióptricos (Compuestos)</h4>
+            <p>Los telescopios catadióptricos combinan lentes y espejos en su diseño óptico para aprovechar las ventajas de ambos sistemas. Usualmente tienen un espejo primario esférico y una lente correctora en la parte frontal del tubo para corregir aberraciones.</p>
+            <img src="https://placehold.co/600x380/1E1A3E/F6AD55?text=Diagrama+Telescopio+Schmidt-Cassegrain" alt="Diagrama de un Telescopio Schmidt-Cassegrain" class="mx-auto my-4 rounded-lg shadow-md">
+            <p>Los diseños más populares son:</p>
+            <ul>
+                <li><strong>Schmidt-Cassegrain (SCT):</strong> Utilizan un espejo primario esférico, un espejo secundario convexo y una delgada placa correctora de Schmidt en la parte frontal. La luz se refleja desde el primario al secundario, y luego a través de un agujero en el primario hacia el ocular.</li>
+                <li><strong>Maksutov-Cassegrain (Mak):</strong> Similar al SCT, pero utiliza una lente correctora menisco más gruesa y curvada. Ofrecen campos visuales más pequeños pero a menudo imágenes más nítidas que los SCT de igual apertura.</li>
+            </ul>
+            <ul>
+                <li><strong>Ventajas:</strong>
+                    <ul>
+                        <li>Diseño compacto y portátil, con tubos ópticos mucho más cortos que los refractores o newtonianos de igual distancia focal.</li>
+                        <li>Buena corrección de aberraciones ópticas.</li>
+                        <li>Versátiles para observación visual y astrofotografía de una amplia gama de objetos.</li>
+                        <li>Tubo sellado (en la mayoría de los diseños), lo que reduce problemas de polvo y corrientes de aire internas.</li>
+                    </ul>
+                </li>
+                <li><strong>Desventajas:</strong>
+                    <ul>
+                        <li>Más caros que los reflectores Newtonianos de igual apertura.</li>
+                        <li>Obstrucción central más grande que en los Newtonianos, lo que puede afectar el contraste.</li>
+                        <li>Pueden tardar más en aclimatarse a la temperatura exterior debido a su diseño cerrado.</li>
+                        <li>La colimación, aunque no tan frecuente como en los Newtonianos, puede ser necesaria.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3>1.3 Conceptos Clave en Telescopios</h3>
+            <p>Independientemente del tipo de telescopio, hay varios parámetros fundamentales que definen su rendimiento:</p>
+            <ul>
+                <li><strong>Apertura (D):</strong> Es el diámetro de la lente objetivo (en refractores) o del espejo primario (en reflectores y catadióptricos). Es el factor más importante de un telescopio, ya que determina su capacidad de <strong>recolección de luz</strong> (cuanto mayor la apertura, más luz capta y más débiles son los objetos que se pueden ver) y su <strong>poder de resolución</strong> (capacidad de distinguir detalles finos). Se mide usualmente en milímetros (mm) o pulgadas (").</li>
+                <li><strong>Distancia Focal (F o FL):</strong> Es la distancia desde el elemento óptico primario (lente o espejo) hasta el punto donde se forma la imagen (foco). Se mide en milímetros. Una distancia focal más larga generalmente implica mayores aumentos posibles y un campo visual más estrecho para un ocular dado.</li>
+                <li><strong>Relación Focal (f/ratio o f/):</strong> Se calcula dividiendo la distancia focal por la apertura (f/ = F/D). Por ejemplo, un telescopio con F=1000mm y D=100mm tiene una relación focal de f/10.
+                    <ul>
+                        <li>Telescopios con relaciones focales "rápidas" (ej. f/4, f/5) ofrecen campos visuales más amplios y son preferidos para astrofotografía de objetos extensos de cielo profundo.</li>
+                        <li>Telescopios con relaciones focales "lentas" (ej. f/10, f/15) suelen dar mayores aumentos con oculares estándar y son buenos para observación planetaria.</li>
+                    </ul>
+                </li>
+                <li><strong>Aumento (Magnificación):</strong> Es cuántas veces más grande aparece un objeto a través del telescopio en comparación con la vista a simple ojo. Se calcula dividiendo la distancia focal del telescopio por la distancia focal del ocular: <code>Aumento = F_telescopio / F_ocular</code>. Es importante recordar que un aumento excesivo no siempre es mejor, ya que la imagen puede volverse borrosa, oscura y difícil de estabilizar. El máximo aumento útil suele estar limitado por la apertura del telescopio y las condiciones atmosféricas (aproximadamente 2x por milímetro de apertura, o 50x por pulgada de apertura, en condiciones ideales).</li>
+                <li><strong>Poder de Resolución:</strong> Es la capacidad del telescopio para mostrar detalles finos. Está directamente relacionado con la apertura. Una mayor apertura permite resolver detalles más pequeños. Se suele expresar en segundos de arco. El límite teórico de resolución (Criterio de Dawes) es aproximadamente <code>Resolución (") = 116 / D(mm)</code>.</li>
+                <li><strong>Campo Visual (FOV - Field of View):</strong> Es la porción del cielo que se puede ver a través del telescopio con un ocular específico. Depende de la distancia focal del telescopio y del diseño del ocular (su campo aparente).</li>
+            </ul>
+
+            <h3>1.4 La Atmósfera Terrestre y la Observación Astronómica</h3>
+            <p>Nuestra atmósfera, aunque esencial para la vida, presenta desafíos para la observación astronómica desde la superficie terrestre.</p>
+            <ul>
+                <li><strong>Seeing (Visibilidad Astronómica):</strong> Se refiere a la turbulencia atmosférica causada por variaciones de temperatura y densidad en el aire. Esta turbulencia hace que las imágenes de los objetos celestes "bailen" o se vean borrosas, limitando la cantidad de detalle visible, especialmente a altos aumentos. El seeing varía significativamente según la ubicación geográfica, la altitud y las condiciones meteorológicas locales.</li>
+                <li><strong>Absorción y Dispersión Atmosférica:</strong> La atmósfera absorbe ciertas longitudes de onda de la luz (especialmente en el infrarrojo y ultravioleta) y dispersa otras (como la luz azul, que causa el color del cielo). Esto afecta el brillo y el color aparente de los objetos celestes. Observar cerca del horizonte es particularmente problemático debido a la mayor cantidad de atmósfera que la luz debe atravesar.</li>
+                <li><strong>Contaminación Lumínica:</strong> Es el brillo artificial del cielo nocturno causado por la iluminación excesiva e mal dirigida de las ciudades y áreas urbanas. Reduce drásticamente el contraste y la visibilidad de objetos débiles como nebulosas y galaxias, siendo uno de los mayores obstáculos para la astronomía amateur.</li>
+            </ul>
+            <p>Por estas razones, los grandes observatorios profesionales suelen ubicarse en montañas altas, remotas y secas, lejos de la contaminación lumínica y por encima de gran parte de la turbulencia atmosférica. Los telescopios espaciales, como el Hubble o el James Webb, eliminan por completo los problemas atmosféricos.</p>
+            <hr class="my-8 border-gray-700">
+            <p class="text-center text-lg text-yellow-400">¡Felicidades por completar la lectura del Módulo 1! Ahora estás listo para el siguiente paso.</p>
+        </section>
+
+        <section id="inscripcion" class="card p-6 md:p-8 mb-12">
+            <h3 class="text-2xl font-bold text-center text-yellow-400 mb-6">Inscríbete para Continuar y Acceder al Examen</h3>
+            <p class="text-center text-gray-300 mb-8">Para desbloquear el examen del Módulo 1 y continuar con tu aprendizaje, por favor completa tu inscripción al curso "Telescopios: Partes y Usos".</p>
+            
+            <form id="enrollment-form">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="nombre" class="block text-gray-300 mb-1 text-sm">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-yellow-400 placeholder-gray-500" placeholder="Tu nombre">
+                    </div>
+                    <div>
+                        <label for="apellido" class="block text-gray-300 mb-1 text-sm">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-yellow-400 placeholder-gray-500" placeholder="Tu apellido">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="email-inscripcion" class="block text-gray-300 mb-1 text-sm">Correo Electrónico</label>
+                    <input type="email" id="email-inscripcion" name="email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-yellow-400 placeholder-gray-500" placeholder="tuemail@example.com">
+                </div>
+
+                <h4 class="text-xl font-semibold text-white mb-4">Opciones de Inscripción:</h4>
+                <div class="space-y-4 mb-8">
+                    <div class="p-4 border border-gray-700 rounded-lg hover:border-yellow-400 transition bg-gray-800 bg-opacity-50">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="inscripcion_opcion" value="completo" class="h-5 w-5 text-yellow-400 border-gray-600 focus:ring-yellow-500 bg-gray-700" checked>
+                            <span class="ml-3">
+                                <span class="block text-lg font-semibold text-white">Pagar Curso Completo</span>
+                                <span class="block text-sm text-gray-300">Acceso total al curso "Telescopios: Partes y Usos".</span>
+                                <span class="block text-lg font-bold text-yellow-400 mt-1">ARS 150.000</span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="p-4 border border-gray-700 rounded-lg hover:border-yellow-400 transition bg-gray-800 bg-opacity-50">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="inscripcion_opcion" value="premium_descuento" class="h-5 w-5 text-yellow-400 border-gray-600 focus:ring-yellow-500 bg-gray-700">
+                            <span class="ml-3">
+                                <span class="block text-lg font-semibold text-white">Hacerse Premium + Curso con Descuento</span>
+                                <span class="block text-sm text-gray-300">Obtén todos los beneficios Premium y este curso con 50% de descuento.</span>
+                                <span class="block text-md text-gray-400 mt-1">Precio original curso: <del>ARS 150.000</del></span>
+                                <span class="block text-lg font-bold text-yellow-400">Curso con descuento Premium: ARS 75.000</span>
+                                <span class="block text-sm text-gray-300">(Más costo de membresía Premium. <a href="premium.html" class="text-nebula-pink hover:underline">Ver detalles Premium</a>)</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="button" onclick="procederAlExamen()" class="w-full btn-primary px-6 py-3 rounded-full font-semibold text-lg">
+                    Continuar al Examen del Módulo 1
+                </button>
+                <p class="text-xs text-gray-500 text-center mt-4">(Simulación de inscripción. Al hacer clic, se mostrará el examen.)</p>
+            </form>
+        </section>
+
+        <section id="examen-modulo1" class="card p-6 md:p-8 mb-12 hidden">
+            <h3 class="text-2xl font-bold text-center text-yellow-400 mb-8">Examen Módulo 1: Introducción a la Óptica Astronómica</h3>
+            <form id="quiz-form">
+                <div class="exam-question">
+                    <p>1. ¿Cuál de los siguientes fenómenos ópticos es el principio fundamental de funcionamiento de un telescopio refractor?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q1" value="a" id="q1a"><label for="q1a">Reflexión</label></div>
+                        <div class="exam-option"><input type="radio" name="q1" value="b" id="q1b"><label for="q1b">Refracción</label></div>
+                        <div class="exam-option"><input type="radio" name="q1" value="c" id="q1c"><label for="q1c">Difracción</label></div>
+                        <div class="exam-option"><input type="radio" name="q1" value="d" id="q1d"><label for="q1d">Absorción</label></div>
+                    </div>
+                </div>
+
+                <div class="exam-question">
+                    <p>2. La aberración cromática es un problema más común en los telescopios de tipo:</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q2" value="a" id="q2a"><label for="q2a">Reflector Newtoniano</label></div>
+                        <div class="exam-option"><input type="radio" name="q2" value="b" id="q2b"><label for="q2b">Refractor Acromático</label></div>
+                        <div class="exam-option"><input type="radio" name="q2" value="c" id="q2c"><label for="q2c">Schmidt-Cassegrain</label></div>
+                        <div class="exam-option"><input type="radio" name="q2" value="d" id="q2d"><label for="q2d">Reflector Dobsoniano</label></div>
+                    </div>
+                </div>
+
+                <div class="exam-question">
+                    <p>3. ¿Cuál es el factor más importante que determina la capacidad de recolección de luz y el poder de resolución de un telescopio?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q3" value="a" id="q3a"><label for="q3a">La distancia focal del ocular</label></div>
+                        <div class="exam-option"><input type="radio" name="q3" value="b" id="q3b"><label for="q3b">La calidad de la montura</label></div>
+                        <div class="exam-option"><input type="radio" name="q3" value="c" id="q3c"><label for="q3c">La apertura del objetivo/espejo primario</label></div>
+                        <div class="exam-option"><input type="radio" name="q3" value="d" id="q3d"><label for="q3d">El material del tubo óptico</label></div>
+                    </div>
+                </div>
+
+                <div class="exam-question">
+                    <p>4. Si un telescopio tiene una distancia focal de 1200mm y se usa un ocular de 20mm, ¿cuál es el aumento obtenido?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q4" value="a" id="q4a"><label for="q4a">24x</label></div>
+                        <div class="exam-option"><input type="radio" name="q4" value="b" id="q4b"><label for="q4b">60x</label></div>
+                        <div class="exam-option"><input type="radio" name="q4" value="c" id="q4c"><label for="q4c">120x</label></div>
+                        <div class="exam-option"><input type="radio" name="q4" value="d" id="q4d"><label for="q4d">24000x</label></div>
+                    </div>
+                </div>
+                
+                <div class="exam-question">
+                    <p>5. ¿Qué tipo de telescopio utiliza una combinación de lentes y espejos en su diseño óptico?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q5" value="a" id="q5a"><label for="q5a">Refractor</label></div>
+                        <div class="exam-option"><input type="radio" name="q5" value="b" id="q5b"><label for="q5b">Reflector Newtoniano</label></div>
+                        <div class="exam-option"><input type="radio" name="q5" value="c" id="q5c"><label for="q5c">Catadióptrico (ej. Schmidt-Cassegrain)</label></div>
+                        <div class="exam-option"><input type="radio" name="q5" value="d" id="q5d"><label for="q5d">Dobsoniano</label></div>
+                    </div>
+                </div>
+
+                <button type="button" onclick="alert('Resultados enviados (simulación). ¡Gracias por participar!')" class="w-full btn-primary px-6 py-3 rounded-full font-semibold text-lg mt-8">
+                    Enviar Respuestas
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Dynamic satellite icon link
+        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
+        if (satelliteIconLink) {
+            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+            satelliteIconLink.target = "_blank"; 
+        }
+
+        function procederAlExamen() {
+            // Aquí podrías añadir validación del formulario de inscripción si fuera real
+            // Por ahora, solo simula el paso y muestra el examen
+            const formInscripcion = document.getElementById('inscripcion');
+            const seccionExamen = document.getElementById('examen-modulo1');
+
+            if (formInscripcion && seccionExamen) {
+                formInscripcion.classList.add('hidden'); // Oculta el formulario de inscripción
+                seccionExamen.classList.remove('hidden'); // Muestra el examen
+                alert('Inscripción simulada completada. Ahora puedes realizar el examen.');
+                seccionExamen.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                console.error("No se encontraron los elementos del formulario o examen.");
+            }
+        }
+
+    </script>
+</body>
+</html>
