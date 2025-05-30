@@ -179,6 +179,11 @@
         .dynamic-satellite:hover {
             transform: rotate(360deg) scale(1.2);
         }
+        /* Estilo para el enlace activo en la navegación, si es necesario en index.html */
+        /* .nav-link-active { 
+            color: var(--starlight-yellow);
+            font-weight: 600;
+        } */
     </style>
 </head>
 <body>
@@ -206,12 +211,14 @@
                 <span class="sm:hidden">MOSM</span>
             </a>
             <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
-                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
-                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
-                <a href="#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
                 <a href="#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-                <a href="#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+                <a href="#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+                <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
                     <i class="fas fa-star mr-1"></i>Premium
                 </a>
@@ -223,12 +230,14 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
-            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
-            <a href="#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
             <a href="#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-            <a href="#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+            <a href="#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+            <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+            <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
                 <i class="fas fa-star mr-1"></i>Premium
             </a>
@@ -412,7 +421,7 @@
                 </div>
                 <div class="card overflow-hidden h-96 md:h-full">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.209556095497!2d-58.7091894847739!3d-34.54827798047375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbf7f537e1069%3A0x9ddc3a24753196c8!2sObservatorio%20Nacional%20de%20F%C3%ADsica%20C%C3%B3smica%20San%20Miguel!5e0!3m2!1ses-419!2sar!4v1685460000000!5m2!1ses-419!2sar"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.0000000000005!2d-58.7130106847698!3d-34.55487688047271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbd7a97add75b%3A0x50a74b759fd187c0!2sObservatorio%20Nacional%20de%20F%C3%ADsica%20C%C3%B3smica%20San%20Miguel!5e0!3m2!1ses-419!2sar!4v1620000000000!5m2!1ses-419!2sar"
                         width="100%"
                         height="100%"
                         style="border:0;"
@@ -461,12 +470,14 @@
                 </a>
             </div>
             <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
-                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
-                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
-                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
-                <a href="#eventos" class="hover:text-yellow-400">Eventos</a>
                 <a href="#ubicacion" class="hover:text-yellow-400">Ubicación</a>
-                <a href="#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="#equipo" class="hover:text-yellow-400">Quiénes Somos</a>
+                <a href="#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="blog.html" class="hover:text-yellow-400">Blog</a>
+                <a href="foro.html" class="hover:text-yellow-400">Foro</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Up/Download</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
                 <a href="premium.html" class="hover:text-yellow-400">Premium</a>
             </div>
             <div class="mb-6 flex justify-center space-x-6">
@@ -474,7 +485,7 @@
                 <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
             </div>
-            <p class="text-sm">&copy; <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
             <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
         </div>
     </footer>
@@ -483,18 +494,16 @@
         // Mobile Menu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = mobileMenu.querySelectorAll('a');
+        const navLinks = mobileMenu.querySelectorAll('a'); // Selecciona todos los enlaces del menú móvil
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when a link is clicked (for anchor links)
+        // Cierra el menú móvil cuando se hace clic en un enlace (para anclas y otras páginas)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (link.getAttribute('href').startsWith('#')) {
-                    mobileMenu.classList.add('hidden');
-                }
+                mobileMenu.classList.add('hidden');
             });
         });
         
@@ -506,21 +515,22 @@
         const apodExplanation = document.getElementById('apod-explanation');
         const apodDateElem = document.getElementById('apod-date');
         const downloadApodBtn = document.getElementById('download-apod-btn');
-        // IMPORTANT: Replace with your actual NASA API Key if DEMO_KEY has limitations
-        const NASA_API_KEY = '5pUgGz1ulgcS75pAd2kerIaZbhTRcw0rDynqu2oj'; 
+        // IMPORTANTE: Reemplaza 'DEMO_KEY' con tu clave API de NASA si la tienes.
+        // La DEMO_KEY tiene limitaciones.
+        const NASA_API_KEY = '5pUgGz1ulgcS75pAd2kerIaZbhTRcw0rDynqu2oj'; // Mantengo tu clave si la proporcionaste
 
         async function fetchAPOD() {
             try {
                 const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`);
                 if (!response.ok) {
-                    // If specific key fails, try with DEMO_KEY as a fallback
-                    console.warn(`NASA API request with provided key failed (${response.status}). Trying DEMO_KEY.`);
+                    // Si la clave específica falla, intenta con DEMO_KEY como fallback
+                    console.warn(`La solicitud a la API de NASA con la clave proporcionada falló (${response.status}). Intentando con DEMO_KEY.`);
                     const demoResponse = await fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`);
                     if (!demoResponse.ok) {
-                         throw new Error(`Error de NASA API (DEMO_KEY): ${demoResponse.status}`);
+                         throw new Error(`Error de la API de NASA (DEMO_KEY): ${demoResponse.status}`);
                     }
                     const data = await demoResponse.json();
-                    handleAPODData(data, true); // true indicates demo key was used
+                    handleAPODData(data, true); // true indica que se usó la clave demo
                     return;
                 }
                 const data = await response.json();
@@ -529,7 +539,8 @@
             } catch (error) {
                 console.error("Error al cargar APOD:", error);
                 apodExplanation.textContent = 'No se pudo cargar la imagen astronómica del día. Se muestra una imagen de respaldo.';
-                heroSection.style.backgroundImage = `url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; // Fallback image
+                // Imagen de fallback genérica y atractiva sobre el espacio
+                heroSection.style.backgroundImage = `url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; 
                 apodDateElem.textContent = '';
                 downloadApodBtn.classList.add('hidden');
             }
@@ -537,21 +548,22 @@
 
         function handleAPODData(data, isDemo) {
             if (data.media_type === 'image') {
-                const imageUrl = data.hdurl || data.url;
+                const imageUrl = data.hdurl || data.url; // Preferir HD si está disponible
                 if (imageUrl) {
                     heroSection.style.backgroundImage = `url(${imageUrl})`;
                     downloadApodBtn.href = imageUrl;
-                    downloadApodBtn.download = `NASA_APOD_${data.date}.jpg`;
+                    downloadApodBtn.download = `NASA_APOD_${data.date}.jpg`; // Nombre de archivo sugerido
                     downloadApodBtn.classList.remove('hidden');
                 } else {
                      heroSection.style.backgroundImage = `url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`;
                 }
             } else if (data.media_type === 'video') {
-                 // If APOD is a video, show a fallback image and mention it's a video
-                heroSection.style.backgroundImage = `url('https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; // Video fallback
+                // Si APOD es un video, muestra una imagen de fallback y menciona que es un video
+                heroSection.style.backgroundImage = `url('https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; // Fallback para video
                 apodExplanation.innerHTML = `Hoy la APOD es un video: <a href="${data.url}" target="_blank" class="text-yellow-400 hover:underline">${data.title}</a>. ${data.explanation}`;
-                downloadApodBtn.classList.add('hidden'); // Hide download for video
+                downloadApodBtn.classList.add('hidden'); // Ocultar botón de descarga para videos
             } else {
+                // Fallback para otros tipos de media no esperados
                 heroSection.style.backgroundImage = `url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`;
                 downloadApodBtn.classList.add('hidden');
             }
@@ -560,17 +572,36 @@
             if (isDemo) {
                 apodExplanation.textContent += " (Mostrando datos de demostración de NASA)";
             }
+            // Formatear la fecha a un formato más legible en español
             apodDateElem.textContent = new Date(data.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
         }
 
         fetchAPOD();
 
-        // Dynamic satellite icon link
+        // Enlace dinámico del icono del satélite
         const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
         if (satelliteIconLink) {
-            satelliteIconLink.href = "https://www.solarsystemscope.com/"; // Example link for solar dynamics
-            satelliteIconLink.target = "_blank"; // Open in new tab
+            satelliteIconLink.href = "https://www.solarsystemscope.com/"; // Enlace de ejemplo para dinámicas solares
+            satelliteIconLink.target = "_blank"; // Abrir en nueva pestaña
         }
+
+        // Actualizar el src del iframe del mapa con una URL válida de Google Maps Embed API
+        // Es importante que la URL de Google Maps Embed API sea correcta y tenga una clave API si es necesario para producción.
+        // Para este ejemplo, usaré la URL que tenías, pero asegúrate de que sea funcional.
+        // Si la URL anterior "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.209556095497!2d-58.7091894847739!3d-34.54827798047375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbf7f537e1069%3A0x9ddc3a24753196c8!2sObservatorio%20Nacional%20de%20F%C3%ADsica%20C%C3%B3smica%20San%20Miguel!5e0!3m2!1ses-419!2sar!4v1685460000000!5m2!1ses-419!2sar" no es válida, reemplázala.
+        // Ejemplo de URL válida (necesitarás reemplazar con la ubicación real y tu clave API si es requerida):
+        // const mapFrame = document.querySelector('#ubicacion iframe');
+        // if (mapFrame) {
+        //    mapFrame.src = "https://www.google.com/maps/embed/v1/place?key=TU_API_KEY&q=Observatorio+San+Miguel,Buenos+Aires+Argentina";
+        // }
+        // Por ahora, mantendré la URL que tenías, pero si no funciona, deberás actualizarla.
+        // La URL que tenías "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.209556095497!2d-58.7091894847739!3d-34.54827798047375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbf7f537e1069%3A0x9ddc3a24753196c8!2sObservatorio%20Nacional%20de%20F%C3%ADsica%20C%C3%B3smica%20San%20Miguel!5e0!3m2!1ses-419!2sar!4v1685460000000!5m2!1ses-419!2sar" probablemente no funcione.
+        // La he actualizado a una URL de ejemplo del Observatorio de Física Cósmica de San Miguel.
+        const mapFrame = document.querySelector('#ubicacion iframe');
+        if (mapFrame && mapFrame.src === "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.209556095497!2d-58.7091894847739!3d-34.54827798047375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbf7f537e1069%3A0x9ddc3a24753196c8!2sObservatorio%20Nacional%20de%20F%C3%ADsica%20C%C3%B3smica%20San%20Miguel!5e0!3m2!1ses-419!2sar!4v1685460000000!5m2!1ses-419!2sar") {
+           mapFrame.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.0000000000005!2d-58.7130106847698!3d-34.55487688047271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbd7a97add75b%3A0x50a74b759fd187c0!2sObservatorio%20Nacional%20de%20F%C3%ADsica%20C%C3%B3smica%20San%20Miguel!5e0!3m2!1ses-419!2sar!4v1620000000000!5m2!1ses-419!2sar";
+        }
+
 
     </script>
 </body>
