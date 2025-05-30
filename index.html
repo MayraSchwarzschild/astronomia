@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario Astronómico - Museo Observatorio San Miguel</title>
+    <title>Museo Observatorio San Miguel - Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,7 +20,7 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--space-blue);
             color: #e2e8f0;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
                 radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
                 radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
@@ -108,15 +109,29 @@
             50% { opacity: 1; transform: scale(1.2); }
             100% { opacity: 0.2; transform: scale(0.8); }
         }
+
         .dynamic-satellite {
             transition: transform 0.5s ease-in-out;
         }
         .dynamic-satellite:hover {
             transform: rotate(360deg) scale(1.2);
         }
+
         .nav-link-active {
             color: var(--starlight-yellow);
             font-weight: 600;
+        }
+
+        #apod-header {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(109, 40, 217, 0.3);
         }
     </style>
 </head>
@@ -139,20 +154,20 @@
 
     <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center nav-link-active">
                 <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
                 <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
                 <span class="sm:hidden">MOSM</span>
             </a>
             <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
-                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
-                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="#quienes-somos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+                <a href="#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
                 <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
                 <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
                 <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
                 <a href="up_download.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
-                <a href="calendario.html" class="nav-link-active transition duration-300">Calendario</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
                     <i class="fas fa-star mr-1"></i>Premium
                 </a>
@@ -164,187 +179,128 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-             <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
-            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="#quienes-somos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+            <a href="#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
             <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
             <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
             <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
             <a href="up_download.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
-            <a href="calendario.html" class="block nav-link-active transition duration-300">Calendario</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
                 <i class="fas fa-star mr-1"></i>Premium
             </a>
         </div>
     </nav>
 
-    <header class="py-16 md:py-24 text-center relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-space-blue opacity-80"></div>
+    <header id="apod-header" class="py-20 md:py-32 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-space-blue opacity-70"></div>
         <div class="container mx-auto px-6 relative z-10">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Calendario Astronómico Interactivo</h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-                Descubre los próximos eventos celestes y aprende cómo observarlos. ¡El universo te espera!
+            <h1 id="apod-title-header" class="text-4xl md:text-6xl font-bold text-white mb-4">Bienvenido al Cosmos</h1>
+            <p id="apod-explanation-header" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                Explora las maravillas del universo con el Museo Observatorio San Miguel.
             </p>
         </div>
     </header>
 
     <main class="py-12">
         <div class="container mx-auto px-6">
-            
-            <section id="info-general" class="mb-16">
-                <h2 class="text-3xl font-bold text-center mb-6 section-title">Explora el Cosmos</h2>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-8">
-                    Este calendario te guiará a través de los fenómenos astronómicos más destacados de los próximos meses. Desde lluvias de meteoros hasta conjunciones planetarias, te ofrecemos la información necesaria para que no te pierdas ningún espectáculo celestial.
-                </p>
-            </section>
 
-            <section id="junio-2025" class="mb-12">
-                <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Junio 2025</h2>
-                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Solsticio de Invierno (Hemisferio Sur)</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">21 de Junio</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Todo el día</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">El día más corto y la noche más larga del año en el hemisferio sur. Marca el inicio oficial del invierno astronómico. Es un momento perfecto para reflexionar sobre los ciclos de la Tierra y el Sol.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Evento Terrestre/Solar</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: No es un evento de observación directa</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Solsticio_de_invierno" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Más sobre Solsticios en Wikipedia</a>
-                            <a href="https://ciencia.nasa.gov/ciencias-terrestres/el-sol-clima/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>El Sol y la Tierra (NASA)</a>
-                        </div>
-                    </div>
-
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Observación de Júpiter y sus Lunas</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Durante todo Junio</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Mejor visibilidad en la noche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Júpiter, el gigante gaseoso, estará bien posicionado para su observación. Con binoculares o un telescopio pequeño, podrás distinguir sus lunas galileanas: Ío, Europa, Ganimedes y Calisto. El evento del 15 de Junio en el museo es una excelente oportunidad.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Planetario</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Binoculares / Telescopio</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/J%C3%BApiter_(planeta)" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Aprende sobre Júpiter</a>
-                            <a href="https://solarsystem.nasa.gov/planets/jupiter/overview/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Explora Júpiter con la NASA</a>
-                            <a href="index.html#eventos" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-calendar-alt mr-2"></i>Ver evento "Noche de Estrellas" del MOSM</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="julio-2025" class="mb-12">
-                <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Julio 2025</h2>
-                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Afelio de la Tierra</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Aprox. 4 de Julio</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Todo el día</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">La Tierra alcanza el afelio, el punto de su órbita más alejado del Sol (aproximadamente 152.1 millones de km). Curiosamente, para el hemisferio sur, esto ocurre durante el invierno.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Evento Orbital</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: No observable directamente</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Afelio" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Entiende el Afelio</a>
-                        </div>
-                    </div>
-
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Lluvia de Meteoros Delta Acuáridas del Sur</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Pico: 29-30 de Julio</span>
-                        </div>
-                         <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Mejor observación después de medianoche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Una lluvia de meteoros de actividad media, ideal para el hemisferio sur. Se esperan entre 15-20 meteoros por hora en condiciones óptimas (cielos oscuros, sin Luna). El radiante se encuentra en la constelación de Acuario.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Lluvia de Meteoros</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Simple vista (cielos oscuros)</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Delta_Acu%C3%A1ridas" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Sobre las Delta Acuáridas</a>
-                            <a href="https://www.imo.net/resources/calendar/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-calendar-check mr-2"></i>Calendario de la Organización Internacional de Meteoros</a>
-                            <a href="https://astrometrica.at/" target="_blank" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-users mr-2"></i>Reporta tus observaciones en Astrometrica</a>
-                            <a href="index.html#eventos" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-star mr-2"></i>Evento de Observación en MOSM (28 Julio)</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="agosto-2025" class="mb-12">
-                <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Agosto 2025</h2>
-                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Lluvia de Meteoros Perseidas</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Pico: 12-13 de Agosto</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Mejor observación después de medianoche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Una de las lluvias de meteoros más famosas y abundantes. Aunque su radiante en Perseo favorece al hemisferio norte, desde el sur también se pueden observar algunos meteoros brillantes, especialmente aquellos que se alejan del radiante. La Luna estará en fase creciente, lo que podría dificultar un poco la observación de los meteoros más débiles este año.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Lluvia de Meteoros</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Simple vista</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Perseidas" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Todo sobre las Perseidas</a>
-                            <a href="https://ciencia.nasa.gov/sistema-solar/meteoros-y-meteoritos/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Meteoros y Meteoritos (NASA)</a>
-                             <a href="https://www.timeanddate.com/astronomy/meteor-shower/perseid.html" target="_blank" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-info-circle mr-2"></i>Más info y horarios (TimeAndDate)</a>
-                        </div>
-                    </div>
-
-                     <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Luna Nueva y Observación de Cielo Profundo</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Aprox. 20 de Agosto</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-moon text-nebula-pink mr-2"></i>Ausencia de Luna toda la noche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">La Luna Nueva ofrece las condiciones ideales para la observación de objetos de cielo profundo como galaxias, nebulosas y cúmulos estelares, ya que no habrá luz lunar que interfiera. ¡Una excelente oportunidad para usar telescopios y explorar las maravillas de la Vía Láctea!</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Condición de Observación</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Requiere cielos oscuros</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Objeto_de_espacio_profundo" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Objetos de Espacio Profundo</a>
-                            <a href="https://hubblesite.org/images/gallery" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Galería del Hubble (NASA)</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="consejos" class="my-16">
-                <h2 class="text-3xl font-bold text-center mb-10 section-title">Consejos para la Observación</h2>
-                <div class="max-w-3xl mx-auto card p-6 md:p-8">
-                    <ul class="space-y-4 text-gray-300">
-                        <li class="flex items-start"><i class="fas fa-map-marker-alt text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Busca un lugar oscuro, alejado de la contaminación lumínica de la ciudad.</li>
-                        <li class="flex items-start"><i class="fas fa-eye text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Adapta tus ojos a la oscuridad durante al menos 15-20 minutos. Evita mirar luces brillantes (como la pantalla del móvil sin filtro rojo).</li>
-                        <li class="flex items-start"><i class="fas fa-cloud-moon text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Consulta el pronóstico del tiempo. Las nubes pueden arruinar una noche de observación.</li>
-                        <li class="flex items-start"><i class="fas fa-chair text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Vístete con ropa abrigada, incluso en verano las noches pueden ser frescas. Una silla o manta te hará la espera más cómoda.</li>
-                        <li class="flex items-start"><i class="fas fa-book-open text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Usa aplicaciones de astronomía (Stellarium, SkySafari, Star Walk) para ayudarte a identificar constelaciones y objetos celestes.</li>
-                        <li class="flex items-start"><i class="fas fa-binoculars text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Unos simples binoculares pueden revelar muchos detalles, como cráteres en la Luna o las lunas de Júpiter.</li>
-                        <li class="flex items-start"><i class="fas fa-users text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>¡Comparte la experiencia! Observar en grupo o con amigos es más divertido y enriquecedor.</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <section id="participa" class="text-center my-16">
-                 <h2 class="text-3xl font-bold text-center mb-10 section-title">¡Únete y Participa!</h2>
-                 <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-                    La astronomía es una ciencia viva y participativa. Te invitamos a unirte a comunidades de aficionados, reportar tus observaciones y seguir aprendiendo.
-                 </p>
-                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="https://astrometrica.at/" target="_blank" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg">
-                        <i class="fas fa-meteor mr-2"></i>Astrometrica (Reportes)
+            <section id="nasa-apod" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Imagen Astronómica del Día (NASA)</h2>
+                <div class="card p-6 md:p-8 max-w-4xl mx-auto">
+                    <img id="apod-image" src="https://placehold.co/1200x800/0B0D17/E2E8F0?text=Cargando+APOD..." alt="NASA Astronomy Picture of the Day" class="rounded-lg mb-6 w-full h-auto object-cover" style="max-height: 600px;">
+                    <h3 id="apod-title" class="text-2xl font-semibold text-white mb-3">Cargando título...</h3>
+                    <p id="apod-date" class="text-sm text-gray-400 mb-3">Cargando fecha...</p>
+                    <p id="apod-explanation" class="text-gray-300 mb-6 leading-relaxed">Cargando explicación...</p>
+                    <a id="apod-download-hd" href="#" target="_blank" class="btn-primary px-6 py-3 rounded-full inline-block mr-3" style="display: none;">
+                        <i class="fas fa-download mr-2"></i>Descargar Imagen HD
                     </a>
-                    <a href="https://www.socastarg.org.ar/" target="_blank" class="px-8 py-4 rounded-full font-semibold text-lg border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:bg-opacity-10 transition">
-                        <i class="fas fa-users mr-2"></i>Asoc. Argentina Amigos de la Astronomía
+                     <a id="apod-download-sd" href="#" target="_blank" class="btn-primary px-6 py-3 rounded-full inline-block" style="display: none;">
+                        <i class="fas fa-download mr-2"></i>Descargar Imagen SD
                     </a>
+                    <p id="apod-video-link-container" class="mt-4" style="display: none;">
+                        <i class="fas fa-video mr-2 text-nebula-pink"></i>Este contenido es un video: 
+                        <a id="apod-video-link" href="#" target="_blank" class="text-sky-400 hover:text-sky-300">Ver en YouTube/Vimeo</a>
+                    </p>
+                </div>
+            </section>
+
+            <section id="eventos" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Próximos Eventos</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card p-6">
+                        <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Evento+1" alt="Evento 1" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <h3 class="text-xl font-semibold text-white mb-2">Noche de Estrellas Fugaces</h3>
+                        <p class="text-sm text-gray-400 mb-1"><i class="fas fa-calendar-alt mr-2"></i>15 de Junio, 2025</p>
+                        <p class="text-sm text-gray-400 mb-3"><i class="fas fa-clock mr-2"></i>21:00 - 23:00</p>
+                        <p class="text-gray-300 text-sm mb-4">Observación guiada de la lluvia de meteoros Perseidas. Trae tu manta y curiosidad.</p>
+                        <a href="calendario.html#agosto-2025" class="text-starlight-yellow hover:text-yellow-300 font-semibold">Más Detalles <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <div class="card p-6">
+                        <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Evento+2" alt="Evento 2" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <h3 class="text-xl font-semibold text-white mb-2">Charla: Misterios de Marte</h3>
+                        <p class="text-sm text-gray-400 mb-1"><i class="fas fa-calendar-alt mr-2"></i>5 de Julio, 2025</p>
+                        <p class="text-sm text-gray-400 mb-3"><i class="fas fa-clock mr-2"></i>19:00 - 20:30</p>
+                        <p class="text-gray-300 text-sm mb-4">Un experto nos hablará sobre los últimos descubrimientos en el planeta rojo.</p>
+                        <a href="#" class="text-starlight-yellow hover:text-yellow-300 font-semibold">Inscribirse <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <div class="card p-6">
+                        <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Evento+3" alt="Evento 3" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <h3 class="text-xl font-semibold text-white mb-2">Taller de Astrofotografía</h3>
+                        <p class="text-sm text-gray-400 mb-1"><i class="fas fa-calendar-alt mr-2"></i>20 de Julio, 2025</p>
+                        <p class="text-sm text-gray-400 mb-3"><i class="fas fa-clock mr-2"></i>10:00 - 16:00</p>
+                        <p class="text-gray-300 text-sm mb-4">Aprende las técnicas básicas para capturar la belleza del cielo nocturno.</p>
+                        <a href="cursos.html" class="text-starlight-yellow hover:text-yellow-300 font-semibold">Ver Curso <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                 <div class="text-center mt-8">
+                    <a href="calendario.html" class="btn-primary px-8 py-3 rounded-full font-semibold">
+                        Ver Todos los Eventos
+                    </a>
+                </div>
+            </section>
+            
+            <section id="quienes-somos" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Quiénes Somos</h2>
+                <div class="card p-6 md:p-8 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Nuestra Misión</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        El Museo Observatorio San Miguel se dedica a la divulgación de la astronomía y las ciencias del espacio, fomentando la curiosidad y el conocimiento del universo en personas de todas las edades. Buscamos ser un puente entre la comunidad y el cosmos.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Nuestra Historia</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Fundado en 1973, el observatorio ha sido un faro de conocimiento astronómico en la región. Originalmente una iniciativa de astrónomos aficionados y la comunidad local, ha crecido hasta convertirse en un centro de referencia para la observación y la educación. A lo largo de las décadas, hemos modernizado nuestras instalaciones y expandido nuestros programas para alcanzar a una audiencia más amplia, siempre con la pasión por compartir los secretos del cielo.
+                        El Observatorio de Física Cósmica de San Miguel, dependiente de la Comisión Nacional de Actividades Espaciales (CONAE), es un centro de investigación y desarrollo con una rica historia en el estudio del Sol, la atmósfera terrestre y el espacio exterior.
+                    </p>
+                     <h3 class="text-2xl font-semibold text-white mb-4">El Equipo</h3>
+                    <p class="text-gray-300 mb-2 leading-relaxed">
+                        Contamos con un equipo apasionado de astrónomos, físicos, ingenieros, educadores y voluntarios dedicados a hacer de tu visita una experiencia inolvidable y a impulsar la investigación científica.
+                    </p>
+                    </div>
+            </section>
+
+            <section id="ubicacion" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Nuestra Ubicación</h2>
+                <div class="card p-6 md:p-8">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-white mb-3">Visítanos</h3>
+                            <p class="text-gray-300 mb-2"><i class="fas fa-map-marker-alt mr-2 text-starlight-yellow"></i>Av. Pres. Arturo U. Illia 3773, B1663 San Miguel, Provincia de Buenos Aires, Argentina</p>
+                            <p class="text-gray-300 mb-2"><i class="fas fa-phone mr-2 text-starlight-yellow"></i>+54 11 4455-3206</p>
+                            <p class="text-gray-300 mb-4"><i class="fas fa-envelope mr-2 text-starlight-yellow"></i>info@observatoriosanmiguel.ar</p>
+                            <p class="text-gray-300 leading-relaxed">
+                                Estamos ubicados en San Miguel, Provincia de Buenos Aires, con fácil acceso. ¡Te esperamos para explorar el universo juntos!
+                            </p>
+                        </div>
+                        <div>
+                            <div id="map">
+                                <div class="flex items-center justify-center h-full bg-cosmic-purple rounded-lg">
+                                    <p class="text-starlight-yellow">Cargando mapa...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -355,13 +311,13 @@
         <div class="container mx-auto px-6 text-center text-gray-400">
             <div class="mb-6">
                 <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
-                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo Observatorio San Miguel
                 </a>
             </div>
             <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
-                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
-                <a href="index.html#equipo" class="hover:text-yellow-400">Quiénes Somos</a>
-                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="#quienes-somos" class="hover:text-yellow-400">Quiénes Somos</a>
+                <a href="#eventos" class="hover:text-yellow-400">Eventos</a>
                 <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
                 <a href="blog.html" class="hover:text-yellow-400">Blog</a>
                 <a href="foro.html" class="hover:text-yellow-400">Foro</a>
@@ -374,7 +330,7 @@
                 <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
             </div>
-            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+            <p class="text-sm">© <span id="currentYear"></span> Museo Observatorio San Miguel. Todos los derechos reservados.</p>
             <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
         </div>
     </footer>
@@ -390,26 +346,246 @@
         });
 
         navLinksMobile.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (event) => {
                 const href = link.getAttribute('href');
-                // Cerrar menú si es un enlace de anclaje en index.html o si es un enlace a otra página que no sea calendario.html
-                if (href.includes('index.html#') || (href !== 'calendario.html' && !href.includes('calendario.html#'))) {
-                    mobileMenu.classList.add('hidden');
-                } else if (href.startsWith('#')) { 
-                    mobileMenu.classList.add('hidden');
+                // If it's an internal link (starts with #) or a link to another page
+                if (href.startsWith('#') || !href.includes('index.html')) {
+                     mobileMenu.classList.add('hidden');
                 }
+                // For internal links, smooth scroll is handled by CSS (scroll-behavior: smooth;)
             });
         });
         
         // Current Year in Footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Dynamic satellite icon link
+        // Dynamic satellite icon link (optional, kept for consistency)
         const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
         if (satelliteIconLink) {
-            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
-            satelliteIconLink.target = "_blank"; 
+            // satelliteIconLink.href = "https://www.solarsystemscope.com/"; // Example link
+            // satelliteIconLink.target = "_blank"; 
         }
+
+        // NASA APOD Fetch
+        async function fetchNasaApod() {
+            const apiKey = 'DEMO_KEY'; // Use your NASA API key here for more requests
+            const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+            
+            const apodHeader = document.getElementById('apod-header');
+            const apodImageElem = document.getElementById('apod-image');
+            const apodTitleElem = document.getElementById('apod-title');
+            const apodDateElem = document.getElementById('apod-date');
+            const apodExplanationElem = document.getElementById('apod-explanation');
+            const apodDownloadHdButton = document.getElementById('apod-download-hd');
+            const apodDownloadSdButton = document.getElementById('apod-download-sd');
+            const apodVideoLinkContainer = document.getElementById('apod-video-link-container');
+            const apodVideoLink = document.getElementById('apod-video-link');
+
+            // For header section
+            const apodTitleHeaderElem = document.getElementById('apod-title-header');
+            const apodExplanationHeaderElem = document.getElementById('apod-explanation-header');
+
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data.media_type === 'image') {
+                    apodHeader.style.backgroundImage = `url('${data.url}')`;
+                    apodImageElem.src = data.url;
+                    apodImageElem.alt = data.title;
+                    apodImageElem.style.display = 'block';
+                    apodVideoLinkContainer.style.display = 'none';
+
+                    if (data.hdurl) {
+                        apodDownloadHdButton.href = data.hdurl;
+                        apodDownloadHdButton.style.display = 'inline-block';
+                    } else {
+                         apodDownloadHdButton.style.display = 'none';
+                    }
+                    apodDownloadSdButton.href = data.url;
+                    apodDownloadSdButton.style.display = 'inline-block';
+
+
+                } else if (data.media_type === 'video') {
+                    apodHeader.style.backgroundImage = `url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; // Fallback
+                    if (data.thumbnail_url) {
+                         apodImageElem.src = data.thumbnail_url; 
+                         apodImageElem.alt = `Thumbnail for video: ${data.title}`;
+                    } else {
+                        apodImageElem.src = 'https://placehold.co/1200x800/0B0D17/E2E8F0?text=Video+APOD';
+                        apodImageElem.alt = data.title;
+                    }
+                    apodImageElem.style.display = 'block';
+                    apodVideoLink.href = data.url;
+                    apodVideoLinkContainer.style.display = 'block';
+                    apodDownloadHdButton.style.display = 'none';
+                    apodDownloadSdButton.style.display = 'none';
+                }
+                
+                apodTitleElem.textContent = data.title;
+                apodDateElem.textContent = `Fecha: ${new Date(data.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+                apodExplanationElem.textContent = data.explanation;
+
+                apodTitleHeaderElem.textContent = data.title;
+                const shortExplanation = data.explanation.length > 200 ? data.explanation.substring(0, 200) + "..." : data.explanation;
+                apodExplanationHeaderElem.textContent = shortExplanation;
+
+
+            } catch (error) {
+                console.error("Error fetching NASA APOD:", error);
+                apodHeader.style.backgroundImage = `url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; 
+                apodTitleElem.textContent = "Error al cargar la imagen del día";
+                apodExplanationElem.textContent = "No se pudo obtener la imagen astronómica del día. Intenta de nuevo más tarde.";
+                apodImageElem.src = 'https://placehold.co/1200x800/0B0D17/E2E8F0?text=Error+APOD';
+                apodImageElem.alt = 'Error loading APOD';
+            }
+        }
+
+        // Google Maps Initialization
+        function initMap() {
+            // Coordinates for Observatorio de Fisica Cosmica de San Miguel
+            const observatorioLocation = { lat: -34.548912, lng: -58.709403 }; 
+            
+            const mapElement = document.getElementById('map');
+            if (!mapElement) {
+                console.error("Map element not found");
+                return;
+            }
+
+            if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+                mapElement.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full bg-cosmic-purple rounded-lg p-4 text-center">
+                        <p class="text-starlight-yellow mb-2">No se pudo cargar el mapa de Google.</p>
+                        <p class="text-gray-300 text-sm">Por favor, asegúrate de que la API Key de Google Maps esté configurada correctamente.</p>
+                        <p class="text-gray-300 text-sm mt-2">
+                            Ubicación: Observatorio San Miguel, Av. Pres. Arturo U. Illia 3773, B1663 San Miguel, Provincia de Buenos Aires.
+                        </p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=-34.548912,-58.709403" target="_blank" class="mt-3 text-sky-400 hover:text-sky-300 underline">
+                            Ver en Google Maps (externo)
+                        </a>
+                    </div>`;
+                return;
+            }
+            
+            const map = new google.maps.Map(mapElement, {
+                zoom: 16, // Slightly more zoomed in
+                center: observatorioLocation,
+                mapId: 'MOSM_CUSTOM_MAP_ID', 
+                styles: [ 
+                    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                    {
+                        featureType: "administrative.locality",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "geometry",
+                        stylers: [{ color: "#263c3f" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#6b9a76" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "geometry",
+                        stylers: [{ color: "#38414e" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#212a37" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#9ca5b3" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "geometry",
+                        stylers: [{ color: "#746855" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#1f2835" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#f3d19c" }],
+                    },
+                    {
+                        featureType: "transit",
+                        elementType: "geometry",
+                        stylers: [{ color: "#2f3948" }],
+                    },
+                    {
+                        featureType: "transit.station",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "geometry",
+                        stylers: [{ color: "#17263c" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#515c6d" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels.text.stroke",
+                        stylers: [{ color: "#17263c" }],
+                    },
+                ],
+            });
+
+            const marker = new google.maps.Marker({
+                position: observatorioLocation,
+                map: map,
+                title: "Museo Observatorio San Miguel (Observatorio de Física Cósmica)",
+                icon: { 
+                    url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F6AD55' width='40px' height='40px'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E",
+                    scaledSize: new google.maps.Size(40, 40)
+                }
+            });
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div class="text-gray-900 p-2" style="color: #1a202c;">
+                        <h4 class="font-bold text-md mb-1" style="font-weight: 600; font-size: 1.05rem; margin-bottom: 0.3rem;">Observatorio de Física Cósmica de San Miguel</h4>
+                        <p class="text-sm" style="font-size: 0.85rem;">Av. Pres. Arturo U. Illia 3773, San Miguel</p>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-34.548912,-58.709403" target="_blank" class="text-blue-600 hover:underline text-xs" style="color: #2563eb; font-size: 0.75rem; margin-top: 0.5rem; display: inline-block;">Cómo llegar</a>
+                    </div>
+                `
+            });
+
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchNasaApod();
+        });
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=marker&v=beta"></script>
 </body>
 </html>
