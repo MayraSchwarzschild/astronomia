@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabajos de Investigación - Museo Observatorio San Miguel</title>
+    <title>Carga y Descarga de Archivos - Museo Observatorio San Miguel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -100,7 +100,7 @@
             background-color: white;
             border-radius: 50%;
             animation: twinkle 5s infinite;
-            z-index: 0; 
+            z-index: 0; /* Ensure stars are behind content */
         }
         
         @keyframes twinkle {
@@ -118,25 +118,38 @@
             color: var(--starlight-yellow);
             font-weight: 600;
         }
-        .form-input, .form-textarea, .form-select {
-            background-color: rgba(11, 13, 23, 0.8);
-            border: 1px solid rgba(246, 173, 85, 0.3);
-            color: #e2e8f0;
-            border-radius: 8px;
+
+        /* Custom file input styling */
+        .custom-file-input::-webkit-file-upload-button {
+            visibility: hidden;
         }
-        .form-input:focus, .form-textarea:focus, .form-select:focus {
-            border-color: var(--starlight-yellow);
-            box-shadow: 0 0 0 2px rgba(246, 173, 85, 0.5);
+        .custom-file-input::before {
+            content: 'Seleccionar archivo';
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cosmic-purple), var(--nebula-pink));
+            border: 1px solid var(--starlight-yellow);
+            border-radius: 0.375rem; /* rounded-md */
+            padding: 0.5rem 1rem; /* px-4 py-2 */
             outline: none;
-        }
-        .file-input-label {
-            background-color: var(--cosmic-purple);
+            white-space: nowrap;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            font-weight: 600;
             color: var(--starlight-yellow);
-            border: 1px dashed rgba(246, 173, 85, 0.5);
+            transition: all 0.2s ease-in-out;
         }
-        .file-input-label:hover {
-            background-color: rgba(30, 26, 62, 0.9);
-            border-color: var(--starlight-yellow);
+        .custom-file-input:hover::before {
+            background: linear-gradient(135deg, var(--nebula-pink), var(--cosmic-purple));
+            border-color: var(--nebula-pink);
+        }
+        .custom-file-input:active::before {
+            background: linear-gradient(135deg, var(--nebula-pink), var(--cosmic-purple));
+        }
+        .file-name-display {
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: #a0aec0; /* text-gray-500 */
         }
     </style>
 </head>
@@ -146,6 +159,16 @@
     <div class="star-decoration" style="top: 10%; left: 30%; width: 1px; height: 1px; animation-delay: 1.5s;"></div>
     <div class="star-decoration" style="top: 25%; left: 85%; width: 3px; height: 3px; animation-delay: 1s;"></div>
     <div class="star-decoration" style="top: 30%; left: 60%; width: 2px; height: 2px; animation-delay: 2.5s;"></div>
+    <div class="star-decoration" style="top: 40%; left: 45%; width: 2px; height: 2px; animation-delay: 2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 90%; width: 1px; height: 1px; animation-delay: 3.5s;"></div>
+    <div class="star-decoration" style="top: 60%; left: 15%; width: 2px; height: 2px; animation-delay: 0.2s;"></div>
+    <div class="star-decoration" style="top: 70%; left: 25%; width: 3px; height: 3px; animation-delay: 3s;"></div>
+    <div class="star-decoration" style="top: 75%; left: 75%; width: 1px; height: 1px; animation-delay: 4.5s;"></div>
+    <div class="star-decoration" style="top: 85%; left: 65%; width: 2px; height: 2px; animation-delay: 4s;"></div>
+    <div class="star-decoration" style="top: 90%; left: 5%; width: 3px; height: 3px; animation-delay: 0.8s;"></div>
+    <div class="star-decoration" style="top: 95%; left: 50%; width: 1px; height: 1px; animation-delay: 2.2s;"></div>
+    <div class="star-decoration" style="top: 5%; left: 70%; width: 2px; height: 2px; animation-delay: 1.8s;"></div>
+    <div class="star-decoration" style="top: 65%; left: 95%; width: 2px; height: 2px; animation-delay: 3.2s;"></div>
 
     <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -155,12 +178,14 @@
                 <span class="sm:hidden">MOSM</span>
             </a>
             <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
-                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-                <a href="trabajos.html" class="nav-link-active transition duration-300">Trabajos</a>
-                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
-                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
                 <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+                <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+                <a href="up_download.html" class="nav-link-active transition duration-300">Up/Download</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
                     <i class="fas fa-star mr-1"></i>Premium
                 </a>
@@ -172,191 +197,125 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-            <a href="trabajos.html" class="block nav-link-active transition duration-300">Trabajos</a>
-            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
-            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
             <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+            <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+            <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+            <a href="up_download.html" class="block nav-link-active transition duration-300">Up/Download</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
                 <i class="fas fa-star mr-1"></i>Premium
             </a>
         </div>
     </nav>
 
-    <header class="py-16 md:py-24 text-center relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-space-blue opacity-80"></div>
+    <header class="py-16 md:py-24 text-center relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-space-blue opacity-85"></div>
         <div class="container mx-auto px-6 relative z-10">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Plataforma de Trabajos de Investigación</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Zona de Carga y Descarga</h1>
             <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-                Comparte tus descubrimientos y accede a investigaciones de la comunidad astronómica y científica.
+                Comparte tus astrofotografías, observaciones, o descarga material educativo y recursos de nuestra comunidad.
             </p>
         </div>
     </header>
 
     <main class="py-12">
         <div class="container mx-auto px-6">
-
-            <section id="subir-trabajo" class="mb-16">
-                <h2 class="text-3xl font-bold text-center mb-10 section-title">Comparte tu Investigación</h2>
+            
+            <section id="upload-section" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Sube Tus Archivos</h2>
                 <div class="max-w-2xl mx-auto card p-6 md:p-8">
                     <form id="uploadForm">
-                        <div class="mb-4">
-                            <label for="workTitle" class="block text-sm font-medium text-gray-300 mb-1">Título del Trabajo</label>
-                            <input type="text" id="workTitle" name="workTitle" class="form-input w-full p-3" placeholder="Ej: Nuevas observaciones de la Nebulosa de Orión" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="authors" class="block text-sm font-medium text-gray-300 mb-1">Autores</label>
-                            <input type="text" id="authors" name="authors" class="form-input w-full p-3" placeholder="Ej: A. Einstein, M. Curie" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="abstract" class="block text-sm font-medium text-gray-300 mb-1">Resumen (Abstract)</label>
-                            <textarea id="abstract" name="abstract" rows="4" class="form-textarea w-full p-3" placeholder="Breve descripción de tu investigación..." required></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label for="keywords" class="block text-sm font-medium text-gray-300 mb-1">Palabras Clave</label>
-                            <input type="text" id="keywords" name="keywords" class="form-input w-full p-3" placeholder="Ej: Astrofísica, Nebulosas, Formación Estelar" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="researchArea" class="block text-sm font-medium text-gray-300 mb-1">Área de Investigación</label>
-                            <select id="researchArea" name="researchArea" class="form-select w-full p-3">
-                                <option>Astronomía Estelar</option>
-                                <option>Astrofísica Extragaláctica</option>
-                                <option>Cosmología</option>
-                                <option>Ciencias Planetarias</option>
-                                <option>Astrobiología</option>
-                                <option>Instrumentación Astronómica</option>
-                                <option>Historia de la Astronomía</option>
-                                <option>Otra</option>
-                            </select>
+                        <div class="mb-6">
+                            <label for="fileTitle" class="block text-starlight-yellow text-sm font-bold mb-2">Título del Archivo:</label>
+                            <input type="text" id="fileTitle" name="fileTitle" class="shadow appearance-none border border-cosmic-purple rounded w-full py-3 px-4 bg-space-blue text-gray-300 leading-tight focus:outline-none focus:shadow-outline focus:border-starlight-yellow" placeholder="Ej: Nebulosa de Orión - Mi Foto">
                         </div>
                         <div class="mb-6">
-                            <label for="workFile" class="block text-sm font-medium text-gray-300 mb-1">Adjuntar Archivo (PDF recomendado)</label>
-                            <label class="file-input-label flex flex-col items-center px-4 py-6 rounded-lg tracking-wide uppercase cursor-pointer hover:text-white w-full">
-                                <i class="fas fa-cloud-upload-alt fa-3x"></i>
-                                <span class="mt-2 text-base leading-normal">Selecciona un archivo</span>
-                                <input type='file' id="workFile" name="workFile" class="hidden" accept=".pdf,.doc,.docx,.txt" />
-                            </label>
-                            <p id="fileName" class="text-sm text-gray-400 mt-1"></p>
+                            <label for="fileDescription" class="block text-starlight-yellow text-sm font-bold mb-2">Descripción Breve:</label>
+                            <textarea id="fileDescription" name="fileDescription" rows="3" class="shadow appearance-none border border-cosmic-purple rounded w-full py-3 px-4 bg-space-blue text-gray-300 leading-tight focus:outline-none focus:shadow-outline focus:border-starlight-yellow" placeholder="Ej: Capturada con telescopio Celestron 8SE, cámara ZWO ASI294MC Pro..."></textarea>
                         </div>
-                        <div class="mb-4">
-                            <label class="flex items-center">
-                                <input type="checkbox" id="terms" name="terms" class="form-checkbox h-5 w-5 text-yellow-400 rounded border-gray-500 focus:ring-yellow-300" required>
-                                <span class="ml-2 text-sm text-gray-300">Acepto los <a href="#" class="text-yellow-400 hover:underline">términos y condiciones</a> para la publicación.</span>
-                            </label>
+                        <div class="mb-6">
+                            <label class="block text-starlight-yellow text-sm font-bold mb-2">Selecciona tu archivo:</label>
+                            <input type="file" id="fileUpload" class="custom-file-input text-gray-300 w-full" aria-describedby="file_input_help">
+                            <p class="mt-1 text-sm text-gray-400" id="file_input_help">Formatos permitidos: JPG, PNG, PDF, FITS (Max. 10MB).</p>
+                            <div id="fileNameDisplay" class="file-name-display"></div>
                         </div>
-                        <button type="submit" class="btn-primary w-full py-3 rounded-full font-semibold text-lg">
-                            <i class="fas fa-paper-plane mr-2"></i>Enviar Trabajo (Simulado)
-                        </button>
-                        <p class="text-xs text-gray-400 mt-4 text-center">Nota: Esta es una demostración. La subida real de archivos requeriría un servidor y backend. Considera usar repositorios institucionales o plataformas como arXiv.</p>
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary px-8 py-3 rounded-full font-semibold text-lg">
+                                <i class="fas fa-upload mr-2"></i>Subir Archivo
+                            </button>
+                        </div>
                     </form>
+                    <p class="text-xs text-gray-500 mt-6 text-center">Nota: La funcionalidad de subida de archivos es demostrativa. En un sitio real, se requeriría programación de backend.</p>
                 </div>
             </section>
 
-            <section id="descargar-trabajos" class="mb-16">
-                <h2 class="text-3xl font-bold text-center mb-10 section-title">Explora Investigaciones</h2>
+            <section id="download-section" class="mb-12">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Recursos Descargables</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="card p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl font-semibold text-white mb-2">El Impacto de los Ciclos Solares en el Clima Terrestre: Un Meta-Análisis</h3>
-                            <p class="text-sm text-gray-400 mb-1"><i class="fas fa-user-friends mr-2 text-nebula-pink"></i>Dra. Elena Solari, Dr. Ricardo Luna</p>
-                            <p class="text-sm text-gray-400 mb-3"><i class="fas fa-calendar-alt mr-2 text-nebula-pink"></i>Publicado: 15 Mayo, 2025</p>
-                            <p class="text-gray-300 text-sm mb-4 leading-relaxed">Este estudio revisa más de 50 años de datos para analizar las correlaciones entre la actividad solar y los patrones climáticos globales...</p>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-file-pdf fa-2x text-nebula-pink mr-4"></i>
+                            <h3 class="text-xl font-semibold text-white">Guía de Observación Lunar</h3>
                         </div>
-                        <a href="sample-paper.pdf" download="impacto_ciclos_solares_clima.pdf" class="mt-4 btn-primary text-center py-2 px-4 rounded-full text-sm font-semibold block">
-                            <i class="fas fa-download mr-2"></i>Descargar PDF (Ejemplo)
+                        <p class="text-gray-300 mb-4 text-sm leading-relaxed">Una guía completa para identificar cráteres, mares y otras formaciones lunares. Ideal para principiantes.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">PDF</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">2.5 MB</span>
+                        </div>
+                        <a href="#" download="guia_observacion_lunar.pdf" class="btn-primary w-full text-center px-4 py-2 rounded-md font-semibold block">
+                            <i class="fas fa-download mr-2"></i>Descargar
                         </a>
                     </div>
-                    <div class="card p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl font-semibold text-white mb-2">Detección de Exoplanetas Rocosos en la Zona Habitable de Estrellas Tipo M</h3>
-                            <p class="text-sm text-gray-400 mb-1"><i class="fas fa-user-friends mr-2 text-nebula-pink"></i>Lic. Juan Pérez, Equipo Kepler-TESS</p>
-                            <p class="text-sm text-gray-400 mb-3"><i class="fas fa-calendar-alt mr-2 text-nebula-pink"></i>Presentado: 02 Junio, 2025</p>
-                            <p class="text-gray-300 text-sm mb-4 leading-relaxed">Presentamos los resultados del análisis de tránsitos observados en estrellas enanas rojas cercanas, identificando tres candidatos a exoplanetas...</p>
+
+                    <div class="card p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-atlas fa-2x text-nebula-pink mr-4"></i>
+                            <h3 class="text-xl font-semibold text-white">Mapas Estelares (Hem. Sur)</h3>
                         </div>
-                         <a href="sample-paper.pdf" download="deteccion_exoplanetas_rocosos.pdf" class="mt-4 btn-primary text-center py-2 px-4 rounded-full text-sm font-semibold block">
-                            <i class="fas fa-download mr-2"></i>Descargar PDF (Ejemplo)
+                        <p class="text-gray-300 mb-4 text-sm leading-relaxed">Conjunto de mapas estelares mensuales para el Hemisferio Sur. Actualizados para 2025.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">PNG/ZIP</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">15 MB</span>
+                        </div>
+                        <a href="#" download="mapas_estelares_sur_2025.zip" class="btn-primary w-full text-center px-4 py-2 rounded-md font-semibold block">
+                            <i class="fas fa-download mr-2"></i>Descargar
                         </a>
                     </div>
-                    <div class="card p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl font-semibold text-white mb-2">Modelos Cosmológicos y la Energía Oscura: Estado Actual y Desafíos</h3>
-                            <p class="text-sm text-gray-400 mb-1"><i class="fas fa-user-friends mr-2 text-nebula-pink"></i>Dr. Cosmos Argento et al.</p>
-                            <p class="text-sm text-gray-400 mb-3"><i class="fas fa-calendar-alt mr-2 text-nebula-pink"></i>Preprint: 20 Junio, 2025</p>
-                            <p class="text-gray-300 text-sm mb-4 leading-relaxed">Una revisión exhaustiva de los modelos cosmológicos actuales con un enfoque en las diferentes teorías sobre la naturaleza de la energía oscura...</p>
+
+                    <div class="card p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-journal-whills fa-2x text-nebula-pink mr-4"></i>
+                            <h3 class="text-xl font-semibold text-white">Artículo: Supernovas</h3>
                         </div>
-                         <a href="sample-paper.pdf" download="modelos_cosmologicos_energia_oscura.pdf" class="mt-4 btn-primary text-center py-2 px-4 rounded-full text-sm font-semibold block">
-                            <i class="fas fa-download mr-2"></i>Descargar PDF (Ejemplo)
+                        <p class="text-gray-300 mb-4 text-sm leading-relaxed">Un artículo detallado sobre la formación, tipos y observación de supernovas. Nivel intermedio.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">PDF</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">800 KB</span>
+                        </div>
+                        <a href="#" download="articulo_supernovas.pdf" class="btn-primary w-full text-center px-4 py-2 rounded-md font-semibold block">
+                            <i class="fas fa-download mr-2"></i>Descargar
                         </a>
                     </div>
-                </div>
-                <p class="text-xs text-gray-400 mt-6 text-center">Los trabajos listados son ejemplos. Para acceder a una vasta colección de investigaciones, visita los repositorios y bases de datos en la sección de recursos.</p>
+                     </div>
             </section>
 
-            <section id="recursos-utiles" class="mb-16">
-                <h2 class="text-3xl font-bold text-center mb-10 section-title">Recursos para Investigadores</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="card p-6">
-                        <h3 class="text-xl font-semibold text-white mb-3"><i class="fas fa-archive mr-2 text-yellow-400"></i>Repositorios y Preprints</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="https://arxiv.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>arXiv.org (Física, Matemáticas, CS, Astro)</a></li>
-                            <li><a href="https://www.biorxiv.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>bioRxiv (Ciencias Biológicas)</a></li>
-                            <li><a href="https://www.medrxiv.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>medRxiv (Ciencias de la Salud)</a></li>
-                            <li><a href="https://zenodo.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Zenodo (Repositorio multidisciplinario)</a></li>
-                             <li><a href="https://www.conicet.gov.ar/new_scp/lista.php?keywords=&tipo_produccion=PUBORPRE&orderby=date&order=DESC&load_keywords=1" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>CONICET Digital (Argentina)</a></li>
-                        </ul>
-                    </div>
-                    <div class="card p-6">
-                        <h3 class="text-xl font-semibold text-white mb-3"><i class="fas fa-search mr-2 text-yellow-400"></i>Buscadores Académicos</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="https://scholar.google.com/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Google Scholar</a></li>
-                            <li><a href="https://www.semanticscholar.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Semantic Scholar</a></li>
-                            <li><a href="https://www.sciencedirect.com/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>ScienceDirect</a></li>
-                            <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>PubMed (Ciencias Biomédicas)</a></li>
-                            <li><a href="https://ui.adsabs.harvard.edu/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>NASA ADS (Astrofísica)</a></li>
-                        </ul>
-                    </div>
-                    <div class="card p-6">
-                        <h3 class="text-xl font-semibold text-white mb-3"><i class="fas fa-newspaper mr-2 text-yellow-400"></i>Revistas y Publicaciones</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="https://www.nature.com/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Nature</a></li>
-                            <li><a href="https://www.sciencemag.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Science</a></li>
-                            <li><a href="https://journals.plos.org/plosone/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>PLOS ONE (Acceso Abierto)</a></li>
-                            <li><a href="https://www.scielo.org/es/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>SciELO (Red Iberoamericana)</a></li>
-                            <li><a href="https://iopscience.iop.org/journal/0004-637X" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>The Astrophysical Journal (ApJ)</a></li>
-                        </ul>
-                    </div>
-                    <div class="card p-6">
-                        <h3 class="text-xl font-semibold text-white mb-3"><i class="fas fa-tools mr-2 text-yellow-400"></i>Herramientas y Guías</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="https://www.zotero.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Zotero (Gestor de Referencias)</a></li>
-                            <li><a href="https://www.mendeley.com/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Mendeley (Gestor de Referencias)</a></li>
-                            <li><a href="https://www.overleaf.com/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Overleaf (Editor LaTeX Colaborativo)</a></li>
-                             <li><a href="https://publicationethics.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>COPE (Comité de Ética en Publicación)</a></li>
-                             <li><a href="https://www.grammarly.com/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Grammarly (Asistente de Escritura)</a></li>
-                        </ul>
-                    </div>
-                     <div class="card p-6">
-                        <h3 class="text-xl font-semibold text-white mb-3"><i class="fas fa-users mr-2 text-yellow-400"></i>Comunidades y Organizaciones</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="https://www.conicet.gov.ar/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>CONICET (Argentina)</a></li>
-                            <li><a href="https://www.iau.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Unión Astronómica Internacional (IAU)</a></li>
-                            <li><a href="https://aas.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>American Astronomical Society (AAS)</a></li>
-                            <li><a href="https://www.researchgate.net/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>ResearchGate (Red Social Académica)</a></li>
-                            <li><a href="https://www.socastarg.org.ar/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Asoc. Arg. Amigos de la Astronomía</a></li>
-                        </ul>
-                    </div>
-                     <div class="card p-6">
-                        <h3 class="text-xl font-semibold text-white mb-3"><i class="fas fa-lock-open mr-2 text-yellow-400"></i>Acceso Abierto (Open Access)</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="https://doaj.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>DOAJ (Directorio de Revistas de Acceso Abierto)</a></li>
-                            <li><a href="https://openknowledge.worldbank.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Open Knowledge Repository (Banco Mundial)</a></li>
-                            <li><a href="https://core.ac.uk/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>CORE (Agregador de Investigación de Acceso Abierto)</a></li>
-                             <li><a href="https://www.redalyc.org/" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fas fa-link mr-2"></i>Redalyc (Red de Revistas Científicas de América Latina y el Caribe, España y Portugal)</a></li>
-                        </ul>
-                    </div>
+            <section id="usage-policy" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Normas de Uso y Contribución</h2>
+                <div class="max-w-3xl mx-auto card p-6 md:p-8">
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Asegúrate de tener los derechos sobre cualquier material que subas.</li>
+                        <li class="flex items-start"><i class="fas fa-file-alt text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Proporciona descripciones claras y precisas para tus archivos.</li>
+                        <li class="flex items-start"><i class="fas fa-shield-alt text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>No subas material ofensivo, ilegal o que infrinja derechos de autor.</li>
+                        <li class="flex items-start"><i class="fas fa-microscope text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Los archivos subidos podrán ser revisados por moderadores.</li>
+                        <li class="flex items-start"><i class="fas fa-hands-helping text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Al descargar, respeta las licencias de uso si las hubiera.</li>
+                        <li class="flex items-start"><i class="fas fa-comments text-yellow-400 mr-3 mt-1 flex-shrink-0"></i>Utiliza el foro para discutir sobre los archivos compartidos.</li>
+                    </ul>
                 </div>
             </section>
+
         </div>
     </main>
 
@@ -368,12 +327,14 @@
                 </a>
             </div>
             <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
-                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
-                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
-                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
-                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
                 <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
-                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Quiénes Somos</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="blog.html" class="hover:text-yellow-400">Blog</a>
+                <a href="foro.html" class="hover:text-yellow-400">Foro</a>
+                <a href="up_download.html" class="hover:text-yellow-400">Up/Download</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
                 <a href="premium.html" class="hover:text-yellow-400">Premium</a>
             </div>
             <div class="mb-6 flex justify-center space-x-6">
@@ -390,40 +351,26 @@
         // Mobile Menu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const navLinksMobile = mobileMenu.querySelectorAll('a');
+
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+        });
+
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                const href = link.getAttribute('href');
+                // Close menu if it's an anchor link on index.html or if it's a link to another page (not the current one)
+                if (href.includes('index.html#') || (href !== 'up_download.html' && !href.includes('up_download.html#'))) {
+                    mobileMenu.classList.add('hidden');
+                } else if (href.startsWith('#')) { 
+                    mobileMenu.classList.add('hidden');
+                }
+            });
         });
         
         // Current Year in Footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Simulación de subida de archivo
-        const workFileInput = document.getElementById('workFile');
-        const fileNameDisplay = document.getElementById('fileName');
-        if (workFileInput) {
-            workFileInput.addEventListener('change', function() {
-                if (this.files && this.files.length > 0) {
-                    fileNameDisplay.textContent = this.files[0].name;
-                } else {
-                    fileNameDisplay.textContent = '';
-                }
-            });
-        }
-        
-        // Simulación de envío de formulario
-        const uploadForm = document.getElementById('uploadForm');
-        if (uploadForm) {
-            uploadForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevenir envío real
-                // Aquí podrías añadir una simulación de mensaje de éxito o error
-                // Por ahora, solo un console.log para demostrar
-                console.log('Formulario enviado (simulación)');
-                alert('Formulario enviado (simulación). En un sitio real, tu trabajo sería procesado.');
-                // Opcionalmente, resetear el formulario
-                // uploadForm.reset();
-                // fileNameDisplay.textContent = '';
-            });
-        }
 
         // Dynamic satellite icon link
         const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
@@ -431,6 +378,73 @@
             satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
             satelliteIconLink.target = "_blank"; 
         }
+
+        // File input name display
+        const fileUploadInput = document.getElementById('fileUpload');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        if (fileUploadInput) {
+            fileUploadInput.addEventListener('change', function() {
+                if (this.files && this.files.length > 0) {
+                    fileNameDisplay.textContent = `Archivo seleccionado: ${this.files[0].name}`;
+                } else {
+                    fileNameDisplay.textContent = '';
+                }
+            });
+        }
+
+        // Handle form submission (demonstration)
+        const uploadForm = document.getElementById('uploadForm');
+        if (uploadForm) {
+            uploadForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+                // In a real application, you would handle file upload here.
+                // For demonstration, we can just show an alert or a message.
+                const title = document.getElementById('fileTitle').value;
+                const file = document.getElementById('fileUpload').files[0];
+                let message = "Formulario enviado (simulación).\n";
+                if (title) message += `Título: ${title}\n`;
+                if (file) message += `Archivo: ${file.name}\n`;
+                
+                // Create a custom message box instead of alert
+                const existingModal = document.getElementById('customModal');
+                if (existingModal) existingModal.remove();
+
+                const modal = document.createElement('div');
+                modal.id = 'customModal';
+                modal.style.position = 'fixed';
+                modal.style.left = '50%';
+                modal.style.top = '50%';
+                modal.style.transform = 'translate(-50%, -50%)';
+                modal.style.backgroundColor = 'var(--cosmic-purple)';
+                modal.style.color = 'var(--starlight-yellow)';
+                modal.style.padding = '20px';
+                modal.style.border = '1px solid var(--starlight-yellow)';
+                modal.style.borderRadius = '8px';
+                modal.style.boxShadow = '0 4px 15px rgba(0,0,0,0.5)';
+                modal.style.zIndex = '1000';
+                modal.style.textAlign = 'center';
+                
+                const messageParagraph = document.createElement('p');
+                messageParagraph.innerText = message;
+                messageParagraph.style.marginBottom = '15px';
+                
+                const closeButton = document.createElement('button');
+                closeButton.innerText = 'Cerrar';
+                closeButton.classList.add('btn-primary'); // Apply existing button style
+                closeButton.style.padding = '8px 16px'; // Adjust padding if needed
+                closeButton.onclick = function() {
+                    modal.remove();
+                };
+                
+                modal.appendChild(messageParagraph);
+                modal.appendChild(closeButton);
+                document.body.appendChild(modal);
+
+                uploadForm.reset(); // Reset form fields
+                if(fileNameDisplay) fileNameDisplay.textContent = ''; // Clear file name display
+            });
+        }
+
     </script>
 </body>
 </html>
