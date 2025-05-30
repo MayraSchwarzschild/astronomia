@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Premium - Museo Observatorio San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+        
+        .card {
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 188, 250, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--starlight-yellow);
+            color: var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(246, 173, 85, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+        .nav-link-active {
+            color: var(--starlight-yellow);
+            font-weight: 600;
+        }
+        .premium-feature-icon {
+            color: var(--nebula-pink);
+            font-size: 1.75rem; /* text-3xl */
+            margin-right: 0.75rem; /* mr-3 */
+        }
+    </style>
+</head>
+<body>
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 10%; left: 30%; width: 1px; height: 1px; animation-delay: 1.5s;"></div>
+    <div class="star-decoration" style="top: 25%; left: 85%; width: 3px; height: 3px; animation-delay: 1s;"></div>
+    <div class="star-decoration" style="top: 30%; left: 60%; width: 2px; height: 2px; animation-delay: 2.5s;"></div>
+    <div class="star-decoration" style="top: 40%; left: 45%; width: 2px; height: 2px; animation-delay: 2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 90%; width: 1px; height: 1px; animation-delay: 3.5s;"></div>
+    <div class="star-decoration" style="top: 60%; left: 15%; width: 2px; height: 2px; animation-delay: 0.2s;"></div>
+    <div class="star-decoration" style="top: 70%; left: 25%; width: 3px; height: 3px; animation-delay: 3s;"></div>
+    <div class="star-decoration" style="top: 75%; left: 75%; width: 1px; height: 1px; animation-delay: 4.5s;"></div>
+    <div class="star-decoration" style="top: 85%; left: 65%; width: 2px; height: 2px; animation-delay: 4s;"></div>
+    <div class="star-decoration" style="top: 90%; left: 5%; width: 3px; height: 3px; animation-delay: 0.8s;"></div>
+    <div class="star-decoration" style="top: 95%; left: 50%; width: 1px; height: 1px; animation-delay: 2.2s;"></div>
+    <div class="star-decoration" style="top: 5%; left: 70%; width: 2px; height: 2px; animation-delay: 1.8s;"></div>
+    <div class="star-decoration" style="top: 65%; left: 95%; width: 2px; height: 2px; animation-delay: 3.2s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+                <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+                <a href="up_download.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="premium.html" class="nav-link-active btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
+            <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
+            <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+            <a href="up_download.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="premium.html" class="block nav-link-active btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <header class="py-16 md:py-24 text-center relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1506703719100-a0f3dc48c432?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-space-blue opacity-85"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Desbloquea el Universo Premium</h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                Accede a contenido exclusivo, herramientas avanzadas y apoya la divulgación científica con tu membresía.
+            </p>
+        </div>
+    </header>
+
+    <main class="py-12">
+        <div class="container mx-auto px-6">
+            
+            <section id="premium-benefits" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Beneficios Exclusivos</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card p-6 text-center">
+                        <i class="fas fa-meteor premium-feature-icon"></i>
+                        <h3 class="text-xl font-semibold text-white mb-3">Contenido Único</h3>
+                        <p class="text-gray-300 text-sm">Artículos detallados, tutoriales avanzados y entrevistas con expertos no disponibles en otros lugares.</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <i class="fas fa-telescope premium-feature-icon"></i>
+                        <h3 class="text-xl font-semibold text-white mb-3">Acceso Anticipado</h3>
+                        <p class="text-gray-300 text-sm">Sé el primero en conocer nuestros nuevos cursos, eventos especiales y descubrimientos.</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <i class="fas fa-ad premium-feature-icon transform scale-x-[-1]"></i> <h3 class="text-xl font-semibold text-white mb-3">Experiencia Sin Anuncios</h3>
+                        <p class="text-gray-300 text-sm">Disfruta de todo nuestro contenido sin interrupciones publicitarias.</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <i class="fas fa-tools premium-feature-icon"></i>
+                        <h3 class="text-xl font-semibold text-white mb-3">Herramientas Avanzadas</h3>
+                        <p class="text-gray-300 text-sm">Calculadoras astronómicas, planificadores de observación y acceso a bases de datos premium.</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <i class="fas fa-users premium-feature-icon"></i>
+                        <h3 class="text-xl font-semibold text-white mb-3">Comunidad Privada</h3>
+                        <p class="text-gray-300 text-sm">Acceso a un foro exclusivo para miembros premium, con Q&A directos con nuestro equipo.</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <i class="fas fa-hands-helping premium-feature-icon"></i>
+                        <h3 class="text-xl font-semibold text-white mb-3">Apoya la Ciencia</h3>
+                        <p class="text-gray-300 text-sm">Tu contribución nos ayuda a mantener y expandir nuestras actividades de divulgación.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="subscription-tiers" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Elige Tu Plan</h2>
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="card p-8 flex flex-col">
+                        <h3 class="text-2xl font-bold text-starlight-yellow text-center mb-2">Explorador Estelar</h3>
+                        <p class="text-4xl font-bold text-white text-center mb-1">$10 <span class="text-lg font-normal text-gray-400">/mes</span></p>
+                        <p class="text-gray-400 text-center text-sm mb-6">Ideal para empezar tu viaje premium.</p>
+                        <ul class="space-y-3 text-gray-300 mb-8 flex-grow">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Todos los beneficios premium.</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Acceso a contenido nuevo mensual.</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-400 mr-2"></i> Descuento en cursos avanzados.</li>
+                        </ul>
+                        <button class="btn-primary w-full py-3 rounded-md font-semibold text-lg">Suscribirse Mensualmente</button>
+                    </div>
+
+                    <div class="card p-8 flex flex-col border-2 border-starlight-yellow relative">
+                        <span class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-starlight-yellow text-space-blue px-3 py-1 text-sm font-bold rounded-full">Más Popular</span>
+                        <h3 class="text-2xl font-bold text-starlight-yellow text-center mb-2">Conquistador Cósmico</h3>
+                        <p class="text-4xl font-bold text-white text-center mb-1">$100 <span class="text-lg font-normal text-gray-400">/año</span></p>
+                        <p class="text-gray-400 text-center text-sm mb-6">¡Ahorra un 17% (2 meses gratis!) y obtén más!</p>
+                        <ul class="space-y-3 text-gray-300 mb-8 flex-grow">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Todos los beneficios premium.</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Acceso a todo el catálogo de contenido.</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> 10% de descuento en cursos avanzados.</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Invitaciones a webinars exclusivos.</li>
+                        </ul>
+                        <button class="btn-primary w-full py-3 rounded-md font-semibold text-lg">Suscribirse Anualmente</button>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-8 text-center">Los pagos son procesados de forma segura. Puedes cancelar en cualquier momento.</p>
+            </section>
+
+            <section id="faq" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-10 section-title">Preguntas Frecuentes</h2>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="card p-6">
+                        <h4 class="text-lg font-semibold text-white mb-2">¿Cómo cancelo mi suscripción?</h4>
+                        <p class="text-gray-300 text-sm">Puedes cancelar tu suscripción en cualquier momento desde tu panel de usuario. Si tienes problemas, contacta a nuestro soporte.</p>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="text-lg font-semibold text-white mb-2">¿Qué métodos de pago aceptan?</h4>
+                        <p class="text-gray-300 text-sm">Aceptamos las principales tarjetas de crédito y débito, así como PayPal. (Esto es un ejemplo, la implementación real variaría).</p>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="text-lg font-semibold text-white mb-2">¿Puedo cambiar de plan?</h4>
+                        <p class="text-gray-300 text-sm">Sí, puedes cambiar de un plan mensual a uno anual (o viceversa) desde tu panel de usuario. Se aplicarán los ajustes correspondientes.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Quiénes Somos</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="blog.html" class="hover:text-yellow-400">Blog</a>
+                <a href="foro.html" class="hover:text-yellow-400">Foro</a>
+                <a href="up_download.html" class="hover:text-yellow-400">Up/Download</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <div class="mb-6 flex justify-center space-x-6">
+                <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+            <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinksMobile = mobileMenu.querySelectorAll('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                const href = link.getAttribute('href');
+                // Close menu if it's an anchor link on index.html or if it's a link to another page (not the current one)
+                if (href.includes('index.html#') || (href !== 'premium.html' && !href.includes('premium.html#'))) {
+                    mobileMenu.classList.add('hidden');
+                } else if (href.startsWith('#')) { 
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Current Year in Footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Dynamic satellite icon link
+        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
+        if (satelliteIconLink) {
+            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+            satelliteIconLink.target = "_blank"; 
+        }
+
+        // Subscription button click (simulation)
+        const subscriptionButtons = document.querySelectorAll('#subscription-tiers button');
+        subscriptionButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const plan = this.innerText.includes('Mensual') ? 'Mensual' : 'Anual';
+                
+                const existingModal = document.getElementById('customModal');
+                if (existingModal) existingModal.remove();
+
+                const modal = document.createElement('div');
+                modal.id = 'customModal';
+                modal.style.position = 'fixed';
+                modal.style.left = '50%';
+                modal.style.top = '50%';
+                modal.style.transform = 'translate(-50%, -50%)';
+                modal.style.backgroundColor = 'var(--cosmic-purple)';
+                modal.style.color = 'var(--starlight-yellow)';
+                modal.style.padding = '20px';
+                modal.style.border = '1px solid var(--starlight-yellow)';
+                modal.style.borderRadius = '8px';
+                modal.style.boxShadow = '0 4px 15px rgba(0,0,0,0.5)';
+                modal.style.zIndex = '1000';
+                modal.style.textAlign = 'center';
+                
+                const messageParagraph = document.createElement('p');
+                messageParagraph.innerText = `Serás redirigido a la pasarela de pago para el plan ${plan}. (Simulación)`;
+                messageParagraph.style.marginBottom = '15px';
+                
+                const closeButton = document.createElement('button');
+                closeButton.innerText = 'Entendido';
+                closeButton.classList.add('btn-primary');
+                closeButton.style.padding = '8px 16px';
+                closeButton.onclick = function() {
+                    modal.remove();
+                };
+                
+                modal.appendChild(messageParagraph);
+                modal.appendChild(closeButton);
+                document.body.appendChild(modal);
+            });
+        });
+
+    </script>
+</body>
+</html>
