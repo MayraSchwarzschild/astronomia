@@ -70,6 +70,21 @@
         .btn-primary:hover::after {
             left: 120%;
         }
+
+        .btn-secondary {
+            background-color: var(--cosmic-purple);
+            color: var(--starlight-yellow);
+            border: 1px solid var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--starlight-yellow);
+            color: var(--cosmic-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
         
         .section-title {
             color: var(--starlight-yellow);
@@ -143,6 +158,21 @@
             border-radius: 4px;
             font-family: 'Courier New', Courier, monospace;
             color: var(--nebula-pink);
+        }
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .content-section a {
+            color: var(--nebula-pink);
+            text-decoration: underline;
+        }
+        .content-section a:hover {
+            color: var(--starlight-yellow);
         }
         .exam-question {
             margin-bottom: 1.5rem;
@@ -237,6 +267,7 @@
 
             <h3>1.1 Principios Fundamentales de la Luz</h3>
             <p>La luz es la materia prima de la astronomía. Sin ella, no podríamos ver ni estudiar los objetos celestes. Comprender su naturaleza y comportamiento es el primer paso para entender cómo funcionan los telescopios.</p>
+            <img src="https://images.unsplash.com/photo-1535645053809-f49b5ab1a32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Imagen abstracta de rayos de luz coloridos]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Principios+de+la+Luz';">
             
             <h4>Naturaleza Dual de la Luz</h4>
             <p>La luz exhibe una fascinante <strong>dualidad onda-partícula</strong>. Esto significa que, dependiendo del experimento o fenómeno que observemos, la luz puede comportarse como una onda electromagnética o como un flujo de partículas llamadas <strong>fotones</strong>.</p>
@@ -245,8 +276,9 @@
                 <li>Como <strong>partícula (fotón)</strong>, cada fotón transporta una cantidad discreta de energía (un cuanto), que es proporcional a su frecuencia ($E = h\nu$, donde $h$ es la constante de Planck).</li>
             </ul>
 
-            <h4>El Espectro Electromagnético</h4>
+            <h4>El <a href="https://es.wikipedia.org/wiki/Espectro_electromagn%C3%A9tico" target="_blank" rel="noopener noreferrer">Espectro Electromagnético</a></h4>
             <p>La luz visible, aquella que nuestros ojos pueden percibir, es solo una pequeña fracción de un vasto espectro de radiación electromagnética. Este espectro abarca desde las ondas de radio (con longitudes de onda muy largas y baja energía) hasta los rayos gamma (con longitudes de onda muy cortas y alta energía).</p>
+            <img src="https://images.unsplash.com/photo-1635405095308-039e997a3ea3?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Diagrama ilustrativo del espectro electromagnético]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x300/1E1A3E/F6AD55?text=Espectro+Electromagnético';">
             <p>El espectro electromagnético incluye (de menor a mayor energía/frecuencia):</p>
             <ul>
                 <li>Ondas de Radio</li>
@@ -258,14 +290,12 @@
                 <li>Rayos Gamma</li>
             </ul>
             <p>Los telescopios se diseñan para captar diferentes regiones de este espectro, permitiéndonos estudiar una amplia gama de fenómenos cósmicos.</p>
-            <img src="https://placehold.co/700x300/1E1A3E/F6AD55?text=Espectro+Electromagnético" alt="Diagrama del Espectro Electromagnético" class="mx-auto my-4 rounded-lg shadow-md">
-
-
+            
             <h4>Interacción de la Luz con la Materia</h4>
             <p>Cuando la luz interactúa con la materia, pueden ocurrir varios fenómenos cruciales para el diseño y funcionamiento de los telescopios:</p>
             <ul>
-                <li><strong>Refracción:</strong> Es el cambio de dirección que experimenta una onda de luz al pasar de un medio a otro con diferente índice de refracción (por ejemplo, del aire al vidrio de una lente). Este es el principio fundamental de los telescopios refractores. La cantidad de refracción depende de la longitud de onda (lo que causa la aberración cromática).</li>
-                <li><strong>Reflexión:</strong> Es el cambio de dirección de la luz cuando incide sobre una superficie y rebota. Si la superficie es lisa y pulida (como un espejo), la reflexión es especular, y el ángulo de incidencia es igual al ángulo de reflexión. Este es el principio de los telescopios reflectores.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Refracci%C3%B3n" target="_blank" rel="noopener noreferrer">Refracción</a>:</strong> Es el cambio de dirección que experimenta una onda de luz al pasar de un medio a otro con diferente índice de refracción (por ejemplo, del aire al vidrio de una lente). Este es el principio fundamental de los telescopios refractores. La cantidad de refracción depende de la longitud de onda (lo que causa la aberración cromática).</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Reflexi%C3%B3n_(f%C3%ADsica)" target="_blank" rel="noopener noreferrer">Reflexión</a>:</strong> Es el cambio de dirección de la luz cuando incide sobre una superficie y rebota. Si la superficie es lisa y pulida (como un espejo), la reflexión es especular, y el ángulo de incidencia es igual al ángulo de reflexión. Este es el principio de los telescopios reflectores.</li>
                 <li><strong>Absorción:</strong> Ocurre cuando la energía de un fotón es absorbida por un átomo o molécula, excitándolo. Algunos materiales absorben ciertas longitudes de onda más que otras.</li>
                 <li><strong>Dispersión (Scattering):</strong> Es la redirección de la luz en múltiples direcciones al interactuar con partículas pequeñas o irregularidades en un medio. La dispersión de Rayleigh, por ejemplo, es la responsable del color azul del cielo.</li>
                 <li><strong>Difracción:</strong> Es la curvatura o desviación de las ondas de luz al rodear un obstáculo o pasar a través de una abertura. La difracción limita la resolución máxima que puede alcanzar un telescopio.</li>
@@ -274,9 +304,9 @@
             <h3>1.2 Tipos de Telescopios Ópticos</h3>
             <p>Los telescopios ópticos son aquellos diseñados para recolectar y enfocar la luz visible. Se clasifican principalmente según el elemento óptico primario que utilizan para recoger la luz: lentes (refractores) o espejos (reflectores). También existen diseños híbridos (catadióptricos).</p>
 
-            <h4>Telescopios Refractores</h4>
+            <h4><a href="https://es.wikipedia.org/wiki/Telescopio_refractor" target="_blank" rel="noopener noreferrer">Telescopios Refractores</a></h4>
             <p>Los telescopios refractores utilizan una <strong>lente objetivo</strong> (o un sistema de lentes) en la parte frontal del tubo para recoger y enfocar la luz. La luz atraviesa la lente, se refracta (se dobla) y converge en un punto focal donde se forma la imagen.</p>
-            <img src="https://placehold.co/600x350/1E1A3E/F6AD55?text=Diagrama+Telescopio+Refractor" alt="Diagrama de un Telescopio Refractor" class="mx-auto my-4 rounded-lg shadow-md">
+            <img src="https://images.unsplash.com/photo-1605629713999-ac63d27427a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="[Fotografía de un telescopio refractor clásico]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/600x350/1E1A3E/F6AD55?text=Telescopio+Refractor';">
             <ul>
                 <li><strong>Ventajas:</strong>
                     <ul>
@@ -287,17 +317,17 @@
                 </li>
                 <li><strong>Desventajas:</strong>
                     <ul>
-                        <li><strong>Aberración Cromática:</strong> Las lentes refractan diferentes colores (longitudes de onda) de luz en ángulos ligeramente distintos, lo que puede resultar en halos de color alrededor de los objetos brillantes. Los diseños <strong>acromáticos</strong> (dos lentes) y <strong>apocromáticos</strong> (tres o más lentes, a menudo de vidrios especiales como fluorita o ED - Extra-low Dispersion) corrigen esta aberración en mayor o menor medida.</li>
+                        <li><strong><a href="https://es.wikipedia.org/wiki/Aberraci%C3%B3n_crom%C3%A1tica" target="_blank" rel="noopener noreferrer">Aberración Cromática</a>:</strong> Las lentes refractan diferentes colores (longitudes de onda) de luz en ángulos ligeramente distintos, lo que puede resultar en halos de color alrededor de los objetos brillantes. Los diseños <strong>acromáticos</strong> (dos lentes) y <strong>apocromáticos</strong> (tres o más lentes, a menudo de vidrios especiales como fluorita o ED - Extra-low Dispersion) corrigen esta aberración en mayor o menor medida.</li>
                         <li>Costosos por unidad de apertura, especialmente los apocromáticos de gran diámetro.</li>
                         <li>Pueden ser largos y pesados para aperturas grandes, lo que requiere monturas más robustas.</li>
                     </ul>
                 </li>
             </ul>
 
-            <h4>Telescopios Reflectores</h4>
+            <h4><a href="https://es.wikipedia.org/wiki/Telescopio_reflector" target="_blank" rel="noopener noreferrer">Telescopios Reflectores</a></h4>
             <p>Los telescopios reflectores utilizan un <strong>espejo primario cóncavo</strong> (generalmente parabólico) en la parte posterior del tubo para recoger y reflejar la luz hacia un punto focal. Como la luz se refleja en lugar de pasar a través del vidrio, los reflectores no sufren de aberración cromática.</p>
-            <img src="https://placehold.co/600x400/1E1A3E/F6AD55?text=Diagrama+Telescopio+Newtoniano" alt="Diagrama de un Telescopio Reflector Newtoniano" class="mx-auto my-4 rounded-lg shadow-md">
-            <p>El diseño más común es el <strong>Newtoniano</strong>, inventado por Isaac Newton, que utiliza un pequeño espejo secundario plano inclinado a 45° para desviar la luz hacia un costado del tubo, donde se coloca el ocular.</p>
+            <img src="https://images.unsplash.com/photo-1589955679399-f38393155072?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="[Fotografía de un telescopio reflector Newtoniano sobre montura Dobsoniana]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E1A3E/F6AD55?text=Telescopio+Newtoniano';">
+            <p>El diseño más común es el <strong><a href="https://es.wikipedia.org/wiki/Telescopio_newtoniano" target="_blank" rel="noopener noreferrer">Newtoniano</a></strong>, inventado por Isaac Newton, que utiliza un pequeño espejo secundario plano inclinado a 45° para desviar la luz hacia un costado del tubo, donde se coloca el ocular.</p>
             <ul>
                 <li><strong>Ventajas:</strong>
                     <ul>
@@ -310,19 +340,19 @@
                 <li><strong>Desventajas:</strong>
                     <ul>
                         <li><strong>Obstrucción Central:</strong> El espejo secundario y su soporte bloquean una pequeña porción de la luz entrante, lo que puede reducir ligeramente el contraste en comparación con un refractor de igual apertura.</li>
-                        <li><strong>Aberraciones Ópticas:</strong> Pueden presentar otras aberraciones como la <strong>coma</strong> (las estrellas cerca del borde del campo visual aparecen como pequeños cometas) y el <strong>astigmatismo</strong>. Los espejos parabólicos bien hechos minimizan la aberración esférica.</li>
+                        <li><strong>Aberraciones Ópticas:</strong> Pueden presentar otras aberraciones como la <strong><a href="https://es.wikipedia.org/wiki/Coma_(%C3%B3ptica)" target="_blank" rel="noopener noreferrer">coma</a></strong> (las estrellas cerca del borde del campo visual aparecen como pequeños cometas) y el <strong>astigmatismo</strong>. Los espejos parabólicos bien hechos minimizan la aberración esférica.</li>
                         <li><strong>Mantenimiento:</strong> El tubo suele estar abierto, lo que permite la entrada de polvo. Los espejos pueden necesitar realuminizarse después de muchos años. Requieren <strong>colimación</strong> periódica (alineación precisa de los espejos).</li>
                     </ul>
                 </li>
             </ul>
 
-            <h4>Telescopios Catadióptricos (Compuestos)</h4>
+            <h4><a href="https://es.wikipedia.org/wiki/Telescopio_catadi%C3%B3ptrico" target="_blank" rel="noopener noreferrer">Telescopios Catadióptricos</a> (Compuestos)</h4>
             <p>Los telescopios catadióptricos combinan lentes y espejos en su diseño óptico para aprovechar las ventajas de ambos sistemas. Usualmente tienen un espejo primario esférico y una lente correctora en la parte frontal del tubo para corregir aberraciones.</p>
-            <img src="https://placehold.co/600x380/1E1A3E/F6AD55?text=Diagrama+Telescopio+Schmidt-Cassegrain" alt="Diagrama de un Telescopio Schmidt-Cassegrain" class="mx-auto my-4 rounded-lg shadow-md">
+            <img src="https://images.unsplash.com/photo-1614706378110-5450d1159104?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="[Fotografía de un telescopio Schmidt-Cassegrain moderno]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/600x380/1E1A3E/F6AD55?text=Telescopio+Schmidt-Cassegrain';">
             <p>Los diseños más populares son:</p>
             <ul>
-                <li><strong>Schmidt-Cassegrain (SCT):</strong> Utilizan un espejo primario esférico, un espejo secundario convexo y una delgada placa correctora de Schmidt en la parte frontal. La luz se refleja desde el primario al secundario, y luego a través de un agujero en el primario hacia el ocular.</li>
-                <li><strong>Maksutov-Cassegrain (Mak):</strong> Similar al SCT, pero utiliza una lente correctora menisco más gruesa y curvada. Ofrecen campos visuales más pequeños pero a menudo imágenes más nítidas que los SCT de igual apertura.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Telescopio_de_Schmidt-Cassegrain" target="_blank" rel="noopener noreferrer">Schmidt-Cassegrain (SCT)</a>:</strong> Utilizan un espejo primario esférico, un espejo secundario convexo y una delgada placa correctora de Schmidt en la parte frontal. La luz se refleja desde el primario al secundario, y luego a través de un agujero en el primario hacia el ocular.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Telescopio_de_Maksutov-Cassegrain" target="_blank" rel="noopener noreferrer">Maksutov-Cassegrain (Mak)</a>:</strong> Similar al SCT, pero utiliza una lente correctora menisco más gruesa y curvada. Ofrecen campos visuales más pequeños pero a menudo imágenes más nítidas que los SCT de igual apertura.</li>
             </ul>
             <ul>
                 <li><strong>Ventajas:</strong>
@@ -346,27 +376,28 @@
             <h3>1.3 Conceptos Clave en Telescopios</h3>
             <p>Independientemente del tipo de telescopio, hay varios parámetros fundamentales que definen su rendimiento:</p>
             <ul>
-                <li><strong>Apertura (D):</strong> Es el diámetro de la lente objetivo (en refractores) o del espejo primario (en reflectores y catadióptricos). Es el factor más importante de un telescopio, ya que determina su capacidad de <strong>recolección de luz</strong> (cuanto mayor la apertura, más luz capta y más débiles son los objetos que se pueden ver) y su <strong>poder de resolución</strong> (capacidad de distinguir detalles finos). Se mide usualmente en milímetros (mm) o pulgadas (").</li>
-                <li><strong>Distancia Focal (F o FL):</strong> Es la distancia desde el elemento óptico primario (lente o espejo) hasta el punto donde se forma la imagen (foco). Se mide en milímetros. Una distancia focal más larga generalmente implica mayores aumentos posibles y un campo visual más estrecho para un ocular dado.</li>
-                <li><strong>Relación Focal (f/ratio o f/):</strong> Se calcula dividiendo la distancia focal por la apertura (f/ = F/D). Por ejemplo, un telescopio con F=1000mm y D=100mm tiene una relación focal de f/10.
+                <li><strong><a href="https://es.wikipedia.org/wiki/Apertura_num%C3%A9rica#Apertura_en_fotograf%C3%ADa_y_%C3%B3ptica" target="_blank" rel="noopener noreferrer">Apertura (D)</a>:</strong> Es el diámetro de la lente objetivo (en refractores) o del espejo primario (en reflectores y catadióptricos). Es el factor más importante de un telescopio, ya que determina su capacidad de <strong>recolección de luz</strong> (cuanto mayor la apertura, más luz capta y más débiles son los objetos que se pueden ver) y su <strong>poder de resolución</strong> (capacidad de distinguir detalles finos). Se mide usualmente en milímetros (mm) o pulgadas (").</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Distancia_focal" target="_blank" rel="noopener noreferrer">Distancia Focal (F o FL)</a>:</strong> Es la distancia desde el elemento óptico primario (lente o espejo) hasta el punto donde se forma la imagen (foco). Se mide en milímetros. Una distancia focal más larga generalmente implica mayores aumentos posibles y un campo visual más estrecho para un ocular dado.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/N%C3%BAmero_f" target="_blank" rel="noopener noreferrer">Relación Focal (f/ratio o f/)</a>:</strong> Se calcula dividiendo la distancia focal por la apertura (f/ = F/D). Por ejemplo, un telescopio con F=1000mm y D=100mm tiene una relación focal de f/10.
                     <ul>
                         <li>Telescopios con relaciones focales "rápidas" (ej. f/4, f/5) ofrecen campos visuales más amplios y son preferidos para astrofotografía de objetos extensos de cielo profundo.</li>
                         <li>Telescopios con relaciones focales "lentas" (ej. f/10, f/15) suelen dar mayores aumentos con oculares estándar y son buenos para observación planetaria.</li>
                     </ul>
                 </li>
-                <li><strong>Aumento (Magnificación):</strong> Es cuántas veces más grande aparece un objeto a través del telescopio en comparación con la vista a simple ojo. Se calcula dividiendo la distancia focal del telescopio por la distancia focal del ocular: <code>Aumento = F_telescopio / F_ocular</code>. Es importante recordar que un aumento excesivo no siempre es mejor, ya que la imagen puede volverse borrosa, oscura y difícil de estabilizar. El máximo aumento útil suele estar limitado por la apertura del telescopio y las condiciones atmosféricas (aproximadamente 2x por milímetro de apertura, o 50x por pulgada de apertura, en condiciones ideales).</li>
-                <li><strong>Poder de Resolución:</strong> Es la capacidad del telescopio para mostrar detalles finos. Está directamente relacionado con la apertura. Una mayor apertura permite resolver detalles más pequeños. Se suele expresar en segundos de arco. El límite teórico de resolución (Criterio de Dawes) es aproximadamente <code>Resolución (") = 116 / D(mm)</code>.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Aumento_%C3%B3ptico" target="_blank" rel="noopener noreferrer">Aumento (Magnificación)</a>:</strong> Es cuántas veces más grande aparece un objeto a través del telescopio en comparación con la vista a simple ojo. Se calcula dividiendo la distancia focal del telescopio por la distancia focal del ocular: <code>Aumento = F_telescopio / F_ocular</code>. Es importante recordar que un aumento excesivo no siempre es mejor, ya que la imagen puede volverse borrosa, oscura y difícil de estabilizar. El máximo aumento útil suele estar limitado por la apertura del telescopio y las condiciones atmosféricas (aproximadamente 2x por milímetro de apertura, o 50x por pulgada de apertura, en condiciones ideales).</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Poder_de_resoluci%C3%B3n" target="_blank" rel="noopener noreferrer">Poder de Resolución</a>:</strong> Es la capacidad del telescopio para mostrar detalles finos. Está directamente relacionado con la apertura. Una mayor apertura permite resolver detalles más pequeños. Se suele expresar en segundos de arco. El límite teórico de resolución (<a href="https://es.wikipedia.org/wiki/Criterio_de_Dawes" target="_blank" rel="noopener noreferrer">Criterio de Dawes</a>) es aproximadamente <code>Resolución (") = 116 / D(mm)</code>.</li>
                 <li><strong>Campo Visual (FOV - Field of View):</strong> Es la porción del cielo que se puede ver a través del telescopio con un ocular específico. Depende de la distancia focal del telescopio y del diseño del ocular (su campo aparente).</li>
             </ul>
 
             <h3>1.4 La Atmósfera Terrestre y la Observación Astronómica</h3>
             <p>Nuestra atmósfera, aunque esencial para la vida, presenta desafíos para la observación astronómica desde la superficie terrestre.</p>
+            <img src="https://images.unsplash.com/photo-1447433589629-451fd1f0335a?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Cielo nocturno estrellado con indicios de contaminación lumínica en el horizonte]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Atmósfera+y+Observación';">
             <ul>
-                <li><strong>Seeing (Visibilidad Astronómica):</strong> Se refiere a la turbulencia atmosférica causada por variaciones de temperatura y densidad en el aire. Esta turbulencia hace que las imágenes de los objetos celestes "bailen" o se vean borrosas, limitando la cantidad de detalle visible, especialmente a altos aumentos. El seeing varía significativamente según la ubicación geográfica, la altitud y las condiciones meteorológicas locales.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Seeing_astron%C3%B3mico" target="_blank" rel="noopener noreferrer">Seeing (Visibilidad Astronómica)</a>:</strong> Se refiere a la turbulencia atmosférica causada por variaciones de temperatura y densidad en el aire. Esta turbulencia hace que las imágenes de los objetos celestes "bailen" o se vean borrosas, limitando la cantidad de detalle visible, especialmente a altos aumentos. El seeing varía significativamente según la ubicación geográfica, la altitud y las condiciones meteorológicas locales.</li>
                 <li><strong>Absorción y Dispersión Atmosférica:</strong> La atmósfera absorbe ciertas longitudes de onda de la luz (especialmente en el infrarrojo y ultravioleta) y dispersa otras (como la luz azul, que causa el color del cielo). Esto afecta el brillo y el color aparente de los objetos celestes. Observar cerca del horizonte es particularmente problemático debido a la mayor cantidad de atmósfera que la luz debe atravesar.</li>
-                <li><strong>Contaminación Lumínica:</strong> Es el brillo artificial del cielo nocturno causado por la iluminación excesiva e mal dirigida de las ciudades y áreas urbanas. Reduce drásticamente el contraste y la visibilidad de objetos débiles como nebulosas y galaxias, siendo uno de los mayores obstáculos para la astronomía amateur.</li>
+                <li><strong><a href="https://science.nasa.gov/ems/09_lightpollution/" target="_blank" rel="noopener noreferrer">Contaminación Lumínica</a>:</strong> Es el brillo artificial del cielo nocturno causado por la iluminación excesiva e mal dirigida de las ciudades y áreas urbanas. Reduce drásticamente el contraste y la visibilidad de objetos débiles como nebulosas y galaxias, siendo uno de los mayores obstáculos para la astronomía amateur.</li>
             </ul>
-            <p>Por estas razones, los grandes observatorios profesionales suelen ubicarse en montañas altas, remotas y secas, lejos de la contaminación lumínica y por encima de gran parte de la turbulencia atmosférica. Los telescopios espaciales, como el Hubble o el James Webb, eliminan por completo los problemas atmosféricos.</p>
+            <p>Por estas razones, los grandes observatorios profesionales suelen ubicarse en montañas altas, remotas y secas, lejos de la contaminación lumínica y por encima de gran parte de la turbulencia atmosférica. Los telescopios espaciales, como el <a href="https://science.nasa.gov/mission/hubble/" target="_blank" rel="noopener noreferrer">Hubble</a> o el <a href="https://science.nasa.gov/mission/webb/" target="_blank" rel="noopener noreferrer">James Webb</a>, eliminan por completo los problemas atmosféricos.</p>
             <hr class="my-8 border-gray-700">
             <p class="text-center text-lg text-yellow-400">¡Felicidades por completar la lectura del Módulo 1! Ahora estás listo para el siguiente paso.</p>
         </section>
@@ -426,7 +457,7 @@
 
         <section id="examen-modulo1" class="card p-6 md:p-8 mb-12 hidden">
             <h3 class="text-2xl font-bold text-center text-yellow-400 mb-8">Examen Módulo 1: Introducción a la Óptica Astronómica</h3>
-            <form id="quiz-form">
+            <form id="quiz-form" action="enviar_respuesta.html" method="POST">
                 <div class="exam-question">
                     <p>1. ¿Cuál de los siguientes fenómenos ópticos es el principio fundamental de funcionamiento de un telescopio refractor?</p>
                     <div class="space-y-2 mt-2">
@@ -477,9 +508,14 @@
                     </div>
                 </div>
 
-                <button type="button" onclick="alert('Resultados enviados (simulación). ¡Gracias por participar!')" class="w-full btn-primary px-6 py-3 rounded-full font-semibold text-lg mt-8">
+                <button type="submit" class="w-full btn-primary px-6 py-3 rounded-full font-semibold text-lg mt-8">
                     Enviar Respuestas
                 </button>
+                <div class="text-center mt-6">
+                    <a href="curso_telescopios_modulo2.html" class="w-full md:w-auto btn-secondary px-6 py-3 rounded-full font-semibold text-lg inline-block">
+                        Continuar al Módulo 2 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
             </form>
         </section>
 
@@ -533,15 +569,48 @@
         }
 
         function procederAlExamen() {
-            // Aquí podrías añadir validación del formulario de inscripción si fuera real
-            // Por ahora, solo simula el paso y muestra el examen
             const formInscripcion = document.getElementById('inscripcion');
             const seccionExamen = document.getElementById('examen-modulo1');
+            const existingError = formInscripcion.querySelector('.form-message');
+            if(existingError) existingError.remove();
+
 
             if (formInscripcion && seccionExamen) {
-                formInscripcion.classList.add('hidden'); // Oculta el formulario de inscripción
-                seccionExamen.classList.remove('hidden'); // Muestra el examen
-                alert('Inscripción simulada completada. Ahora puedes realizar el examen.');
+                const nombre = document.getElementById('nombre').value;
+                const apellido = document.getElementById('apellido').value;
+                const email = document.getElementById('email-inscripcion').value;
+
+                let isValid = true;
+                let errorMessage = '';
+
+                if (nombre.trim() === '' || apellido.trim() === '' || email.trim() === '') {
+                    errorMessage = 'Por favor, completa todos los campos del formulario de inscripción.';
+                    isValid = false;
+                } else if (!email.includes('@') || !email.includes('.')) { // Simple email validation
+                     errorMessage = 'Por favor, ingresa un correo electrónico válido.';
+                     isValid = false;
+                }
+
+                if (!isValid) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.textContent = errorMessage;
+                    errorDiv.className = 'form-message bg-red-500 text-white p-3 rounded-lg mb-4 text-center';
+                    formInscripcion.insertBefore(errorDiv, formInscripcion.firstChild);
+                    setTimeout(() => errorDiv.remove(), 5000); 
+                    return;
+                }
+
+                formInscripcion.classList.add('hidden'); 
+                seccionExamen.classList.remove('hidden'); 
+                
+                const successDiv = document.createElement('div');
+                successDiv.textContent = 'Inscripción simulada completada. Ahora puedes realizar el examen.';
+                successDiv.className = 'bg-green-500 text-white p-3 rounded-lg mb-4 text-center';
+                // Insertar el mensaje de éxito antes de la sección del examen, pero dentro del main o un contenedor adecuado
+                const mainContent = seccionExamen.closest('main') || document.body; // Busca el main o usa body como fallback
+                mainContent.insertBefore(successDiv, seccionExamen); 
+                setTimeout(() => successDiv.remove(), 5000); 
+
                 seccionExamen.scrollIntoView({ behavior: 'smooth' });
             } else {
                 console.error("No se encontraron los elementos del formulario o examen.");
@@ -551,3 +620,6 @@
     </script>
 </body>
 </html>
+```
+
+Espero que estas mejoras visuales y los enlaces informativos hagan que el Módulo 1 sea aún más atractivo y educativo. ¡El cosmos espera ser explorado con más detal
