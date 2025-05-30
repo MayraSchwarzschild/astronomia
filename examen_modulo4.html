@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Módulo 4: Telescopios - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card { 
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+
+        .btn-secondary {
+            background-color: var(--cosmic-purple);
+            color: var(--starlight-yellow);
+            border: 1px solid var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--starlight-yellow);
+            color: var(--cosmic-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .exam-question {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(109, 40, 217, 0.2);
+        }
+        .exam-question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .exam-question p {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .exam-option label {
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+        .exam-option input[type="radio"] {
+            accent-color: var(--starlight-yellow);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <nav aria-label="Breadcrumb" class="mb-8 text-sm text-gray-400">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                     <a href="curso_telescopios_modulo4.html" class="hover:text-yellow-400">Telescopios: Módulo 4</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-yellow-400">Examen Módulo 4</span>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Examen del Módulo 4</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-nebula-pink mb-12">Curso: Telescopios: Partes y Usos - Selección y Accesorios</h2>
+        
+        <section id="examen-modulo4-contenido" class="card p-6 md:p-8 mb-12">
+            <h3 class="text-xl font-semibold text-center text-white mb-8">Por favor, selecciona la respuesta correcta para cada pregunta.</h3>
+            <form id="quiz-form-modulo4" action="enviar_respuesta.html" method="POST">
+                <div class="exam-question">
+                    <p>1. ¿Qué tipo de telescopio es generalmente recomendado por ofrecer la mayor apertura por el dinero invertido, siendo ideal para observar objetos de cielo profundo débiles?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q1_m4" value="a" id="q1_m4_a"><label for="q1_m4_a">Refractor Apocromático (APO)</label></div>
+                        <div class="exam-option"><input type="radio" name="q1_m4" value="b" id="q1_m4_b"><label for="q1_m4_b">Maksutov-Cassegrain</label></div>
+                        <div class="exam-option"><input type="radio" name="q1_m4" value="c" id="q1_m4_c"><label for="q1_m4_c">Reflector Newtoniano sobre montura Dobsoniana</label></div>
+                        <div class="exam-option"><input type="radio" name="q1_m4" value="d" id="q1_m4_d"><label for="q1_m4_d">Schmidt-Cassegrain (SCT) pequeño</label></div>
+                    </div>
+                </div>
+
+                <div class="exam-question">
+                    <p>2. ¿Cuál de los siguientes accesorios es IMPRESCINDIBLE y debe usarse con extrema precaución para observar el Sol de forma segura?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q2_m4" value="a" id="q2_m4_a"><label for="q2_m4_a">Un filtro lunar de densidad neutra.</label></div>
+                        <div class="exam-option"><input type="radio" name="q2_m4" value="b" id="q2_m4_b"><label for="q2_m4_b">Un ocular de muy alta potencia.</label></div>
+                        <div class="exam-option"><input type="radio" name="q2_m4" value="c" id="q2_m4_c"><label for="q2_m4_c">Un filtro solar de apertura completa, diseñado específicamente para telescopios.</label></div>
+                        <div class="exam-option"><input type="radio" name="q2_m4" value="d" id="q2_m4_d"><label for="q2_m4_d">Un filtro de color verde.</label></div>
+                    </div>
+                </div>
+
+                <div class="exam-question">
+                    <p>3. ¿Para qué se utiliza principalmente una Lente de Barlow?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q3_m4" value="a" id="q3_m4_a"><label for="q3_m4_a">Para ampliar el campo visual del ocular.</label></div>
+                        <div class="exam-option"><input type="radio" name="q3_m4" value="b" id="q3_m4_b"><label for="q3_m4_b">Para multiplicar el aumento proporcionado por un ocular.</label></div>
+                        <div class="exam-option"><input type="radio" name="q3_m4" value="c" id="q3_m4_c"><label for="q3_m4_c">Para reducir la aberración cromática.</label></div>
+                        <div class="exam-option"><input type="radio" name="q3_m4" value="d" id="q3_m4_d"><label for="q3_m4_d">Para facilitar la colimación del telescopio.</label></div>
+                    </div>
+                </div>
+
+                <div class="exam-question">
+                    <p>4. ¿Cuál es la principal ventaja de usar software de planetario como Stellarium o SkySafari?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q4_m4" value="a" id="q4_m4_a"><label for="q4_m4_a">Mejora la calidad óptica de las imágenes del telescopio.</label></div>
+                        <div class="exam-option"><input type="radio" name="q4_m4" value="b" id="q4_m4_b"><label for="q4_m4_b">Permite controlar el clima para asegurar noches despejadas.</label></div>
+                        <div class="exam-option"><input type="radio" name="q4_m4" value="c" id="q4_m4_c"><label for="q4_m4_c">Ayuda a simular el cielo, identificar objetos, planificar observaciones y, en algunos casos, controlar telescopios GoTo.</label></div>
+                        <div class="exam-option"><input type="radio" name="q4_m4" value="d" id="q4_m4_d"><label for="q4_m4_d">Reemplaza la necesidad de un buscador en el telescopio.</label></div>
+                    </div>
+                </div>
+                
+                <div class="exam-question">
+                    <p>5. Si tu principal interés es la astrofotografía de larga exposición de objetos de cielo profundo, ¿qué tipo de montura es generalmente la más recomendada?</p>
+                    <div class="space-y-2 mt-2">
+                        <div class="exam-option"><input type="radio" name="q5_m4" value="a" id="q5_m4_a"><label for="q5_m4_a">Una montura altazimutal manual ligera.</label></div>
+                        <div class="exam-option"><input type="radio" name="q5_m4" value="b" id="q5_m4_b"><label for="q5_m4_b">Una montura Dobsoniana.</label></div>
+                        <div class="exam-option"><input type="radio" name="q5_m4" value="c" id="q5_m4_c"><label for="q5_m4_c">Una montura ecuatorial robusta y precisa, preferiblemente con GoTo.</label></div>
+                        <div class="exam-option"><input type="radio" name="q5_m4" value="d" id="q5_m4_d"><label for="q5_m4_d">Un trípode fotográfico estándar.</label></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full btn-primary px-6 py-3 rounded-full font-semibold text-lg mt-8">
+                    Enviar Respuestas
+                </button>
+                <div class="text-center mt-6">
+                    <a href="curso_telescopios_modulo5.html" class="w-full md:w-auto btn-secondary px-6 py-3 rounded-full font-semibold text-lg inline-block">
+                        Continuar al Módulo 5 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para evitar re-declaraciones y asegurar que los elementos del DOM existan
+        if (typeof window.examenModulo4ScriptInitialized === 'undefined') {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            const navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : null;
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                if (navLinks) { 
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', () => {
+                            if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                                if(mobileMenu) { 
+                                    mobileMenu.classList.add('hidden');
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+            
+            const currentYearElem = document.getElementById('currentYear');
+            if (currentYearElem) {
+                currentYearElem.textContent = new Date().getFullYear();
+            }
+
+            const satelliteIconElement = document.querySelector('.navbar-glass .fa-satellite');
+            if (satelliteIconElement) {
+                const satelliteIconLink = satelliteIconElement.parentElement;
+                if (satelliteIconLink) {
+                    satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+                    satelliteIconLink.target = "_blank"; 
+                }
+            }
+            window.examenModulo4ScriptInitialized = true; 
+        }
+    </script>
+</body>
+</html>
