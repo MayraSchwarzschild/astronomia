@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Monturas Telescópicas - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card { 
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-align: center; 
+            display: inline-block; 
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+
+        .btn-secondary {
+            background-color: var(--cosmic-purple);
+            color: var(--starlight-yellow);
+            border: 1px solid var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center; 
+            display: inline-block; 
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--starlight-yellow);
+            color: var(--cosmic-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .content-section h3 {
+            color: var(--starlight-yellow);
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            border-bottom: 1px solid rgba(246, 173, 85, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .content-section h4 {
+            color: var(--nebula-pink);
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.75rem; 
+        }
+        .content-section p, .content-section ul li {
+            line-height: 1.7;
+            margin-bottom: 0.75rem; 
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; 
+        }
+        .content-section strong {
+            color: var(--starlight-yellow);
+        }
+        .content-section code {
+            background-color: rgba(11, 13, 23, 0.5);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--nebula-pink);
+        }
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .content-section a {
+            color: var(--nebula-pink);
+            text-decoration: underline;
+        }
+        .content-section a:hover {
+            color: var(--starlight-yellow);
+        }
+        .form-message { 
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <nav aria-label="Breadcrumb" class="mb-8 text-sm text-gray-400">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-gray-200">Telescopios: Partes y Usos</span>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-yellow-400">Módulo 3</span>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Curso: Telescopios: Partes y Usos</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-nebula-pink mb-12">Módulo 3: Monturas Telescópicas</h2>
+        
+        <section id="module-content" class="card p-6 md:p-8 mb-12 content-section">
+            <h3>Bienvenida al Módulo 3</h3>
+            <p>¡Hemos llegado al Módulo 3! Ahora que conoces los componentes ópticos, es hora de hablar de lo que los sostiene y permite apuntarlos: las <strong>monturas telescópicas</strong>. Una buena montura es esencial para una observación estable y un seguimiento preciso de los objetos celestes. En este módulo, exploraremos los dos tipos principales de monturas (altazimutales y ecuatoriales), sus ventajas, cómo realizar la crucial "puesta en estación" de una montura ecuatorial, y la conveniencia de los sistemas GoTo.</p>
+
+            <h3>3.1 ¿Qué es una Montura Telescópica y por qué es Importante?</h3>
+            <p>La montura de un telescopio tiene dos funciones principales:</p>
+            <ul>
+                <li><strong>Soporte Estable:</strong> Debe sostener el tubo óptico (OTA - Optical Tube Assembly) de forma firme y sin vibraciones. Cualquier vibración se magnifica enormemente a través del ocular, arruinando la vista.</li>
+                <li><strong>Movimiento Controlado:</strong> Debe permitir mover el telescopio de forma suave y precisa para apuntar a los objetos celestes y, crucialmente, para seguir su movimiento aparente a través del cielo debido a la rotación de la Tierra.</li>
+            </ul>
+            <p>Una montura inadecuada o de mala calidad puede convertir un telescopio con excelente óptica en una fuente de frustración. La elección de la montura depende del tipo de telescopio, el tipo de observación que se planea (visual, astrofotografía) y el presupuesto.</p>
+            <img src="https://images.unsplash.com/photo-1580477062099-9993f1919600?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Varios telescopios sobre diferentes tipos de monturas]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Monturas+Telescópicas';">
+
+            <h3>3.2 Tipos Principales de Monturas</h3>
+            <p>Las monturas se clasifican principalmente en dos categorías según los ejes sobre los que giran:</p>
+
+            <h4><a href="https://es.wikipedia.org/wiki/Montura_altazimutal" target="_blank" rel="noopener noreferrer">Monturas Altazimutales (Alt-Az)</a></h4>
+            <p>Las monturas altazimutales tienen dos ejes de movimiento perpendiculares entre sí:</p>
+            <ul>
+                <li><strong>Altitud (Altura):</strong> Movimiento vertical (arriba-abajo).</li>
+                <li><strong>Azimut:</strong> Movimiento horizontal (izquierda-derecha, paralelo al horizonte).</li>
+            </ul>
+            <img src="https://images.unsplash.com/photo-1618336753300-7907c2303638?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="[Telescopio sobre una montura altazimutal sencilla, como un Dobsoniano]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/600x350/0B0D17/D53F8C?text=Montura+Altazimutal';">
+            <ul>
+                <li><strong>Ventajas:</strong>
+                    <ul>
+                        <li>Diseño simple, intuitivo y generalmente más económico.</li>
+                        <li>Más ligeras y portátiles para una apertura dada.</li>
+                        <li>Fáciles de configurar y usar, ideales para principiantes y observación visual rápida.</li>
+                        <li>Las monturas <strong>Dobsonianas</strong> son un tipo de montura altazimutal muy popular para telescopios reflectores Newtonianos grandes, ofreciendo una gran estabilidad a bajo costo.</li>
+                    </ul>
+                </li>
+                <li><strong>Desventajas:</strong>
+                    <ul>
+                        <li>Para seguir objetos celestes, se requiere mover el telescopio en ambos ejes simultáneamente, lo que puede ser complicado manualmente a altos aumentos.</li>
+                        <li>Sufren de <strong>rotación de campo</strong> cuando se usan para astrofotografía de larga exposición (el campo visual parece rotar alrededor del objeto central), lo que requiere un desrotador de campo o exposiciones cortas.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4><a href="https://es.wikipedia.org/wiki/Montura_ecuatorial" target="_blank" rel="noopener noreferrer">Monturas Ecuatoriales</a></h4>
+            <p>Las monturas ecuatoriales también tienen dos ejes de movimiento perpendiculares, pero están diseñados para compensar la rotación de la Tierra de manera más simple:</p>
+            <ul>
+                <li><strong>Eje de Ascensión Recta (AR o RA):</strong> Paralelo al eje de rotación de la Tierra. Una vez alineado correctamente, solo se necesita mover el telescopio alrededor de este eje (a la velocidad de rotación terrestre) para seguir un objeto celeste.</li>
+                <li><strong>Eje de Declinación (Dec):</strong> Perpendicular al eje de AR. Se usa para apuntar al norte o sur celeste del objeto.</li>
+            </ul>
+            <img src="https://images.unsplash.com/photo-1518964969190-a71f880c01ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="[Telescopio sobre una montura ecuatorial alemana]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E1A3E/F6AD55?text=Montura+Ecuatorial';">
+            <p>Tipos comunes de monturas ecuatoriales incluyen la <strong>montura alemana</strong> (la más popular para telescopios amateur), la <strong>montura de horquilla</strong> y la <strong>montura inglesa</strong>.</p>
+            <ul>
+                <li><strong>Ventajas:</strong>
+                    <ul>
+                        <li>Permiten un seguimiento suave y preciso de los objetos celestes moviendo solo el eje de AR (una vez alineada).</li>
+                        <li>Esenciales para astrofotografía de larga exposición, ya que evitan la rotación de campo.</li>
+                        <li>Facilitan el uso de círculos graduados (escalas en los ejes) para localizar objetos por sus coordenadas celestes (AR y Dec).</li>
+                    </ul>
+                </li>
+                <li><strong>Desventajas:</strong>
+                    <ul>
+                        <li>Más complejas mecánicamente y generalmente más caras que las altazimutales.</li>
+                        <li>Requieren un proceso de <strong>puesta en estación</strong> (alineación polar) para funcionar correctamente, lo que puede llevar tiempo y práctica.</li>
+                        <li>Pueden ser más pesadas y voluminosas.</li>
+                        <li>Algunos diseños (como la montura alemana) pueden requerir contrapesos y pueden tener posiciones incómodas para el ocular o la cámara en ciertas orientaciones.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3>3.3 Puesta en Estación de Monturas Ecuatoriales</h3>
+            <p>La puesta en estación, o alineación polar, es el proceso de alinear el eje de Ascensión Recta de la montura ecuatorial con el eje de rotación de la Tierra, es decir, apuntándolo hacia el polo celeste correspondiente (Polo Norte Celeste cerca de la estrella Polaris en el hemisferio norte, o el Polo Sur Celeste en el hemisferio sur).</p>
+            <img src="https://images.unsplash.com/photo-1504333638930-c8787321eee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Persona ajustando una montura ecuatorial con el cielo estrellado de fondo]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Puesta+en+Estación';">
+            <h4>Pasos Básicos (Hemisferio Sur - como referencia para Argentina):</h4>
+            <ol>
+                <li><strong>Nivelar el Trípode:</strong> Asegurar que la base de la montura esté perfectamente nivelada.</li>
+                <li><strong>Ajustar la Latitud:</strong> Inclinar el eje de AR de la montura al ángulo correspondiente a la latitud del lugar de observación. Para San Miguel, Buenos Aires (aprox. 34.5° Sur), el eje de AR debe apuntar hacia el sur y estar inclinado unos 34.5° hacia arriba desde la horizontal.</li>
+                <li><strong>Orientar al Sur Verdadero:</strong> Apuntar el eje de AR lo más precisamente posible hacia el Polo Sur Celeste. Esto se puede hacer:
+                    <ul>
+                        <li>Con una brújula (corrigiendo la declinación magnética).</li>
+                        <li>Usando estrellas de referencia cerca del Polo Sur Celeste (como Sigma Octantis, aunque es muy débil, o constelaciones como la Cruz del Sur y Achernar para triangular la posición).</li>
+                        <li>Con un buscador polar incorporado en la montura.</li>
+                    </ul>
+                </li>
+                <li><strong>Alineación Fina (para astrofotografía):</strong> Métodos más precisos como el "método de deriva" (drift alignment) o el uso de software y cámaras especializadas son necesarios para astrofotografía de larga exposición.</li>
+            </ol>
+            <p>Una buena puesta en estación es crucial. Si no está bien alineada, los objetos se saldrán del campo visual incluso con el motor de seguimiento activado, y las astrofotos mostrarán estrellas alargadas.</p>
+
+            <h3>3.4 Sistemas <a href="https://es.wikipedia.org/wiki/Telescopio_GoTo" target="_blank" rel="noopener noreferrer">GoTo</a> (Computerizados)</h3>
+            <p>Muchas monturas modernas, tanto altazimutales como ecuatoriales, vienen equipadas con sistemas GoTo. Estos sistemas utilizan motores en ambos ejes y una computadora integrada (generalmente en un control manual o conectada a una PC/smartphone) con una base de datos de miles de objetos celestes.</p>
+            <img src="https://images.unsplash.com/photo-1604042898164-90100078515a?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Control manual de un sistema GoTo de telescopio]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/0B0D17/D53F8C?text=Sistema+GoTo';">
+            <ul>
+                <li><strong>Funcionamiento:</strong> Después de un proceso de alineación inicial (generalmente apuntando el telescopio a 2 o 3 estrellas brillantes conocidas), el usuario selecciona un objeto de la base de datos en el control manual, y la montura mueve automáticamente el telescopio para apuntar a ese objeto y comenzar a seguirlo.</li>
+                <li><strong>Ventajas:</strong>
+                    <ul>
+                        <li>Facilita enormemente la localización de objetos, especialmente los débiles o difíciles de encontrar manualmente.</li>
+                        <li>Ahorra tiempo y permite observar más objetos en una sesión.</li>
+                        <li>Muy útil para principiantes y para la divulgación.</li>
+                        <li>Las monturas GoTo ecuatoriales realizan un seguimiento preciso para astrofotografía.</li>
+                    </ul>
+                </li>
+                <li><strong>Desventajas:</strong>
+                    <ul>
+                        <li>Más costosas que las monturas manuales.</li>
+                        <li>Requieren una fuente de alimentación (baterías o adaptador de corriente).</li>
+                        <li>El proceso de alineación inicial debe realizarse correctamente para que el GoTo sea preciso.</li>
+                        <li>Algunos argumentan que puede reducir el aprendizaje del cielo si se depende exclusivamente de él.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Los sistemas GoTo han revolucionado la astronomía amateur, haciendo el universo mucho más accesible. Sin embargo, aprender a navegar el cielo manualmente sigue siendo una habilidad valiosa y gratificante.</p>
+            
+            <hr class="my-8 border-gray-700">
+            <p class="text-center text-lg text-yellow-400">¡Has navegado por el mundo de las monturas! El Módulo 3 está completo. Prepárate para el siguiente desafío.</p>
+        </section>
+
+        <section id="continuar-modulo3" class="card p-6 md:p-8 mb-12">
+            <h3 class="text-2xl font-bold text-center text-yellow-400 mb-6">¡Evalúa tu Comprensión del Módulo 3!</h3>
+            <p class="text-center text-gray-300 mb-8">Has aprendido sobre los cimientos que permiten a nuestros telescopios explorar el cielo. Es hora de verificar tus conocimientos.</p>
+            
+            <div class="text-center">
+                <a href="examen_modulo3.html" class="w-full md:w-auto btn-primary px-6 py-3 rounded-full font-semibold text-lg">
+                    Ir al Examen del Módulo 3
+                </a>
+            </div>
+            <p class="text-xs text-gray-500 text-center mt-4">(Al hacer clic, serás redirigido a la página del examen del Módulo 3.)</p>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para evitar re-declaraciones y asegurar que los elementos del DOM existan
+        if (typeof window.cursoModulo3ScriptInitialized === 'undefined') {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            const navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : null;
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                if (navLinks) { 
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', () => {
+                            if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                                if(mobileMenu) { 
+                                    mobileMenu.classList.add('hidden');
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+            
+            const currentYearElem = document.getElementById('currentYear');
+            if (currentYearElem) {
+                currentYearElem.textContent = new Date().getFullYear();
+            }
+
+            const satelliteIconElement = document.querySelector('.navbar-glass .fa-satellite');
+            if (satelliteIconElement) {
+                const satelliteIconLink = satelliteIconElement.parentElement;
+                if (satelliteIconLink) {
+                    satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+                    satelliteIconLink.target = "_blank"; 
+                }
+            }
+            window.cursoModulo3ScriptInitialized = true; 
+        }
+    </script>
+</body>
+</html>
