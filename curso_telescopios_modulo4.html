@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Selección y Accesorios - Telescopios - Museo del Observatorio de San Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-blue: #0b0d17;
+            --cosmic-purple: #1e1a3e;
+            --starlight-yellow: #f6ad55;
+            --nebula-pink: #d53f8c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-blue);
+            color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 188, 250, 0.05) 0%, rgba(214, 188, 250, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(246, 173, 85, 0.05) 0%, rgba(246, 173, 85, 0) 40%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 220, 0.03) 0%, rgba(100, 100, 220, 0) 30%);
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-glass {
+            background-color: rgba(11, 13, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 173, 85, 0.2);
+        }
+                
+        .card { 
+            background-color: rgba(30, 26, 62, 0.7);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--starlight-yellow), var(--nebula-pink));
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-align: center; 
+            display: inline-block; 
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 120%;
+        }
+
+        .btn-secondary {
+            background-color: var(--cosmic-purple);
+            color: var(--starlight-yellow);
+            border: 1px solid var(--starlight-yellow);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center; 
+            display: inline-block; 
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--starlight-yellow);
+            color: var(--cosmic-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.2);
+        }
+        
+        .section-title {
+            color: var(--starlight-yellow);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--starlight-yellow), var(--nebula-pink));
+            border-radius: 3px;
+        }
+
+        .star-decoration {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+            z-index: 0; 
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .dynamic-satellite {
+            transition: transform 0.5s ease-in-out;
+        }
+        .dynamic-satellite:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .content-section h3 {
+            color: var(--starlight-yellow);
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            border-bottom: 1px solid rgba(246, 173, 85, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .content-section h4 {
+            color: var(--nebula-pink);
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.75rem; 
+        }
+        .content-section p, .content-section ul li {
+            line-height: 1.7;
+            margin-bottom: 0.75rem; 
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; 
+        }
+        .content-section strong {
+            color: var(--starlight-yellow);
+        }
+        .content-section code {
+            background-color: rgba(11, 13, 23, 0.5);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--nebula-pink);
+        }
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .content-section a {
+            color: var(--nebula-pink);
+            text-decoration: underline;
+        }
+        .content-section a:hover {
+            color: var(--starlight-yellow);
+        }
+        .form-message { 
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
+    <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
+    <div class="star-decoration" style="top: 90%; left: 90%; width: 1px; height: 1px; animation-delay: 1.2s;"></div>
+    <div class="star-decoration" style="top: 50%; left: 50%; width: 2px; height: 2px; animation-delay: 2.8s;"></div>
+
+    <nav class="navbar-glass sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
+                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
+                <span class="sm:hidden">MOSM</span>
+            </a>
+            <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
+                <a href="cursos.html" class="text-yellow-400 font-semibold transition duration-300">Cursos</a>
+                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+                <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+                <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+                <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
+                    <i class="fas fa-star mr-1"></i>Premium
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="cursos.html" class="block text-yellow-400 font-semibold transition duration-300">Cursos</a>
+            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Trabajos</a>
+            <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
+            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Equipo</a>
+            <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
+                <i class="fas fa-star mr-1"></i>Premium
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <nav aria-label="Breadcrumb" class="mb-8 text-sm text-gray-400">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-gray-200">Telescopios: Partes y Usos</span>
+                    <i class="fas fa-angle-right mx-2"></i>
+                </li>
+                <li class="flex items-center">
+                    <span class="text-yellow-400">Módulo 4</span>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Curso: Telescopios: Partes y Usos</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-nebula-pink mb-12">Módulo 4: Selección de Telescopio y Accesorios Esenciales</h2>
+        
+        <section id="module-content" class="card p-6 md:p-8 mb-12 content-section">
+            <h3>Bienvenida al Módulo 4</h3>
+            <p>¡Felicidades por llegar al Módulo 4! Después de haber explorado la óptica, los componentes y las monturas, es el momento de abordar una de las decisiones más emocionantes para un aficionado: la <strong>selección de un telescopio</strong>. También nos sumergiremos en el mundo de los <strong>accesorios</strong>, aquellos complementos que pueden transformar y enriquecer enormemente tu experiencia observacional. Finalmente, conoceremos la utilidad del <strong>software de planetario</strong> como herramienta indispensable para planificar tus noches bajo las estrellas.</p>
+
+            <h3>4.1 Cómo Elegir tu Primer Telescopio (o el Próximo)</h3>
+            <p>Elegir un telescopio puede parecer abrumador dada la variedad de opciones. Aquí te presentamos algunos factores clave a considerar:</p>
+            <img src="https://images.unsplash.com/photo-1518091042046-53d8d7b01103?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Persona mirando diferentes telescopios en una tienda o exhibición]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Selección+de+Telescopio';">
+            <ul>
+                <li><strong>¿Qué quieres observar principalmente?</strong>
+                    <ul>
+                        <li><strong>Luna y Planetas:</strong> Los refractores de buena calidad y los Maksutov-Cassegrain son excelentes por su alto contraste y nitidez. Los reflectores Newtonianos de relación focal más larga (f/8 o más) también son muy buenos.</li>
+                        <li><strong>Objetos de Cielo Profundo (nebulosas, galaxias, cúmulos):</strong> Se beneficia de una mayor apertura para captar más luz. Los reflectores Newtonianos (especialmente los Dobsonianos) ofrecen la mayor apertura por tu dinero. Los Schmidt-Cassegrain también son versátiles.</li>
+                        <li><strong>Uso Mixto (planetas y cielo profundo):</strong> Un Newtoniano de relación focal media (f/5-f/6) o un Schmidt-Cassegrain pueden ser buenas opciones.</li>
+                    </ul>
+                </li>
+                <li><strong>Presupuesto:</strong> Establece un rango de precios realista. Recuerda que a menudo necesitarás invertir también en algunos accesorios básicos.</li>
+                <li><strong>Portabilidad y Almacenamiento:</strong> ¿Dónde observarás principalmente? ¿Necesitas transportarlo con frecuencia? Los telescopios grandes y pesados pueden ser difíciles de mover y configurar, lo que podría desanimarte a usarlos. Los refractores pequeños, los Maksutov-Cassegrain y los SCT son generalmente más portátiles.</li>
+                <li><strong>Apertura vs. Calidad Óptica:</strong> Si bien la apertura es crucial ("aperture fever" es real), una óptica de excelente calidad en un telescopio de menor apertura puede superar a una óptica mediocre en uno más grande, especialmente para observación planetaria.</li>
+                <li><strong>Tipo de Montura:</strong>
+                    <ul>
+                        <li><strong>Altazimutal:</strong> Más simple, intuitiva y a menudo más económica. Ideal para observación visual rápida y para principiantes.</li>
+                        <li><strong>Ecuatorial:</strong> Mejor para seguimiento y esencial para astrofotografía de larga exposición, pero requiere puesta en estación.</li>
+                    </ul>
+                </li>
+                <li><strong>¿Observación Visual o Astrofotografía?</strong> Si tu interés principal es la astrofotografía, necesitarás una montura ecuatorial robusta y precisa, preferiblemente con capacidad GoTo y autoguiado. Esto incrementará significativamente el costo.</li>
+                <li><strong>Investiga y Compara:</strong> Lee reseñas, únete a foros de astronomía, visita tiendas especializadas si es posible, y si tienes la oportunidad, asiste a "star parties" o eventos de clubes de astronomía para probar diferentes telescopios.</li>
+            </ul>
+
+            <h3>4.2 Accesorios Esenciales</h3>
+            <p>Además del telescopio y la montura, ciertos accesorios son prácticamente indispensables para una buena experiencia de observación.</p>
+            <img src="https://images.unsplash.com/photo-1590307544013-735cb36997a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Colección de oculares, filtros y otros accesorios de telescopio]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/0B0D17/D53F8C?text=Accesorios+Esenciales';">
+            <ul>
+                <li><strong>Oculares Adicionales:</strong> La mayoría de los telescopios vienen con uno o dos oculares. Para tener una gama de aumentos, necesitarás al menos 2-3 oculares de diferentes distancias focales (ej. uno de baja potencia para campos amplios, uno de media potencia y uno de alta potencia para detalles planetarios). Los Plössl son una buena opción de inicio por su relación calidad-precio.</li>
+                <li><strong><a href="https://es.wikipedia.org/wiki/Lente_de_Barlow" target="_blank" rel="noopener noreferrer">Lente de Barlow</a>:</strong> Es una lente divergente que se coloca entre el enfocador y el ocular, multiplicando el aumento del ocular (generalmente 2x o 3x). Es una forma económica de duplicar el número de aumentos disponibles con tus oculares.</li>
+                <li><strong>Filtros Astronómicos:</strong>
+                    <ul>
+                        <li><strong>Filtro Lunar (Densidad Neutra):</strong> Reduce el brillo intenso de la Luna llena o en fases gibosas, mejorando el contraste y la comodidad visual.</li>
+                        <li><strong>Filtros de Color (Planetarios):</strong> Realzan detalles específicos en las superficies y atmósferas planetarias (ej. un filtro rojo para detalles en Marte, uno azul para Júpiter y Saturno).</li>
+                        <li><strong>Filtros para Nebulosas (UHC, O-III, H-Beta):</strong> Bloquean selectivamente la luz de la contaminación lumínica y realzan la luz emitida por ciertos tipos de nebulosas, haciéndolas más visibles. Son muy útiles desde cielos suburbanos.</li>
+                        <li><strong>Filtro Solar (¡IMPRESCINDIBLE Y DE USO SEGURO!):</strong> <strong>NUNCA observes el Sol directamente a través de un telescopio sin un filtro solar adecuado y seguro, diseñado específicamente para telescopios y que cubra TODA la apertura frontal del instrumento.</strong> Hacerlo puede causar ceguera instantánea e irreversible. Los filtros solares seguros suelen ser de Mylar recubierto o de vidrio óptico con recubrimientos especiales.</li>
+                    </ul>
+                </li>
+                <li><strong>Adaptador para Smartphone (Opcional pero útil):</strong> Permite acoplar tu teléfono móvil al ocular para tomar fotos sencillas de la Luna y planetas brillantes (astrofotografía afocal).</li>
+                <li><strong>Linterna de Luz Roja:</strong> Esencial para preservar tu adaptación a la oscuridad mientras consultas cartas celestes o ajustas el equipo. La luz roja afecta menos la visión nocturna que la luz blanca.</li>
+                <li><strong>Silla o Taburete de Observación:</strong> Observar cómodamente durante largos periodos es clave. Una silla ajustable en altura es ideal.</li>
+            </ul>
+
+            <h3>4.3 Accesorios Opcionales (Pero que Mejoran la Experiencia)</h3>
+            <ul>
+                <li><strong>Maletín de Oculares y Accesorios:</strong> Para mantener todo organizado y protegido.</li>
+                <li><strong>Colimador:</strong> Herramienta para alinear las ópticas de telescopios reflectores (ej. colimador Cheshire, colimador láser).</li>
+                <li><strong>Buscador de Ángulo Recto o con Imagen Corregida (RACIs):</strong> Algunos buscadores ópticos ofrecen una imagen orientada correctamente (no invertida ni especular), lo que facilita la comparación con cartas celestes. Los de ángulo recto son más cómodos para apuntar cerca del cenit.</li>
+                <li><strong>Calentadores de Rocío (Dew Heaters/Shields):</strong> En noches húmedas, el rocío puede condensarse en las ópticas. Los calentadores de rocío (bandas que se envuelven alrededor del tubo o lente) o los parasoles (dew shields) ayudan a prevenirlo.</li>
+                <li><strong>Fuente de Alimentación Portátil:</strong> Si tu montura es GoTo o usas accesorios electrónicos, una batería portátil es muy útil.</li>
+            </ul>
+
+            <h3>4.4 <a href="https://es.wikipedia.org/wiki/Software_de_planetario" target="_blank" rel="noopener noreferrer">Software de Planetario</a> y Aplicaciones Móviles</h3>
+            <p>El software de planetario es una herramienta invaluable para cualquier astrónomo aficionado. Simula el cielo nocturno desde cualquier ubicación y en cualquier fecha, mostrando la posición de estrellas, planetas, constelaciones, objetos de cielo profundo y mucho más.</p>
+            <img src="https://images.unsplash.com/photo-1593697821028-157e090f60a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="[Pantalla de una tablet o laptop mostrando un software de planetario como Stellarium]" class="mx-auto my-4" onerror="this.onerror=null; this.src='https://placehold.co/700x350/1E1A3E/F6AD55?text=Software+de+Planetario';">
+            <h4>Funciones Comunes:</h4>
+            <ul>
+                <li>Visualización del cielo en tiempo real o para fechas futuras/pasadas.</li>
+                <li>Bases de datos extensas de objetos celestes con información detallada.</li>
+                <li>Identificación de objetos apuntando el dispositivo al cielo (en apps móviles con brújula y acelerómetro).</li>
+                <li>Planificación de sesiones de observación (qué objetos serán visibles, cuándo, etc.).</li>
+                <li>Control de telescopios GoTo (algunos programas).</li>
+                <li>Simulación de eclipses, tránsitos, lluvias de meteoros, etc.</li>
+            </ul>
+            <h4>Ejemplos Populares:</h4>
+            <ul>
+                <li><strong>Stellarium (PC, Mac, Linux, Web, Móvil):</strong> Gratuito, de código abierto y muy completo. Altamente recomendado.</li>
+                <li><strong>Cartes du Ciel / SkyChart (PC):</strong> Gratuito y potente, con muchas opciones de personalización y catálogos.</li>
+                <li><strong>SkySafari (Móvil, Mac):</strong> Aplicación móvil muy popular, con diferentes versiones (básica, plus, pro) y excelente interfaz.</li>
+                <li><strong>Celestia (PC, Mac, Linux):</strong> Más que un planetario, es un simulador espacial 3D que te permite viajar por el sistema solar y más allá. Gratuito.</li>
+                <li><strong>Aplicaciones de la NASA:</strong> La NASA ofrece varias aplicaciones móviles gratuitas con información astronómica, noticias y visualizaciones.</li>
+            </ul>
+            <p>Utilizar un software de planetario te ayudará a familiarizarte con el cielo, planificar qué observar y encontrar objetos con mayor facilidad.</p>
+            
+            <hr class="my-8 border-gray-700">
+            <p class="text-center text-lg text-yellow-400">¡Has aprendido sobre cómo elegir tu ventana al universo y los complementos para mejorar la vista! El Módulo 4 está completo.</p>
+        </section>
+
+        <section id="continuar-modulo4" class="card p-6 md:p-8 mb-12">
+            <h3 class="text-2xl font-bold text-center text-yellow-400 mb-6">¡Es Hora de Evaluar tus Conocimientos del Módulo 4!</h3>
+            <p class="text-center text-gray-300 mb-8">Has explorado cómo seleccionar el equipo adecuado y los accesorios que enriquecen la observación. ¡Demuestra lo que has aprendido!</p>
+            
+            <div class="text-center">
+                <a href="examen_modulo4.html" class="w-full md:w-auto btn-primary px-6 py-3 rounded-full font-semibold text-lg">
+                    Ir al Examen del Módulo 4
+                </a>
+            </div>
+            <p class="text-xs text-gray-500 text-center mt-4">(Al hacer clic, serás redirigido a la página del examen del Módulo 4.)</p>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-800 mt-auto">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="mb-6">
+                <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                </a>
+            </div>
+            <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
+                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
+                <a href="trabajos.html" class="hover:text-yellow-400">Trabajos</a>
+                <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
+                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
+                <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
+                <a href="index.html#equipo" class="hover:text-yellow-400">Equipo</a>
+                <a href="premium.html" class="hover:text-yellow-400">Premium</a>
+            </div>
+            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para evitar re-declaraciones y asegurar que los elementos del DOM existan
+        if (typeof window.cursoModulo4ScriptInitialized === 'undefined') {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            const navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : null;
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                if (navLinks) { 
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', () => {
+                            if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').includes('index.html#')) {
+                                if(mobileMenu) { 
+                                    mobileMenu.classList.add('hidden');
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+            
+            const currentYearElem = document.getElementById('currentYear');
+            if (currentYearElem) {
+                currentYearElem.textContent = new Date().getFullYear();
+            }
+
+            const satelliteIconElement = document.querySelector('.navbar-glass .fa-satellite');
+            if (satelliteIconElement) {
+                const satelliteIconLink = satelliteIconElement.parentElement;
+                if (satelliteIconLink) {
+                    satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
+                    satelliteIconLink.target = "_blank"; 
+                }
+            }
+            window.cursoModulo4ScriptInitialized = true; 
+        }
+    </script>
+</body>
+</html>
