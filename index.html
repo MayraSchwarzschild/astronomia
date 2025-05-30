@@ -212,12 +212,9 @@
                     <img id="apod-image" src="https://placehold.co/1200x800/0B0D17/E2E8F0?text=Cargando+APOD..." alt="NASA Astronomy Picture of the Day" class="rounded-lg mb-6 w-full h-auto object-cover" style="max-height: 600px;">
                     <h3 id="apod-title" class="text-2xl font-semibold text-white mb-3">Cargando título...</h3>
                     <p id="apod-date" class="text-sm text-gray-400 mb-3">Cargando fecha...</p>
-                    <p id="apod-explanation" class="text-gray-300 mb-6 leading-relaxed">Cargando explicación...</p>
-                    <a id="apod-download-hd" href="#" target="_blank" class="btn-primary px-6 py-3 rounded-full inline-block mr-3" style="display: none;">
-                        <i class="fas fa-download mr-2"></i>Descargar Imagen HD
-                    </a>
-                     <a id="apod-download-sd" href="#" target="_blank" class="btn-primary px-6 py-3 rounded-full inline-block" style="display: none;">
-                        <i class="fas fa-download mr-2"></i>Descargar Imagen SD
+                    <p id="apod-explanation" class="text-gray-300 mb-6 leading-relaxed text-center">Cargando explicación...</p>
+                    <a id="apod-download-button" href="#" target="_blank" class="btn-primary px-6 py-3 rounded-full inline-block" style="display: none;">
+                        <i class="fas fa-download mr-2"></i>Descargar Imagen
                     </a>
                     <p id="apod-video-link-container" class="mt-4" style="display: none;">
                         <i class="fas fa-video mr-2 text-nebula-pink"></i>Este contenido es un video: 
@@ -348,27 +345,25 @@
         navLinksMobile.forEach(link => {
             link.addEventListener('click', (event) => {
                 const href = link.getAttribute('href');
-                // If it's an internal link (starts with #) or a link to another page
                 if (href.startsWith('#') || !href.includes('index.html')) {
                      mobileMenu.classList.add('hidden');
                 }
-                // For internal links, smooth scroll is handled by CSS (scroll-behavior: smooth;)
             });
         });
         
-        // Current Year in Footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Dynamic satellite icon link (optional, kept for consistency)
         const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
         if (satelliteIconLink) {
-            // satelliteIconLink.href = "https://www.solarsystemscope.com/"; // Example link
+            // satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
             // satelliteIconLink.target = "_blank"; 
         }
 
-        // NASA APOD Fetch
         async function fetchNasaApod() {
-            const apiKey = 'DEMO_KEY'; // Use your NASA API key here for more requests
+            // Usando la clave API de NASA proporcionada por el usuario.
+            // Si ocurren errores 429 (Too Many Requests), puede ser que esta clave también haya alcanzado su límite
+            // o no esté correctamente activada para APOD.
+            const apiKey = 'de2Y5Y5yZBoWZ77rdybz2fHtKwyi7cisSAUC7XkE'; 
             const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
             
             const apodHeader = document.getElementById('apod-header');
@@ -376,20 +371,19 @@
             const apodTitleElem = document.getElementById('apod-title');
             const apodDateElem = document.getElementById('apod-date');
             const apodExplanationElem = document.getElementById('apod-explanation');
-            const apodDownloadHdButton = document.getElementById('apod-download-hd');
-            const apodDownloadSdButton = document.getElementById('apod-download-sd');
+            const apodDownloadButton = document.getElementById('apod-download-button'); 
             const apodVideoLinkContainer = document.getElementById('apod-video-link-container');
             const apodVideoLink = document.getElementById('apod-video-link');
 
-            // For header section
             const apodTitleHeaderElem = document.getElementById('apod-title-header');
             const apodExplanationHeaderElem = document.getElementById('apod-explanation-header');
-
 
             try {
                 const response = await fetch(apiUrl);
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    const error = new Error(`HTTP error! status: ${response.status}`);
+                    error.status = response.status; 
+                    throw error;
                 }
                 const data = await response.json();
 
@@ -399,19 +393,10 @@
                     apodImageElem.alt = data.title;
                     apodImageElem.style.display = 'block';
                     apodVideoLinkContainer.style.display = 'none';
-
-                    if (data.hdurl) {
-                        apodDownloadHdButton.href = data.hdurl;
-                        apodDownloadHdButton.style.display = 'inline-block';
-                    } else {
-                         apodDownloadHdButton.style.display = 'none';
-                    }
-                    apodDownloadSdButton.href = data.url;
-                    apodDownloadSdButton.style.display = 'inline-block';
-
-
+                    apodDownloadButton.href = data.hdurl || data.url; 
+                    apodDownloadButton.style.display = 'inline-block';
                 } else if (data.media_type === 'video') {
-                    apodHeader.style.backgroundImage = `url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; // Fallback
+                    apodHeader.style.backgroundImage = `url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; 
                     if (data.thumbnail_url) {
                          apodImageElem.src = data.thumbnail_url; 
                          apodImageElem.alt = `Thumbnail for video: ${data.title}`;
@@ -422,32 +407,46 @@
                     apodImageElem.style.display = 'block';
                     apodVideoLink.href = data.url;
                     apodVideoLinkContainer.style.display = 'block';
-                    apodDownloadHdButton.style.display = 'none';
-                    apodDownloadSdButton.style.display = 'none';
+                    apodDownloadButton.style.display = 'none'; 
                 }
                 
                 apodTitleElem.textContent = data.title;
                 apodDateElem.textContent = `Fecha: ${new Date(data.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}`;
-                apodExplanationElem.textContent = data.explanation;
+                apodExplanationElem.textContent = data.explanation; 
 
                 apodTitleHeaderElem.textContent = data.title;
                 const shortExplanation = data.explanation.length > 200 ? data.explanation.substring(0, 200) + "..." : data.explanation;
                 apodExplanationHeaderElem.textContent = shortExplanation;
 
-
             } catch (error) {
-                console.error("Error fetching NASA APOD:", error);
+                console.error("Error fetching NASA APOD:", error.message); 
                 apodHeader.style.backgroundImage = `url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`; 
-                apodTitleElem.textContent = "Error al cargar la imagen del día";
-                apodExplanationElem.textContent = "No se pudo obtener la imagen astronómica del día. Intenta de nuevo más tarde.";
+                
+                if (error.status === 429) {
+                    apodTitleElem.textContent = "Límite de Solicitudes APOD Alcanzado";
+                    apodExplanationElem.innerHTML = `<p class="mb-3">Se ha alcanzado el límite de solicitudes para la clave API de NASA proporcionada.</p>
+                                                 <p class="mb-3"><strong>Por favor, verifica tu clave API de NASA o intenta con una diferente:</strong></p>
+                                                 <ol class="list-decimal list-inside mt-2 mb-4 text-left max-w-md mx-auto text-gray-300 bg-cosmic-purple p-4 rounded-md">
+                                                    <li class="mb-2">Asegúrate de que la clave <code>${apiKey}</code> sea correcta y esté activa para la APOD API.</li>
+                                                    <li>Puedes generar o revisar tus claves en: <a href="https://api.nasa.gov/" target="_blank" class="text-sky-400 hover:text-sky-300 underline font-semibold">https://api.nasa.gov/</a></li>
+                                                    <li>Si el problema persiste, considera que incluso las claves personales tienen límites diarios/horarios.</li>
+                                                 </ol>
+                                                 <p>Mientras tanto, te mostramos una imagen espacial de respaldo.</p>`;
+                    apodTitleHeaderElem.textContent = "Límite de APOD Alcanzado";
+                    apodExplanationHeaderElem.textContent = "Verifica tu clave API de NASA para ver la imagen del día.";
+                } else {
+                    apodTitleElem.textContent = "Error al Cargar la Imagen del Día";
+                    apodExplanationElem.textContent = `No se pudo obtener la imagen astronómica del día (Error: ${error.message || error.status || 'desconocido'}). Por favor, intenta de nuevo más tarde.`;
+                    apodTitleHeaderElem.textContent = "Imagen No Disponible";
+                    apodExplanationHeaderElem.textContent = "No se pudo cargar la imagen astronómica del día en este momento.";
+                }
                 apodImageElem.src = 'https://placehold.co/1200x800/0B0D17/E2E8F0?text=Error+APOD';
-                apodImageElem.alt = 'Error loading APOD';
+                apodImageElem.alt = 'Error al cargar APOD';
+                apodDownloadButton.style.display = 'none';
             }
         }
 
-        // Google Maps Initialization
         function initMap() {
-            // Coordinates for Observatorio de Fisica Cosmica de San Miguel
             const observatorioLocation = { lat: -34.548912, lng: -58.709403 }; 
             const observatorioAddress = "Av. Pres. Arturo U. Illia 3773, B1663 San Miguel, Provincia de Buenos Aires, Argentina";
             
@@ -457,8 +456,6 @@
                 return;
             }
 
-            // This check handles cases where the Google Maps API script fails to load,
-            // often due to an invalid API key (which causes InvalidKeyMapError).
             if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
                 console.error("Google Maps API not loaded. This is often due to an invalid API key or network issues.");
                 mapElement.innerHTML = `
@@ -477,88 +474,28 @@
             }
             
             const map = new google.maps.Map(mapElement, {
-                zoom: 16, // Slightly more zoomed in
+                zoom: 16, 
                 center: observatorioLocation,
-                mapId: 'MOSM_CUSTOM_MAP_ID', // Optional: For cloud-based map styling if configured
-                styles: [ // Basic dark mode style to somewhat match the site
+                mapId: 'MOSM_CUSTOM_MAP_ID', 
+                styles: [ 
                     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
                     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
                     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-                    {
-                        featureType: "administrative.locality",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                    },
-                    {
-                        featureType: "poi",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                    },
-                    {
-                        featureType: "poi.park",
-                        elementType: "geometry",
-                        stylers: [{ color: "#263c3f" }],
-                    },
-                    {
-                        featureType: "poi.park",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#6b9a76" }],
-                    },
-                    {
-                        featureType: "road",
-                        elementType: "geometry",
-                        stylers: [{ color: "#38414e" }],
-                    },
-                    {
-                        featureType: "road",
-                        elementType: "geometry.stroke",
-                        stylers: [{ color: "#212a37" }],
-                    },
-                    {
-                        featureType: "road",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#9ca5b3" }],
-                    },
-                    {
-                        featureType: "road.highway",
-                        elementType: "geometry",
-                        stylers: [{ color: "#746855" }],
-                    },
-                    {
-                        featureType: "road.highway",
-                        elementType: "geometry.stroke",
-                        stylers: [{ color: "#1f2835" }],
-                    },
-                    {
-                        featureType: "road.highway",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#f3d19c" }],
-                    },
-                    {
-                        featureType: "transit",
-                        elementType: "geometry",
-                        stylers: [{ color: "#2f3948" }],
-                    },
-                    {
-                        featureType: "transit.station",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                    },
-                    {
-                        featureType: "water",
-                        elementType: "geometry",
-                        stylers: [{ color: "#17263c" }],
-                    },
-                    {
-                        featureType: "water",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#515c6d" }],
-                    },
-                    {
-                        featureType: "water",
-                        elementType: "labels.text.stroke",
-                        stylers: [{ color: "#17263c" }],
-                    },
+                    { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+                    { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+                    { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#263c3f" }] },
+                    { featureType: "poi.park", elementType: "labels.text.fill", stylers: [{ color: "#6b9a76" }] },
+                    { featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] },
+                    { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212a37" }] },
+                    { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#9ca5b3" }] },
+                    { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#746855" }] },
+                    { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#1f2835" }] },
+                    { featureType: "road.highway", elementType: "labels.text.fill", stylers: [{ color: "#f3d19c" }] },
+                    { featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f3948" }] },
+                    { featureType: "transit.station", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+                    { featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] },
+                    { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#515c6d" }] },
+                    { featureType: "water", elementType: "labels.text.stroke", stylers: [{ color: "#17263c" }] },
                 ],
             });
 
@@ -587,16 +524,10 @@
             });
         }
 
-        // Call functions on load
         document.addEventListener('DOMContentLoaded', () => {
             fetchNasaApod();
-            // Google Maps API will call initMap via the callback parameter in the script URL
         });
     </script>
-    <!-- 
-        API Key de Google Maps integrada.
-        El parámetro callback=initMap ejecutará la función initMap una vez que la API se haya cargado.
-    -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=R2p4PbMAugOvet2WPeoRdHVCz0I=&callback=initMap&libraries=marker&v=beta"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQi6TQ0v0pco2HDnBe6RSaQ7MyQnGl6z0&callback=initMap&libraries=marker&v=beta"></script>
 </body>
 </html>
