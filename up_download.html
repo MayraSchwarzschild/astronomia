@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carga y Descarga de Archivos - Museo Observatorio San Miguel</title>
+    <title>Carga y Descarga - Observatorio de Física Cósmica de San Miguel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -154,6 +155,7 @@
     </style>
 </head>
 <body>
+    <!-- Star decorations for the background -->
     <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
     <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
     <div class="star-decoration" style="top: 10%; left: 30%; width: 1px; height: 1px; animation-delay: 1.5s;"></div>
@@ -174,16 +176,12 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
                 <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
-                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
-                <span class="sm:hidden">MOSM</span>
+                <span class="hidden sm:inline">Observatorio de Física Cósmica de San Miguel</span>
+                <span class="sm:hidden">OFCSM</span>
             </a>
             <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
                 <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
-                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
-                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-                <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
-                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+                <a href="index.html#quienes-somos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
                 <a href="up_download.html" class="nav-link-active transition duration-300">Up/Download</a>
                 <a href="calendario.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
@@ -198,11 +196,7 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
             <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
-            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
-            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-            <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
-            <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
+            <a href="index.html#quienes-somos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
             <a href="up_download.html" class="block nav-link-active transition duration-300">Up/Download</a>
             <a href="calendario.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
@@ -323,16 +317,12 @@
         <div class="container mx-auto px-6 text-center text-gray-400">
             <div class="mb-6">
                 <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
-                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Observatorio de Física Cósmica de San Miguel
                 </a>
             </div>
             <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
                 <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
-                <a href="index.html#equipo" class="hover:text-yellow-400">Quiénes Somos</a>
-                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
-                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
-                <a href="blog.html" class="hover:text-yellow-400">Blog</a>
-                <a href="foro.html" class="hover:text-yellow-400">Foro</a>
+                <a href="index.html#quienes-somos" class="hover:text-yellow-400">Quiénes Somos</a>
                 <a href="up_download.html" class="hover:text-yellow-400">Up/Download</a>
                 <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
                 <a href="premium.html" class="hover:text-yellow-400">Premium</a>
@@ -342,7 +332,7 @@
                 <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
             </div>
-            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+            <p class="text-sm">© <span id="currentYear"></span> Observatorio de Física Cósmica de San Miguel. Todos los derechos reservados.</p>
             <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
         </div>
     </footer>
@@ -359,25 +349,12 @@
 
         navLinksMobile.forEach(link => {
             link.addEventListener('click', () => {
-                const href = link.getAttribute('href');
-                // Close menu if it's an anchor link on index.html or if it's a link to another page (not the current one)
-                if (href.includes('index.html#') || (href !== 'up_download.html' && !href.includes('up_download.html#'))) {
-                    mobileMenu.classList.add('hidden');
-                } else if (href.startsWith('#')) { 
-                    mobileMenu.classList.add('hidden');
-                }
+                mobileMenu.classList.add('hidden');
             });
         });
         
         // Current Year in Footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Dynamic satellite icon link
-        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
-        if (satelliteIconLink) {
-            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
-            satelliteIconLink.target = "_blank"; 
-        }
 
         // File input name display
         const fileUploadInput = document.getElementById('fileUpload');
@@ -397,8 +374,7 @@
         if (uploadForm) {
             uploadForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent actual form submission
-                // In a real application, you would handle file upload here.
-                // For demonstration, we can just show an alert or a message.
+                
                 const title = document.getElementById('fileTitle').value;
                 const file = document.getElementById('fileUpload').files[0];
                 let message = "Formulario enviado (simulación).\n";
