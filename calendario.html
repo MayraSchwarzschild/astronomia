@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario Astronómico - Museo Observatorio San Miguel</title>
+    <title>Calendario Astronómico - Observatorio de Física Cósmica de San Miguel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -121,6 +121,7 @@
     </style>
 </head>
 <body>
+    <!-- Star decorations for the background -->
     <div class="star-decoration" style="top: 5%; left: 5%; width: 1px; height: 1px; animation-delay: 0.5s;"></div>
     <div class="star-decoration" style="top: 15%; left: 10%; width: 2px; height: 2px;"></div>
     <div class="star-decoration" style="top: 10%; left: 30%; width: 1px; height: 1px; animation-delay: 1.5s;"></div>
@@ -141,17 +142,13 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-xl md:text-2xl font-bold text-white flex items-center">
                 <i class="fas fa-satellite mr-2 text-yellow-400 dynamic-satellite"></i>
-                <span class="hidden sm:inline">Museo Observatorio San Miguel</span>
-                <span class="sm:hidden">MOSM</span>
+                <span class="hidden sm:inline">Observatorio de Física Cósmica de San Miguel</span>
+                <span class="sm:hidden">OFCSM</span>
             </a>
             <div class="hidden md:flex space-x-3 lg:space-x-4 items-center">
                 <a href="index.html#ubicacion" class="text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-                <a href="index.html#equipo" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
-                <a href="index.html#eventos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
-                <a href="cursos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-                <a href="blog.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
-                <a href="foro.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
-                <a href="trabajos.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+                <a href="index.html#quienes-somos" class="text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+                <a href="up_download.html" class="text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
                 <a href="calendario.html" class="nav-link-active transition duration-300">Calendario</a>
                 <a href="premium.html" class="btn-primary px-4 py-2 rounded-full font-semibold text-sm">
                     <i class="fas fa-star mr-1"></i>Premium
@@ -164,13 +161,9 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-             <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
-            <a href="index.html#equipo" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
-            <a href="index.html#eventos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Eventos</a>
-            <a href="cursos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Cursos</a>
-            <a href="blog.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Blog</a>
-            <a href="foro.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Foro</a>
-            <a href="trabajos.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
+            <a href="index.html#ubicacion" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Ubicación</a>
+            <a href="index.html#quienes-somos" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Quiénes Somos</a>
+            <a href="up_download.html" class="block text-gray-300 hover:text-yellow-400 transition duration-300">Up/Download</a>
             <a href="calendario.html" class="block nav-link-active transition duration-300">Calendario</a>
             <a href="premium.html" class="block btn-primary px-4 py-2 rounded-full font-semibold text-center mt-2">
                 <i class="fas fa-star mr-1"></i>Premium
@@ -198,86 +191,6 @@
                 </p>
             </section>
 
-            <section id="junio-2025" class="mb-12">
-                <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Junio 2025</h2>
-                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Solsticio de Invierno (Hemisferio Sur)</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">21 de Junio</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Todo el día</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">El día más corto y la noche más larga del año en el hemisferio sur. Marca el inicio oficial del invierno astronómico. Es un momento perfecto para reflexionar sobre los ciclos de la Tierra y el Sol.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Evento Terrestre/Solar</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: No es un evento de observación directa</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Solsticio_de_invierno" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Más sobre Solsticios en Wikipedia</a>
-                            <a href="https://ciencia.nasa.gov/ciencias-terrestres/el-sol-clima/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>El Sol y la Tierra (NASA)</a>
-                        </div>
-                    </div>
-
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Observación de Júpiter y sus Lunas</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Durante todo Junio</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Mejor visibilidad en la noche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Júpiter, el gigante gaseoso, estará bien posicionado para su observación. Con binoculares o un telescopio pequeño, podrás distinguir sus lunas galileanas: Ío, Europa, Ganimedes y Calisto. El evento del 15 de Junio en el museo es una excelente oportunidad.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Planetario</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Binoculares / Telescopio</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/J%C3%BApiter_(planeta)" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Aprende sobre Júpiter</a>
-                            <a href="https://solarsystem.nasa.gov/planets/jupiter/overview/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Explora Júpiter con la NASA</a>
-                            <a href="index.html#eventos" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-calendar-alt mr-2"></i>Ver evento "Noche de Estrellas" del MOSM</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="julio-2025" class="mb-12">
-                <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Julio 2025</h2>
-                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Afelio de la Tierra</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Aprox. 4 de Julio</span>
-                        </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Todo el día</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">La Tierra alcanza el afelio, el punto de su órbita más alejado del Sol (aproximadamente 152.1 millones de km). Curiosamente, para el hemisferio sur, esto ocurre durante el invierno.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Evento Orbital</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: No observable directamente</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Afelio" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Entiende el Afelio</a>
-                        </div>
-                    </div>
-
-                    <div class="card p-6">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Lluvia de Meteoros Delta Acuáridas del Sur</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Pico: 29-30 de Julio</span>
-                        </div>
-                         <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Mejor observación después de medianoche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Una lluvia de meteoros de actividad media, ideal para el hemisferio sur. Se esperan entre 15-20 meteoros por hora en condiciones óptimas (cielos oscuros, sin Luna). El radiante se encuentra en la constelación de Acuario.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Lluvia de Meteoros</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Simple vista (cielos oscuros)</span>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Delta_Acu%C3%A1ridas" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Sobre las Delta Acuáridas</a>
-                            <a href="https://www.imo.net/resources/calendar/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-calendar-check mr-2"></i>Calendario de la Organización Internacional de Meteoros</a>
-                            <a href="https://astrometrica.at/" target="_blank" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-users mr-2"></i>Reporta tus observaciones en Astrometrica</a>
-                            <a href="index.html#eventos" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-star mr-2"></i>Evento de Observación en MOSM (28 Julio)</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
             <section id="agosto-2025" class="mb-12">
                 <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Agosto 2025</h2>
                 <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
@@ -287,32 +200,103 @@
                             <span class="text-md lg:text-lg text-gray-400 font-medium">Pico: 12-13 de Agosto</span>
                         </div>
                         <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Mejor observación después de medianoche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Una de las lluvias de meteoros más famosas y abundantes. Aunque su radiante en Perseo favorece al hemisferio norte, desde el sur también se pueden observar algunos meteoros brillantes, especialmente aquellos que se alejan del radiante. La Luna estará en fase creciente, lo que podría dificultar un poco la observación de los meteoros más débiles este año.</p>
+                        <p class="text-gray-300 mb-4 leading-relaxed">Una de las lluvias de meteoros más famosas. Aunque su radiante en Perseo favorece al hemisferio norte, desde el sur se pueden observar algunos meteoros brillantes. La Luna creciente se ocultará temprano, dejando cielos oscuros para el pico.</p>
                         <div class="mb-4">
                             <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Lluvia de Meteoros</span>
                             <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Simple vista</span>
                         </div>
                         <div class="space-y-3">
                             <a href="https://es.wikipedia.org/wiki/Perseidas" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Todo sobre las Perseidas</a>
-                            <a href="https://ciencia.nasa.gov/sistema-solar/meteoros-y-meteoritos/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Meteoros y Meteoritos (NASA)</a>
-                             <a href="https://www.timeanddate.com/astronomy/meteor-shower/perseid.html" target="_blank" class="text-green-400 hover:text-green-300 transition duration-300 block"><i class="fas fa-info-circle mr-2"></i>Más info y horarios (TimeAndDate)</a>
                         </div>
                     </div>
 
                      <div class="card p-6">
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
-                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Luna Nueva y Observación de Cielo Profundo</h3>
-                            <span class="text-md lg:text-lg text-gray-400 font-medium">Aprox. 20 de Agosto</span>
+                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Saturno en Oposición</h3>
+                            <span class="text-md lg:text-lg text-gray-400 font-medium">17 de Agosto</span>
                         </div>
-                        <p class="text-gray-300 mb-2"><i class="fas fa-moon text-nebula-pink mr-2"></i>Ausencia de Luna toda la noche</p>
-                        <p class="text-gray-300 mb-4 leading-relaxed">La Luna Nueva ofrece las condiciones ideales para la observación de objetos de cielo profundo como galaxias, nebulosas y cúmulos estelares, ya que no habrá luz lunar que interfiera. ¡Una excelente oportunidad para usar telescopios y explorar las maravillas de la Vía Láctea!</p>
+                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Visible toda la noche</p>
+                        <p class="text-gray-300 mb-4 leading-relaxed">El planeta anillado estará en su punto más cercano a la Tierra y su cara visible estará completamente iluminada por el Sol. Es el mejor momento del año para ver y fotografiar Saturno y sus lunas. Un telescopio mediano revelará sus majestuosos anillos.</p>
                         <div class="mb-4">
-                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Condición de Observación</span>
-                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Requiere cielos oscuros</span>
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Planetario</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Telescopio</span>
                         </div>
                         <div class="space-y-3">
-                            <a href="https://es.wikipedia.org/wiki/Objeto_de_espacio_profundo" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Objetos de Espacio Profundo</a>
-                            <a href="https://hubblesite.org/images/gallery" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Galería del Hubble (NASA)</a>
+                             <a href="https://es.wikipedia.org/wiki/Oposici%C3%B3n_(astronom%C3%ADa)" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>¿Qué es una oposición?</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="septiembre-2025" class="mb-12">
+                <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Septiembre 2025</h2>
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Neptuno en Oposición</h3>
+                            <span class="text-md lg:text-lg text-gray-400 font-medium">1 de Septiembre</span>
+                        </div>
+                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Visible toda la noche</p>
+                        <p class="text-gray-300 mb-4 leading-relaxed">El gigante de hielo azul alcanza su máxima brillantez y acercamiento a la Tierra. Debido a su extrema distancia, solo aparecerá como un pequeño punto azul en los telescopios más potentes. Un desafío para observadores experimentados.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Planetario</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Telescopio potente</span>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="https://solarsystem.nasa.gov/planets/neptune/overview/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Explora Neptuno con la NASA</a>
+                        </div>
+                    </div>
+
+                    <div class="card p-6">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Equinoccio de Primavera</h3>
+                            <span class="text-md lg:text-lg text-gray-400 font-medium">22 de Septiembre</span>
+                        </div>
+                         <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Todo el día</p>
+                        <p class="text-gray-300 mb-4 leading-relaxed">El Sol brilla directamente sobre el ecuador, y el día y la noche tienen aproximadamente la misma duración. Es el primer día de la primavera astronómica en el hemisferio sur. Un evento que marca el cambio de las estaciones en nuestro planeta.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Evento Terrestre/Solar</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: No observable directamente</span>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="https://es.wikipedia.org/wiki/Equinoccio" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Sobre los Equinoccios</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="octubre-2025" class="mb-12">
+                <h2 class="text-2xl font-bold text-starlight-yellow mb-8 text-center">Octubre 2025</h2>
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Lluvia de Meteoros Oriónidas</h3>
+                            <span class="text-md lg:text-lg text-gray-400 font-medium">Pico: 21-22 de Octubre</span>
+                        </div>
+                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Mejor observación después de medianoche</p>
+                        <p class="text-gray-300 mb-4 leading-relaxed">Una lluvia de meteoros de actividad media que puede producir hasta 20 meteoros por hora en su pico. Es producida por los restos de polvo del cometa Halley. La Luna nueva garantizará cielos oscuros para una excelente observación este año.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Lluvia de Meteoros</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Simple vista</span>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="https://es.wikipedia.org/wiki/Ori%C3%B3nidas" target="_blank" class="text-sky-400 hover:text-sky-300 transition duration-300 block"><i class="fab fa-wikipedia-w mr-2"></i>Todo sobre las Oriónidas</a>
+                        </div>
+                    </div>
+
+                     <div class="card p-6">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="text-xl lg:text-2xl font-semibold text-white">Urano en Oposición</h3>
+                            <span class="text-md lg:text-lg text-gray-400 font-medium">17 de Octubre</span>
+                        </div>
+                        <p class="text-gray-300 mb-2"><i class="fas fa-clock text-nebula-pink mr-2"></i>Visible toda la noche</p>
+                        <p class="text-gray-300 mb-4 leading-relaxed">Urano estará en su punto más cercano a la Tierra. Será visible como un pequeño punto de color azul-verdoso con un telescopio, pero incluso con binoculares potentes bajo un cielo muy oscuro podría ser posible distinguirlo de las estrellas circundantes.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-cosmic-purple text-starlight-yellow text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Tipo: Planetario</span>
+                            <span class="inline-block bg-gray-700 text-gray-200 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Visibilidad: Binoculares / Telescopio</span>
+                        </div>
+                        <div class="space-y-3">
+                             <a href="https://solarsystem.nasa.gov/planets/uranus/overview/" target="_blank" class="text-blue-400 hover:text-blue-300 transition duration-300 block"><i class="fas fa-rocket mr-2"></i>Explora Urano con la NASA</a>
                         </div>
                     </div>
                 </div>
@@ -336,12 +320,9 @@
             <section id="participa" class="text-center my-16">
                  <h2 class="text-3xl font-bold text-center mb-10 section-title">¡Únete y Participa!</h2>
                  <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-                    La astronomía es una ciencia viva y participativa. Te invitamos a unirte a comunidades de aficionados, reportar tus observaciones y seguir aprendiendo.
+                     La astronomía es una ciencia viva y participativa. Te invitamos a unirte a comunidades de aficionados, reportar tus observaciones y seguir aprendiendo.
                  </p>
                  <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="https://astrometrica.at/" target="_blank" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg">
-                        <i class="fas fa-meteor mr-2"></i>Astrometrica (Reportes)
-                    </a>
                     <a href="https://www.socastarg.org.ar/" target="_blank" class="px-8 py-4 rounded-full font-semibold text-lg border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:bg-opacity-10 transition">
                         <i class="fas fa-users mr-2"></i>Asoc. Argentina Amigos de la Astronomía
                     </a>
@@ -355,17 +336,13 @@
         <div class="container mx-auto px-6 text-center text-gray-400">
             <div class="mb-6">
                 <a href="index.html" class="text-xl font-bold text-white hover:text-yellow-400 transition">
-                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Museo del Observatorio de San Miguel
+                    <i class="fas fa-satellite mr-2 text-yellow-400"></i>Observatorio de Física Cósmica de San Miguel
                 </a>
             </div>
             <div class="mb-6 space-x-4 sm:space-x-6 text-sm">
                 <a href="index.html#ubicacion" class="hover:text-yellow-400">Ubicación</a>
-                <a href="index.html#equipo" class="hover:text-yellow-400">Quiénes Somos</a>
-                <a href="index.html#eventos" class="hover:text-yellow-400">Eventos</a>
-                <a href="cursos.html" class="hover:text-yellow-400">Cursos</a>
-                <a href="blog.html" class="hover:text-yellow-400">Blog</a>
-                <a href="foro.html" class="hover:text-yellow-400">Foro</a>
-                <a href="trabajos.html" class="hover:text-yellow-400">Up/Download</a>
+                <a href="index.html#quienes-somos" class="hover:text-yellow-400">Quiénes Somos</a>
+                <a href="up_download.html" class="hover:text-yellow-400">Up/Download</a>
                 <a href="calendario.html" class="hover:text-yellow-400">Calendario</a>
                 <a href="premium.html" class="hover:text-yellow-400">Premium</a>
             </div>
@@ -374,7 +351,7 @@
                 <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-yellow-400 transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
             </div>
-            <p class="text-sm">© <span id="currentYear"></span> Museo del Observatorio de San Miguel. Todos los derechos reservados.</p>
+            <p class="text-sm">© <span id="currentYear"></span> Observatorio de Física Cósmica de San Miguel. Todos los derechos reservados.</p>
             <p class="text-xs mt-2">Un proyecto para la difusión de la ciencia y la cultura cósmica.</p>
         </div>
     </footer>
@@ -391,25 +368,13 @@
 
         navLinksMobile.forEach(link => {
             link.addEventListener('click', () => {
-                const href = link.getAttribute('href');
-                // Cerrar menú si es un enlace de anclaje en index.html o si es un enlace a otra página que no sea calendario.html
-                if (href.includes('index.html#') || (href !== 'calendario.html' && !href.includes('calendario.html#'))) {
-                    mobileMenu.classList.add('hidden');
-                } else if (href.startsWith('#')) { 
-                    mobileMenu.classList.add('hidden');
-                }
+                mobileMenu.classList.add('hidden');
             });
         });
         
         // Current Year in Footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Dynamic satellite icon link
-        const satelliteIconLink = document.querySelector('.navbar-glass .fa-satellite').parentElement;
-        if (satelliteIconLink) {
-            satelliteIconLink.href = "https://www.solarsystemscope.com/"; 
-            satelliteIconLink.target = "_blank"; 
-        }
     </script>
 </body>
 </html>
